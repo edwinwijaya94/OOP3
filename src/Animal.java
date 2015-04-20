@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.awt.Point;
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -9,12 +10,13 @@ import java.util.ArrayList;
  * @author Edwin
  */
 public interface Animal {
-    //attributes
-    /*public int speed=0;
-    public int size=0;
-    public Point position= new Point(0,0);
-    public EventObserver[] event_observer;
-    public String word="";*/
+    
+    //getter
+    public int getSpeed();
+    public int getSize();
+    public Point getPosition();
+    public EventObserver[] getEventObserver();
+    public String getWord();
     
     //method
     public void move();
