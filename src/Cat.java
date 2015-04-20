@@ -17,29 +17,43 @@ public class Cat implements Animal {
     public String word="";
     
     //getter
+    @Override
     public int getSpeed(){
         return speed;
     }
+    
+    @Override
     public int getSize(){
         return size;
     }
+    
+    @Override
     public Point getPosition(){
         return position;
     }
+    
+    @Override
     public EventObserver[] getEventObserver(){
         return event_observer;
     }
+    
+    @Override
     public String getWord(){
         return word;
     }
     
     //method
+    @Override
     public void move(){
     
     }
+    
+    @Override
     public void behaveWord(){
     
     }
+    
+    @Override
     public void notifyObserver(EventObserver e){
         
     }
