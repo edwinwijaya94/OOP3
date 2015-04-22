@@ -7,36 +7,49 @@
  *
  * @author Edwin
  */
+import java.lang.reflect.*;
 import java.util.*;
 
 public class AnimalFactory {
-    private HashMap<Animal, Collection<Animal>> animalMap = new HashMap<>();
-    Collection<Animal> listAnimal = new ArrayList<>();
-    listAnimal = animalMap.get(Animal);
+    Constructor animalConstructor;
+    HashMap<String, ArrayList<Animal>> animalMap = new HashMap<>();
+    int id = 0,defaultt = 10;
+    private static AnimalFactory instance;
     
-    void registerAnimal(Class animal) {
-        Method m = animal.getMethod("setId", Integer.class);
-        Sting[] params = null;
-        m.invoke(null, id++);
+    private AnimalFactory()
+    {
+		
     }
-    
-    animalMap.put(Animal, listAnimal);
-    
-    Integer id = 0;
-    void setId (Animal animal) {
+    public static AnimalFactory getInstance()
+    {
+        if (instance == null)
+            instance = new AnimalFactory();
+        return instance;
+    }
         
+    public void registerAnimal(String animalName, Class animal) {
+        ArrayList<Animal> listAnimal = new ArrayList<>();
+        try {
+            animalConstructor = animal.getDeclaredConstructor(new Class[] {});
+        }catch(Exception e) {
+            System.out.println(e);
+        }
+
+        for (int i=0;i<defaultt;i++)
+        {
+            try {
+                Animal tempAnimal = (Animal)animalConstructor.newInstance(new Object[] {});
+                listAnimal.add(tempAnimal);
+            }catch(Exception e) {
+                System.out.println(e);
+            }
+        }
+
+        animalMap.put(animalName.toLowerCase(),listAnimal);
     }
     
-    
-    public void releaseAnimal(Animal) {
-        
-    }
-   
-    Integer getId() {
-        return id;
-    }
-    
-    public Animal getAnimal(Animal animal){ 
-        AnimalMap.get(animal.getId());
+    public Animal getAnimal(String animalName) {
+        ArrayList<Animal> animalList = animalMap.get(animalName.toLowerCase());
+        return animalList.remove(animalList.size()-1);
     }
 }
