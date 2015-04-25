@@ -49,7 +49,8 @@ public class TypeHandler extends Thread{
         {
             if (gameLayout.jTextField1.getText().equals(animal.get(i).word))
             {
-                eventHandler.handleCorrectTyping(animal.get(i));
+                CaughtObserver.getInstance().setAnimal(animal.get(i));
+                CaughtObserver.getInstance().handle();
                 return;
             }
         }
