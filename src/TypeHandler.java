@@ -15,6 +15,7 @@ public class TypeHandler extends Thread{
     private String threadName = "TypeHandlerThread";
     private GameLayout gameLayout;
     private EventObserver eventHandler;
+    private boolean pause = false;
     
     public TypeHandler(GameLayout gameLayout, EventObserver eventHandler)
     {
@@ -27,27 +28,32 @@ public class TypeHandler extends Thread{
         }
     }
     
+    public void pause(){
+        pause = true;
+    }
+    
+    public void unpause(){
+        pause = false;
+    }
+    
     public void run()
     {
-        while (true)
-        {
+        while (true){
             validateInput();
-            while (gameLayout.gameFlow.isPause())
-            {
+            while (pause) {
                 try{
                     wait();
-                }catch(Exception e)
-                {}
+                }catch(Exception e){}
             }
         }
     }
     
     public void validateInput()
     {
-        ArrayList<Animal> animal = gameLayout.animal;
+        ArrayList<Animal> animal = GameLayout.getInstance().getAnimals();
         for (int i=0;i<animal.size();i++)
         {
-            if (GameLayout.getInstance().jTextField1.getText().equals(animal.get(i).word))
+            if (GameLayout.getInstance().getTextField().getText().equals(animal.get(i).getWord()))
             {
                 CaughtObserver.getInstance().setAnimal(animal.get(i));
                 CaughtObserver.getInstance().handle();
