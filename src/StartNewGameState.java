@@ -12,5 +12,6 @@ public class StartNewGameState implements State {
     @Override
     public void doAction() {
         GameLayout GL = new GameLayout();
+        
     }
 }
