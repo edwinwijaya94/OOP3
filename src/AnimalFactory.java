@@ -9,6 +9,7 @@
  */
 import java.lang.reflect.*;
 import java.util.*;
+import javax.swing.JPanel;
 
 public class AnimalFactory {
     Constructor animalConstructor;
@@ -28,6 +29,7 @@ public class AnimalFactory {
             instance = new AnimalFactory();
         return instance;
     }
+   
         
     public void registerAnimal(Class animal) {
         try {

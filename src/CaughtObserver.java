@@ -10,30 +10,19 @@
 public class CaughtObserver implements EventObserver {
 
     private GameLayout gameLayout;
+    private Animal animal;
     CaughtObserver(GameLayout gameLayout)
     {
         this.gameLayout = gameLayout;
     }
     
     @Override
-    public void handleCorrectTyping(Animal animal) {
-        AnimalFactory.getInstance().returnAnimal(animal);
+    public void handle() {
+        AnimalFactory.getInstance().putAnimal(animal);
+        animal.label.setVisible(false);
+        animal.getThread().interrupt();
         gameLayout.animal.remove(animal);
+        gameLayout.animal.add(new Cat(gameLayout.jPanel1));        
+        
     }
-
-    @Override
-    public void handleAnimalEscape() {
-        // no implementation
-    }
-
-    @Override
-    public void handlePauseGame() {
-        // no implementation
-    }
-
-    @Override
-    public void handleExitGame() {
-        // no implementation
-    }
-    
 }

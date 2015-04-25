@@ -9,7 +9,7 @@ import java.util.*;
  *
  * @author elvan_owen
  */
-public class GameFlowObserver implements EventObserver {
+public class GameFlowObserver extends EventObserver {
     private GameLayout gameLayout;
     private ArrayList<Integer> animalSpeed;
 
@@ -28,8 +28,8 @@ public class GameFlowObserver implements EventObserver {
         ArrayList<Animal> animal = gameLayout.animal;
         for (int i=0;i<animal.size();i++)
         {
-            animalSpeed.add(animal.get(i).speed);
-            animal.get(i).speed = 0;
+            animalSpeed.add(animal.get(i).getSpeed());
+            animal.get(i).setSpeed(0);
         }
         gameLayout.gameFlow.pause();
     }

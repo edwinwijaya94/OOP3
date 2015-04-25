@@ -1,5 +1,7 @@
 import java.util.ArrayList;
 import java.awt.Point;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -12,6 +14,8 @@ import java.awt.Point;
 public abstract class Animal {
     
     //attributes
+    protected JLabel label;
+    public Thread myThread;
     public int speed=0;
     public int size=0;
     public Point position= new Point();
@@ -43,9 +47,15 @@ public abstract class Animal {
     public  final String getWord(){
         return word;
     }
+    public final String setSpeed(int speed) {
+        this.speed = speed; 
+    }
+    public final Thread getThread() {
+        return myThread;
+    }
     
     //abstract method
     public abstract void move();
-    public abstract void behaveWord();
+    public abstract String behaveWord(long currentTime);
     public abstract void notifyObserver(EventObserver e);
 }

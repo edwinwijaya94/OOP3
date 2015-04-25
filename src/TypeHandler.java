@@ -47,7 +47,7 @@ public class TypeHandler extends Thread{
         ArrayList<Animal> animal = gameLayout.animal;
         for (int i=0;i<animal.size();i++)
         {
-            if (textbox.text.equals(animal.get(i).word))
+            if (gameLayout.jTextField1.getText().equals(animal.get(i).word))
             {
                 eventHandler.handleCorrectTyping(animal.get(i));
                 return;

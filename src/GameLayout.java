@@ -17,6 +17,7 @@ import javax.swing.SwingUtilities;
 public class GameLayout extends javax.swing.JFrame {
     
     //attributes
+    private static GameLayout instance;
     ArrayList<Animal> animal;
     //Background background;
     TypeHandler typeHandler;
@@ -27,9 +28,20 @@ public class GameLayout extends javax.swing.JFrame {
     /**
      * Creates new form GameLayout
      */
-    public GameLayout() {
+    private GameLayout()
+    {
         initComponents();
     }
+    public static GameLayout getInstance()
+    {
+        if (instance == null)
+        {
+            instance = new GameLayout();
+            AnimalFactory.getInstance();
+        }
+        return instance;
+    }
+    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -142,7 +154,8 @@ public class GameLayout extends javax.swing.JFrame {
         // TODO add your handling code here:
         for(int i = 0; i < 5; i++)
         {
-            animal[i] = new Cat(jPanel1);
+            animal.add(AnimalFactory.getInstance().getAnimal());
+            animal.get(i).move();
         }
         
     }                                               
@@ -203,8 +216,8 @@ public class GameLayout extends javax.swing.JFrame {
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JPanel jPanel1;
-    private javax.swing.JTextField jTextField1;
+    public javax.swing.JPanel jPanel1;
+    public javax.swing.JTextField jTextField1;
     private javax.swing.JButton startGameButton;
     // End of variables declaration                   
 

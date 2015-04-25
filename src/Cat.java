@@ -16,40 +16,44 @@ import javax.swing.SwingUtilities;
  * @author Edwin
  */
 public class Cat extends Animal {
-    
+  
     public static String animalName;
     
 // registering the class to AnimalFactory
     static{
-        AnimalFactory.getInstance().registerAnimal("Cat",Cat.class);
+        AnimalFactory.getInstance().registerAnimal(Cat.class);
     }
     
-    public Cat(JPanel panel)
+    public Cat()
     {
        ImageIcon icon = new ImageIcon("image/cat.png");
         Image image = icon.getImage();
         image = image.getScaledInstance(200, 100,  java.awt.Image.SCALE_SMOOTH); 
         icon = new ImageIcon(image);
-        JLabel jLabel2 = new JLabel();
-        jLabel2.setText("");
-        jLabel2.setIcon(icon);
-        jLabel2.setSize(200,100);
-        jLabel2.setLocation(300,10);
-        panel.add(jLabel2, BorderLayout.CENTER);
-        panel.revalidate();
-        panel.repaint();   
+        label = new JLabel();
+        label.setText("");
+        label.setIcon(icon);
+        label.setSize(200,100);
+        label.setLocation(300,10);;
     }
     
     //method
     @Override
     public void move(){
-    
-         Thread myThread = new Thread()  {
+         GameLayout.getInstance().jPanel1.add(label, BorderLayout.CENTER);
+         GameLayout.getInstance().jPanel1.revalidate();
+         GameLayout.getInstance().jPanel1.repaint();   
+         long startTime = System.nanoTime();
+         myThread = new Thread()  {
             public void run() {
-                for(int i = 0; i < 50; i++) {
-                    updateTest(i, jLabel2);
+                int kiri = (int)GameLayout.getInstance().jPanel1.getLocation().getX();
+                while(label.getLocation().getX() > kiri) {
                     try {
-                        Thread.sleep(50);
+                        updatePosition();
+                        long runningTime = System.nanoTime() - startTime;
+                        word = behaveWord(runningTime / 1000000);
+                        label.setText(word);
+                        Thread.sleep(100-speed);
                     } catch (InterruptedException ex) {
                         
                     }
@@ -59,7 +63,7 @@ public class Cat extends Animal {
         myThread.start();
     }                                               
 
-     private void updateTest(int i, JLabel label) {
+     private void updatePosition() {
         SwingUtilities.invokeLater (new Runnable() {
             @Override
             public void run() {
@@ -67,11 +71,10 @@ public class Cat extends Animal {
             }
         });
     }
-    }
     
     @Override
-    public void behaveWord(){
-    
+    public String behaveWord(long currentTime) {
+        return "a";
     }
     
     @Override
