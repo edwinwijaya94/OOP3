@@ -22,9 +22,7 @@ public abstract class Animal {
     public EventObserver[] eventObserver;
     public String word="";
     
-    
     //getter, setter
-    
     public final int getSpeed(){
         return speed;
     }
@@ -50,5 +48,4 @@ public abstract class Animal {
     //abstract method
     public abstract void move();
     public abstract String behaveWord(long currentTime);
-    public abstract void notifyObserver(EventObserver e);
 }

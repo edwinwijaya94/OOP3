@@ -9,8 +9,16 @@ import java.util.*;
 public class WordsDictionary
 {
 	private ArrayList<String> words = new ArrayList<>();
-	
-	public WordsDictionary()
+        private static WordsDictionary instance;
+    
+        public static WordsDictionary getInstance()
+        {
+            if (instance == null)
+                instance = new WordsDictionary();
+            return instance;
+        }
+        
+	private WordsDictionary()
 	{
 		getWordsFromExternalFiles();
 	}

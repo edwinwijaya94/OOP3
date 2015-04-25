@@ -47,7 +47,7 @@ public class TypeHandler extends Thread{
         ArrayList<Animal> animal = gameLayout.animal;
         for (int i=0;i<animal.size();i++)
         {
-            if (gameLayout.jTextField1.getText().equals(animal.get(i).word))
+            if (GameLayout.getInstance().jTextField1.getText().equals(animal.get(i).word))
             {
                 CaughtObserver.getInstance().setAnimal(animal.get(i));
                 CaughtObserver.getInstance().handle();

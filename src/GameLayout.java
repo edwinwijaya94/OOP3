@@ -155,7 +155,6 @@ public class GameLayout extends javax.swing.JFrame {
             animal.add(AnimalFactory.getInstance().getAnimal());
             animal.get(i).move();
         }
-        
     }                                               
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed

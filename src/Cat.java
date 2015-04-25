@@ -16,8 +16,8 @@ import javax.swing.SwingUtilities;
  * @author Edwin
  */
 public class Cat extends Animal {
-  
     public static String animalName;
+    public String currentWord = "";
     
 // registering the class to AnimalFactory
     static{
@@ -54,8 +54,7 @@ public class Cat extends Animal {
                         word = behaveWord(runningTime / 1000000);
                         label.setText(word);
                         Thread.sleep(100-speed);
-                    } catch (InterruptedException ex) {
-                        
+                    } catch (InterruptedException ex) {     
                     }
                 }
             }
@@ -74,11 +73,7 @@ public class Cat extends Animal {
     
     @Override
     public String behaveWord(long currentTime) {
-        return "a";
-    }
-    
-    @Override
-    public void notifyObserver(EventObserver e){
-        
+        if (currentWord == "") currentWord = WordsDictionary.getInstance().getWordsFromDictionary();
+        return currentWord;
     }
 }
