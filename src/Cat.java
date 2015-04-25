@@ -34,7 +34,9 @@ public class Cat extends Animal {
         label.setText("");
         label.setIcon(icon);
         label.setSize(200,100);
-        label.setLocation(300,10);
+        int kanan = (int)GameLayout.getInstance().getPanel().getBounds().getMaxX() - label.getWidth() - 20;
+        int atas = (int)GameLayout.getInstance().getPanel().getLocationOnScreen().getY() - 100;
+        label.setLocation(kanan,atas);
         label.setVisible(true);
     }
     
@@ -47,8 +49,8 @@ public class Cat extends Animal {
          final long startTime = System.nanoTime();
          myThread = new Thread()  {
             public void run() {
-                int kiri = (int)GameLayout.getInstance().getPanel().getLocation().getX();
-                while(label.getLocation().getX() > kiri) {
+                int kiri = (int)GameLayout.getInstance().getPanel().getLocationOnScreen().getX();
+                while(label.getLocationOnScreen().getX() > kiri) {
                     try {
                         updatePosition();
                         long runningTime = System.nanoTime() - startTime;
