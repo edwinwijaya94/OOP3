@@ -40,9 +40,9 @@ public class Cat extends Animal {
     //method
     @Override
     public void move(){
-         GameLayout.getInstance().jPanel1.add(label, BorderLayout.CENTER);
-         GameLayout.getInstance().jPanel1.revalidate();
-         GameLayout.getInstance().jPanel1.repaint();   
+         GameLayout.getInstance().getPanel().add(label, BorderLayout.CENTER);
+         GameLayout.getInstance().getPanel().revalidate();
+         GameLayout.getInstance().getPanel().repaint();   
          long startTime = System.nanoTime();
          myThread = new Thread()  {
             public void run() {
