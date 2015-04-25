@@ -16,18 +16,17 @@ import javax.swing.SwingUtilities;
  * @author Edwin
  */
 public class Cat extends Animal {
-    public static String animalName;
+    public static String animalName = "Cat";
     public String currentWord = "";
     
 // registering the class to AnimalFactory
     static {
-        GameLayout.getInstance().getTextField().setText("a");
         AnimalFactory.getInstance().registerAnimal(Cat.class);
     }
     
     public Cat()
     {
-       ImageIcon icon = new ImageIcon("image/cat.png");
+        ImageIcon icon = new ImageIcon("image/cat.png");
         Image image = icon.getImage();
         image = image.getScaledInstance(200, 100,  java.awt.Image.SCALE_SMOOTH); 
         icon = new ImageIcon(image);
@@ -35,7 +34,8 @@ public class Cat extends Animal {
         label.setText("");
         label.setIcon(icon);
         label.setSize(200,100);
-        label.setLocation(300,10);;
+        label.setLocation(300,10);
+        label.setVisible(true);
     }
     
     //method
@@ -43,7 +43,7 @@ public class Cat extends Animal {
     public void move(){
          GameLayout.getInstance().getPanel().add(label, BorderLayout.CENTER);
          GameLayout.getInstance().getPanel().revalidate();
-         GameLayout.getInstance().getPanel().repaint();   
+         GameLayout.getInstance().getPanel().repaint();
          final long startTime = System.nanoTime();
          myThread = new Thread()  {
             public void run() {
@@ -74,7 +74,8 @@ public class Cat extends Animal {
     
     @Override
     public String behaveWord(long currentTime) {
-        if (currentWord == "") currentWord = WordsDictionary.getInstance().getWordsFromDictionary();
-        return currentWord;
+        //if (currentWord == "") currentWord = WordsDictionary.getInstance().getWordsFromDictionary();
+        //return currentWord;
+        return "asem";
     }
 }

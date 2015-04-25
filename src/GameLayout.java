@@ -16,15 +16,17 @@ import javax.swing.SwingUtilities;
  * @author Edwin
  */
 public class GameLayout extends javax.swing.JFrame {
-    static
+    
+    /*static
     {
         try{
+            Class.forName("AnimalFactory");
             Class.forName("Cat");
         }catch(ClassNotFoundException e){}
-    }
+    }*/
     //attributes
     private static GameLayout instance;
-    ArrayList<Animal> animals;
+    ArrayList<Animal> animals = new ArrayList<Animal>();
     //Background background;
     TypeHandler typeHandler;
     GameStatus gameStatus;
@@ -34,6 +36,7 @@ public class GameLayout extends javax.swing.JFrame {
      */
     private GameLayout() {
         initComponents();
+        //AnimalFactory.getInstance().createAnimal();
     }
     
     public static GameLayout getInstance()
@@ -41,7 +44,6 @@ public class GameLayout extends javax.swing.JFrame {
         if (instance == null)
         {
             instance = new GameLayout();
-            AnimalFactory.getInstance();
         }
         return instance;
     }
@@ -166,12 +168,11 @@ public class GameLayout extends javax.swing.JFrame {
 
     private void startGameButtonActionPerformed(java.awt.event.ActionEvent evt) {                                                
         // TODO add your handling code here:
-        /*
         for(int i = 0; i < 5; i++)
         {
             animals.add(AnimalFactory.getInstance().getAnimal());
             animals.get(i).move();
-        }*/
+        }
         //getTextField().setText(((Integer)AnimalFactory.getInstance().animalMap.size()).toString());
     }
 

@@ -37,7 +37,7 @@ public class CaughtObserver implements EventObserver {
         animal.label.setVisible(false);
         animal.getThread().interrupt();
         gameLayout.getAnimals().remove(animal);
-        gameLayout.getAnimals().add(AnimalFactory.getInstance().getAnimal());        
+        //gameLayout.getAnimals().add(AnimalFactory.getInstance().getAnimal());        
         
     }
 }
