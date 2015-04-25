@@ -9,11 +9,26 @@
  */
 public class CaughtObserver implements EventObserver {
 
-    private GameLayout gameLayout;
+    private GameLayout gameLayout = GameLayout.getInstance();
     private Animal animal;
-    CaughtObserver(GameLayout gameLayout)
+    
+    private static CaughtObserver instance;
+    
+    public static CaughtObserver getInstance()
     {
-        this.gameLayout = gameLayout;
+        if (instance == null){
+            instance = new CaughtObserver();
+        }
+        return instance;
+    }
+    
+    private CaughtObserver()
+    {
+    }
+    
+    public void setAnimal(Animal animal)
+    {
+        this.animal = animal;
     }
     
     @Override
