@@ -58,8 +58,17 @@ public class AnimalFactory {
         animalMap.put(tempAnimalName.getName().toLowerCase(),listAnimal);
     }
     
-    public Animal getAnimal(String animalName) {
-        ArrayList<Animal> animalList = animalMap.get(animalName.toLowerCase());
+    public Animal getAnimal() {
+        // get all key of animalMap
+        ArrayList<String> animalKey = new ArrayList<>();
+        animalKey.addAll(animalMap.keySet());
+        
+        //get random key
+        Random rand = new Random();
+        int i = rand.nextInt(animalKey.size()); //random key index
+        
+        // get animal based on key
+        ArrayList<Animal> animalList = animalMap.get(animalKey.get(i).toLowerCase());
         return animalList.remove(animalList.size()-1);
     }
     

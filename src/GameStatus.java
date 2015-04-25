@@ -8,5 +8,30 @@
  * @author Edwin
  */
 public class GameStatus {
-    
+    // attributes
+    private int score;
+    private String playerName;
+    public GameStatus(){
+        score = 0;
+        playerName = "NN";
+    }
+    public GameStatus(int score, String name){
+        this.score = score;
+        this.playerName = name;
+    }
+    public int getScore(){
+        return score;
+    }
+    public void setScore(int x){
+        score = x;
+    }
+    public void addScore(int x){
+        score += x;
+    }
+    public String getPlayerName(){
+        return playerName;
+    }
+    public void  setPlayerName(String name){
+        playerName =  name;
+    }
 }
