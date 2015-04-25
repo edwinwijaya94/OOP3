@@ -16,7 +16,10 @@ import javax.swing.SwingUtilities;
  * @author Edwin
  */
 public class Cat extends Animal {
-    // registering the class to AnimalFactory
+    
+    public static String animalName;
+    
+// registering the class to AnimalFactory
     static{
         AnimalFactory.getInstance().registerAnimal("Cat",Cat.class);
     }
@@ -35,7 +38,6 @@ public class Cat extends Animal {
         panel.add(jLabel2, BorderLayout.CENTER);
         panel.revalidate();
         panel.repaint();   
-        move();
     }
     
     //method
