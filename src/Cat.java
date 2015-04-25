@@ -43,10 +43,10 @@ public class Cat extends Animal {
          GameLayout.getInstance().getPanel().add(label, BorderLayout.CENTER);
          GameLayout.getInstance().getPanel().revalidate();
          GameLayout.getInstance().getPanel().repaint();   
-         long startTime = System.nanoTime();
+         final long startTime = System.nanoTime();
          myThread = new Thread()  {
             public void run() {
-                int kiri = (int)GameLayout.getInstance().jPanel1.getLocation().getX();
+                int kiri = (int)GameLayout.getInstance().getPanel().getLocation().getX();
                 while(label.getLocation().getX() > kiri) {
                     try {
                         updatePosition();

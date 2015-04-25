@@ -16,10 +16,11 @@ import javax.swing.SwingUtilities;
  * @author Edwin
  */
 public class GameLayout extends javax.swing.JFrame {
-    
     static
     {
-        try{Class.forName("Cat");}catch(Exception e){}
+        try{
+            Class.forName("Cat");
+        }catch(ClassNotFoundException e){}
     }
     //attributes
     private static GameLayout instance;
