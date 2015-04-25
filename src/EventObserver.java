@@ -7,9 +7,10 @@
  *
  * @author Edwin
  */
-public interface EventObserver {
-   public void handleCorrectTyping();
-   public void handleAnimalEscape();
-   public void handlePauseGame();
-   public void handleExitGame();
+public abstract class EventObserver {
+   protected GameLayout gameLayout;
+   public abstract void handleCorrectTyping();
+   public abstract void handleAnimalEscape();
+   public abstract void handlePauseGame();
+   public abstract void handleExitGame();
 }
