@@ -86,6 +86,12 @@ public class GameLayout extends javax.swing.JFrame {
 
         backToMenuButton.setLabel("Back To Menu");
 
+        jTextField1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextField1ActionPerformed(evt);
+            }
+        });
+
         jLabel1.setText("Player Name :");
 
         playerNameLabel.setText("NN");
@@ -146,6 +152,10 @@ public class GameLayout extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextField1ActionPerformed
 
     private void startGameButtonActionPerformed(java.awt.event.ActionEvent evt) {                                                
         // TODO add your handling code here:
