@@ -22,8 +22,6 @@ public class GameLayout extends javax.swing.JFrame {
     //Background background;
     TypeHandler typeHandler;
     GameStatus gameStatus;
-    EventObserver[] eventObserver;
-    GameFlow gameFlow;
     
     /**
      * Creates new form GameLayout
@@ -162,21 +160,10 @@ public class GameLayout extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
-        
+        PauseObserver.getInstance().handle();   
     }//GEN-LAST:event_jButton1ActionPerformed
 
-    
-    private void pauseGame()
-    {
-        gameFlow.pause();
-    }
-    
-    private void resumeGame()
-    {
-        gameFlow.resume();
-        notifyAll();
-    }
-    
+       
     /**
      * @param args the command line arguments
      */
@@ -216,8 +203,8 @@ public class GameLayout extends javax.swing.JFrame {
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
-    public javax.swing.JPanel jPanel1;
-    public javax.swing.JTextField jTextField1;
+    private javax.swing.JPanel jPanel1;
+    private javax.swing.JTextField jTextField1;
     private javax.swing.JButton startGameButton;
     // End of variables declaration                   
 
