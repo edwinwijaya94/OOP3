@@ -29,6 +29,8 @@ public class GameStatus {
     }
     public void addScore(int x){
         score += x;
+        GameLayout.getInstance().getScoreLabel().setText(new Integer(score).toString());
+        //GameLayout.getInstance().getScoreLabel().setText("test");
     }
     public String getPlayerName(){
         return playerName;

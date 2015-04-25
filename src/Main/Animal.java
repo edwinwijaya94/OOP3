@@ -20,7 +20,7 @@ public abstract class Animal {
     //attributes
     protected JLabel label;
     public Thread myThread;
-    public int speed=0;
+    public int speed = 0;
     public int size=0;
     public Point position= new Point();
     public EventObserver[] eventObserver;

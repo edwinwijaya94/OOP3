@@ -8,6 +8,8 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.SwingUtilities;
+import javax.swing.event.DocumentEvent;
+import javax.swing.event.DocumentListener;
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -17,28 +19,59 @@ import javax.swing.SwingUtilities;
  *
  * @author Edwin
  */
+
+class Passer
+{
+    public volatile String word = "default";
+}
+
 public class GameLayout extends javax.swing.JFrame {
     
-    /*static
-    {
-        try{
-            Class.forName("AnimalFactory");
-            Class.forName("Cat");
-        }catch(ClassNotFoundException e){}
-    }*/
     //attributes
     private static GameLayout instance;
-    ArrayList<Animal> animals = new ArrayList<Animal>();
+    static ArrayList<Animal> animals = new ArrayList<Animal>();
     //Background background;
     TypeHandler typeHandler;
     GameStatus gameStatus;
+    public volatile Passer passer = new Passer();
     
     /**
      * Creates new form GameLayout
      */
     private GameLayout() {
         initComponents();
+        getTextField().getDocument().addDocumentListener(new DocumentListener() {
+
+        public void warn() {
+           passer.word = getTextField().getText();
+        }
+
+        @Override
+        public void insertUpdate(DocumentEvent e) {
+            warn();
+        }
+
+        @Override
+        public void removeUpdate(DocumentEvent e) {
+            warn();
+        }
+
+        @Override
+        public void changedUpdate(DocumentEvent e) {
+            warn();
+        }
+      });
         //AnimalFactory.getInstance().createAnimal();
+    }
+    
+    public void debug(String input)
+    {
+        jLabel2.setText(input);
+    }
+    
+    public GameStatus getGameStatus()
+    {
+        return gameStatus;
     }
     
     public static GameLayout getInstance()
@@ -68,6 +101,7 @@ public class GameLayout extends javax.swing.JFrame {
         playerNameLabel = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         scoreLabel = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -102,6 +136,11 @@ public class GameLayout extends javax.swing.JFrame {
                 jTextField1ActionPerformed(evt);
             }
         });
+        jTextField1.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                jTextField1KeyReleased(evt);
+            }
+        });
 
         jLabel1.setText("Player Name :");
 
@@ -110,6 +149,8 @@ public class GameLayout extends javax.swing.JFrame {
         jLabel3.setText("Score :");
 
         scoreLabel.setText("0");
+
+        jLabel2.setText("jLabel2");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -126,6 +167,8 @@ public class GameLayout extends javax.swing.JFrame {
                         .addComponent(jLabel3)
                         .addGap(18, 18, 18)
                         .addComponent(scoreLabel)
+                        .addGap(75, 75, 75)
+                        .addComponent(jLabel2)
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
@@ -149,7 +192,8 @@ public class GameLayout extends javax.swing.JFrame {
                     .addComponent(jLabel1)
                     .addComponent(playerNameLabel)
                     .addComponent(jLabel3)
-                    .addComponent(scoreLabel))
+                    .addComponent(scoreLabel)
+                    .addComponent(jLabel2))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -170,14 +214,20 @@ public class GameLayout extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextField1ActionPerformed
 
+    private void jTextField1KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField1KeyReleased
+        // TODO add your handling code here:
+        //passer.word = getTextField().getText();
+    }//GEN-LAST:event_jTextField1KeyReleased
+
     private void startGameButtonActionPerformed(java.awt.event.ActionEvent evt) {                                                
         // TODO add your handling code here:
-        for(int i = 0; i < 5; i++)
+        typeHandler = new TypeHandler(passer);
+        gameStatus = new GameStatus();
+        for(int i = 0; i < 1; i++)
         {
             animals.add(AnimalFactory.getInstance().getAnimal());
             animals.get(i).move();
         }
-        //getTextField().setText(((Integer)AnimalFactory.getInstance().animalMap.size()).toString());
     }
 
     /**
@@ -213,6 +263,17 @@ public class GameLayout extends javax.swing.JFrame {
                 getInstance().setVisible(true);
             }
         });
+        
+        while(true)
+        {
+            for (int i=0;i<animals.size();i++)
+            {
+                try
+                {
+                    animals.get(i).getThread().join();
+                }catch(Exception e){}
+            }
+        }
     }
     
     public JPanel getPanel() {
@@ -227,9 +288,14 @@ public class GameLayout extends javax.swing.JFrame {
         return jTextField1;
     }
 
+    public JLabel getScoreLabel(){
+        return scoreLabel;
+    }
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton backToMenuButton;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JTextField jTextField1;
