@@ -3,6 +3,8 @@ import java.awt.event.*;
 import java.util.*;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.JTextField;
 import javax.swing.SwingUtilities;
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -15,9 +17,13 @@ import javax.swing.SwingUtilities;
  */
 public class GameLayout extends javax.swing.JFrame {
     
+    static
+    {
+        try{Class.forName("Cat");}catch(Exception e){}
+    }
     //attributes
     private static GameLayout instance;
-    ArrayList<Animal> animal;
+    ArrayList<Animal> animals;
     //Background background;
     TypeHandler typeHandler;
     GameStatus gameStatus;
@@ -149,11 +155,13 @@ public class GameLayout extends javax.swing.JFrame {
 
     private void startGameButtonActionPerformed(java.awt.event.ActionEvent evt) {                                                
         // TODO add your handling code here:
+        /*
         for(int i = 0; i < 5; i++)
         {
-            animal.add(AnimalFactory.getInstance().getAnimal());
-            animal.get(i).move();
-        }
+            animals.add(AnimalFactory.getInstance().getAnimal());
+            animals.get(i).move();
+        }*/
+        //getTextField().setText(((Integer)AnimalFactory.getInstance().animalMap.size()).toString());
     }
 
     /**
@@ -189,6 +197,18 @@ public class GameLayout extends javax.swing.JFrame {
                 new GameLayout().setVisible(true);
             }
         });
+    }
+    
+    public JPanel getPanel() {
+        return jPanel1;
+    }
+    
+    public ArrayList<Animal> getAnimals() {
+        return animals;
+    }
+    
+    public JTextField getTextField() {
+        return jTextField1;
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
