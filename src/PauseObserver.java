@@ -32,7 +32,7 @@ public class PauseObserver implements EventObserver {
     
     @Override
     public void handle() {
-        ArrayList<Animal> animal = GameLayout.getInstance().animal;
+        ArrayList<Animal> animal = GameLayout.getInstance().getAnimals();
         for (int i=0;i<animal.size();i++)
         {
             animalSpeed.add(animal.get(i).getSpeed());

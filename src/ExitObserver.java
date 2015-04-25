@@ -12,7 +12,7 @@ import java.util.*;
 public class ExitObserver implements EventObserver {
     @Override
     public void handle() {
-        ArrayList<Animal> animalList = GameLayout.getInstance().animal;
+        ArrayList<Animal> animalList = GameLayout.getInstance().getAnimals();
         
         for (int i = 0; i < (animalList.size()); i++) {
             animalList.get(i).getThread().interrupt();

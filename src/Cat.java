@@ -20,7 +20,8 @@ public class Cat extends Animal {
     public String currentWord = "";
     
 // registering the class to AnimalFactory
-    static{
+    static {
+        GameLayout.getInstance().getTextField().setText("a");
         AnimalFactory.getInstance().registerAnimal(Cat.class);
     }
     
@@ -46,7 +47,7 @@ public class Cat extends Animal {
          long startTime = System.nanoTime();
          myThread = new Thread()  {
             public void run() {
-                int kiri = (int)GameLayout.getInstance().jPanel1.getLocation().getX();
+                int kiri = (int)GameLayout.getInstance().getPanel().getLocation().getX();
                 while(label.getLocation().getX() > kiri) {
                     try {
                         updatePosition();
