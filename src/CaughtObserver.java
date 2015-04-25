@@ -9,9 +9,16 @@
  */
 public class CaughtObserver implements EventObserver {
 
+    private GameLayout gameLayout;
+    CaughtObserver(GameLayout gameLayout)
+    {
+        this.gameLayout = gameLayout;
+    }
+    
     @Override
-    public void handleCorrectTyping() {
-        
+    public void handleCorrectTyping(Animal animal) {
+        AnimalFactory.getInstance().returnAnimal(animal);
+        gameLayout.animal.remove(animal);
     }
 
     @Override

@@ -12,7 +12,6 @@ import java.awt.Point;
 public abstract class Animal {
     
     //attributes
-    public static int id;
     public int speed=0;
     public int size=0;
     public Point position= new Point();

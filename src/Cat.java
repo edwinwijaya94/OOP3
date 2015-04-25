@@ -10,8 +10,12 @@ import java.awt.Point;
  * @author Edwin
  */
 public class Cat extends Animal {
-    // registering the class to AnimalFactory
+    
+    public static String animalName;
+    
+// registering the class to AnimalFactory
     static{
+        animalName = "Cat";
         AnimalFactory.getInstance().register(Cat.class);
     }
     

@@ -15,12 +15,12 @@ import java.util.*;
 public class GameLayout extends javax.swing.JFrame {
     
     //attributes
-    Animal[] animal;
+    ArrayList<Animal> animal;
     //Background background;
     TypeHandler typeHandler;
     GameStatus gameStatus;
     EventObserver[] eventObserver;
-    
+    GameFlow gameFlow;
     
     /**
      * Creates new form GameLayout
@@ -28,7 +28,18 @@ public class GameLayout extends javax.swing.JFrame {
     public GameLayout() {
         initComponents();
     }
-
+    
+    private void pauseGame()
+    {
+        gameFlow.pause();
+    }
+    
+    private void resumeGame()
+    {
+        gameFlow.resume();
+        notifyAll();
+    }
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
