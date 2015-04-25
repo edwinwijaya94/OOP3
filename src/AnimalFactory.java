@@ -15,6 +15,7 @@ public class AnimalFactory {
     HashMap<String, ArrayList<Animal>> animalMap = new HashMap<>();
     ArrayList<Animal> listAnimal = new ArrayList<>();
     int id = 0,defaultt = 10;
+    Field tempAnimalName;
     private static AnimalFactory instance;
     
     private AnimalFactory()
@@ -28,9 +29,16 @@ public class AnimalFactory {
         return instance;
     }
         
-    public void registerAnimal(String animalName, Class animal) {
+    public void registerAnimal(Class animal) {
         try {
             animalConstructor = animal.getDeclaredConstructor(new Class[] {});
+            Class c = Class.forName("Animal");
+            Field[] fields = c.getDeclaredFields();
+            for (Field f : fields) {
+                if("animalName".equals(f.getName())) {
+                    tempAnimalName =  f;
+                }
+            }
         }catch(Exception e) {
             System.out.println(e);
         }
@@ -45,7 +53,7 @@ public class AnimalFactory {
             }
         }
 
-        animalMap.put(animalName.toLowerCase(),listAnimal);
+        animalMap.put(tempAnimalName.getName().toLowerCase(),listAnimal);
     }
     
     public Animal getAnimal(String animalName) {
@@ -53,8 +61,8 @@ public class AnimalFactory {
         return animalList.remove(animalList.size()-1);
     }
     
-    public void putAnimal(String animalName, Animal animal) {
+    public void putAnimal(Animal animal) {
         listAnimal.add(animal);
-        animalMap.put(animalName.toLowerCase(),listAnimal);
+        animalMap.put(tempAnimalName.getName().toLowerCase(),listAnimal);
     }
 }
