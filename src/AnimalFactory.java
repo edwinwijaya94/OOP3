@@ -13,6 +13,7 @@ import java.util.*;
 public class AnimalFactory {
     Constructor animalConstructor;
     HashMap<String, ArrayList<Animal>> animalMap = new HashMap<>();
+    ArrayList<Animal> listAnimal = new ArrayList<>();
     int id = 0,defaultt = 10;
     private static AnimalFactory instance;
     
@@ -28,7 +29,6 @@ public class AnimalFactory {
     }
         
     public void registerAnimal(String animalName, Class animal) {
-        ArrayList<Animal> listAnimal = new ArrayList<>();
         try {
             animalConstructor = animal.getDeclaredConstructor(new Class[] {});
         }catch(Exception e) {
@@ -51,5 +51,10 @@ public class AnimalFactory {
     public Animal getAnimal(String animalName) {
         ArrayList<Animal> animalList = animalMap.get(animalName.toLowerCase());
         return animalList.remove(animalList.size()-1);
+    }
+    
+    public void putAnimal(String animalName, Animal animal) {
+        listAnimal.add(animal);
+        animalMap.put(animalName.toLowerCase(),listAnimal);
     }
 }
