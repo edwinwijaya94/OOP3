@@ -21,8 +21,6 @@ public class GameLayout extends javax.swing.JFrame {
     //Background background;
     TypeHandler typeHandler;
     GameStatus gameStatus;
-    EventObserver[] eventObserver;
-    GameFlow gameFlow;
     
     /**
      * Creates new form GameLayout
@@ -149,26 +147,15 @@ public class GameLayout extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void startGameButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_startGameButtonActionPerformed
+    private void startGameButtonActionPerformed(java.awt.event.ActionEvent evt) {                                                
         // TODO add your handling code here:
         for(int i = 0; i < 5; i++)
         {
             animal.add(AnimalFactory.getInstance().getAnimal());
             animal.get(i).move();
         }
-    }//GEN-LAST:event_startGameButtonActionPerformed
-    
-    private void pauseGame()
-    {
-        gameFlow.pause();
     }
-    
-    private void resumeGame()
-    {
-        gameFlow.resume();
-        notifyAll();
-    }
-    
+
     /**
      * @param args the command line arguments
      */
