@@ -9,19 +9,10 @@ import java.util.*;
  *
  * @author elvan_owen
  */
-public class GameFlowObserver extends EventObserver {
+public class GameFlowObserver implements EventObserver {
     private GameLayout gameLayout;
     private ArrayList<Integer> animalSpeed;
 
-    @Override
-    public void handleCorrectTyping(Animal animal) {
-        // no implementation
-    }
-
-    @Override
-    public void handleAnimalEscape() {
-        // no implementation
-    }
 
     @Override
     public void handlePauseGame() {

@@ -24,13 +24,6 @@ public abstract class Animal {
     
     
     //getter, setter
-    public static final int getId(){
-        return id;
-    }
-    
-    public static final void setId(int ID){
-        id = ID;
-    }
     
     public final int getSpeed(){
         return speed;
@@ -47,7 +40,7 @@ public abstract class Animal {
     public  final String getWord(){
         return word;
     }
-    public final String setSpeed(int speed) {
+    public final void setSpeed(int speed) {
         this.speed = speed; 
     }
     public final Thread getThread() {
