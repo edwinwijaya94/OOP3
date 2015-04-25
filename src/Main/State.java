@@ -1,3 +1,5 @@
+package Main;
+
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -7,6 +9,7 @@
  *
  * @author Edwin
  */
-public interface EventObserver {
-   public void handle();
+public interface State {
+   public void doAction();
+   
 }

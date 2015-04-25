@@ -1,3 +1,5 @@
+package Main;
+
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -59,34 +61,32 @@ public class Menu extends javax.swing.JFrame {
             }
         });
         jPanel1.add(startNewGameButton);
-        startNewGameButton.setBounds(360, 190, 120, 23);
+        startNewGameButton.setBounds(360, 190, 120, 29);
         startNewGameButton.getAccessibleContext().setAccessibleDescription("");
 
         viewHighScoreButton.setText("View High Scores");
         jPanel1.add(viewHighScoreButton);
-        viewHighScoreButton.setBounds(360, 240, 120, 23);
+        viewHighScoreButton.setBounds(360, 240, 120, 29);
 
         howToPlayButton.setText("How to Play");
         jPanel1.add(howToPlayButton);
-        howToPlayButton.setBounds(360, 290, 120, 23);
+        howToPlayButton.setBounds(360, 290, 120, 29);
 
         aboutButton.setText("About");
         jPanel1.add(aboutButton);
-        aboutButton.setBounds(360, 340, 120, 23);
+        aboutButton.setBounds(360, 340, 120, 29);
 
         exitGameButton.setText("Exit Game");
         jPanel1.add(exitGameButton);
-        exitGameButton.setBounds(360, 390, 120, 23);
+        exitGameButton.setBounds(360, 390, 120, 29);
 
         jLabel1.setFont(new java.awt.Font("Perpetua Titling MT", 1, 30)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(1, 61, 79));
         jLabel1.setText("TYPER ANIMAL");
         jPanel1.add(jLabel1);
         jLabel1.setBounds(300, 110, 250, 50);
-
-        BackgroundMenu.setIcon(new javax.swing.ImageIcon("D:\\Users\\Jessica\\Pictures\\Background\\menu2.png")); // NOI18N
         jPanel1.add(BackgroundMenu);
-        BackgroundMenu.setBounds(0, 0, 800, 510);
+        BackgroundMenu.setBounds(0, 0, 0, 510);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);

@@ -1,3 +1,5 @@
+package Main;
+
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -40,10 +42,8 @@ public class About extends javax.swing.JFrame {
         namaAnggota.setVerifyInputWhenFocusTarget(false);
         jPanel1.add(namaAnggota);
         namaAnggota.setBounds(330, 150, 160, 320);
-
-        backgroundAbout.setIcon(new javax.swing.ImageIcon("D:\\Users\\Jessica\\Pictures\\Background\\about.png")); // NOI18N
         jPanel1.add(backgroundAbout);
-        backgroundAbout.setBounds(0, 0, 800, 510);
+        backgroundAbout.setBounds(0, 0, 800, 0);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);

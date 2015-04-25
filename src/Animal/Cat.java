@@ -1,3 +1,8 @@
+package Animal;
+
+import Main.AnimalFactory;
+import Main.GameLayout;
+import Main.Animal;
 import java.awt.BorderLayout;
 import java.awt.Image;
 import java.awt.Point;

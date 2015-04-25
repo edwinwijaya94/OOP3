@@ -1,3 +1,5 @@
+package Main;
+
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -5,13 +7,11 @@
  */
 /**
  *
- * @author Edwin
+ * @author Jessica
  */
-public class StartNewGameState implements State {
-
+public class ViewAboutState implements State {
     @Override
     public void doAction() {
-        GameLayout GL = GameLayout.getInstance();
-        
+        About about = new About();
     }
 }
