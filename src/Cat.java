@@ -20,7 +20,8 @@ public class Cat extends Animal {
     public String currentWord = "";
     
 // registering the class to AnimalFactory
-    static{
+    static {
+        GameLayout.getInstance().getTextField().setText("a");
         AnimalFactory.getInstance().registerAnimal(Cat.class);
     }
     
