@@ -29,6 +29,8 @@ public class About extends javax.swing.JFrame {
 
         jPanel1 = new javax.swing.JPanel();
         namaAnggota = new javax.swing.JLabel();
+        logoITB = new javax.swing.JLabel();
+        informatika = new javax.swing.JLabel();
         backgroundAbout = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -38,12 +40,25 @@ public class About extends javax.swing.JFrame {
         namaAnggota.setFont(new java.awt.Font("Kartika", 1, 20)); // NOI18N
         namaAnggota.setForeground(new java.awt.Color(1, 61, 79));
         namaAnggota.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        namaAnggota.setText("<html><center>Edwin Wijaya<br>13513040<br><br>\nElvan Owen<br>13513082<br><br>\nJessica Andjani<br>13513086<br><br>\nVicko Novianto<br>13513092</center>\n</html>");
+        namaAnggota.setText("<html><center>Edwin Wijaya 13513040<br><br> Elvan Owen 13513082<br><br> Jessica Andjani 13513086<br><br> Vicko Novianto 13513092</center> </html>");
         namaAnggota.setVerifyInputWhenFocusTarget(false);
         jPanel1.add(namaAnggota);
-        namaAnggota.setBounds(330, 150, 160, 320);
+        namaAnggota.setBounds(280, 160, 270, 200);
+
+        logoITB.setIcon(new javax.swing.ImageIcon("D:\\Users\\Jessica\\Pictures\\Background\\ITB.png")); // NOI18N
+        logoITB.setAlignmentY(0.0F);
+        jPanel1.add(logoITB);
+        logoITB.setBounds(360, 370, 100, 110);
+
+        informatika.setFont(new java.awt.Font("Kartika", 1, 16)); // NOI18N
+        informatika.setForeground(new java.awt.Color(1, 61, 79));
+        informatika.setText("INFORMATIKA ITB");
+        jPanel1.add(informatika);
+        informatika.setBounds(350, 480, 150, 24);
+
+        backgroundAbout.setIcon(new javax.swing.ImageIcon("D:\\Users\\Jessica\\Pictures\\Background\\about.png")); // NOI18N
         jPanel1.add(backgroundAbout);
-        backgroundAbout.setBounds(0, 0, 800, 0);
+        backgroundAbout.setBounds(0, 0, 800, 510);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -96,7 +111,9 @@ public class About extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel backgroundAbout;
+    private javax.swing.JLabel informatika;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JLabel logoITB;
     private javax.swing.JLabel namaAnggota;
     // End of variables declaration//GEN-END:variables
 }
