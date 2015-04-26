@@ -90,8 +90,6 @@ public class GameLayout extends javax.swing.JFrame {
 
         jPanel1 = new javax.swing.JPanel();
         startGameButton = new javax.swing.JButton();
-        pauseButton = new javax.swing.JButton();
-        resumeButton = new javax.swing.JButton();
         backToMenuButton = new javax.swing.JButton();
         jTextField1 = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
@@ -99,6 +97,8 @@ public class GameLayout extends javax.swing.JFrame {
         jLabel3 = new javax.swing.JLabel();
         scoreLabel = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
+        pauseButton = new javax.swing.JButton();
+        resumeButton = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -122,21 +122,12 @@ public class GameLayout extends javax.swing.JFrame {
             }
         });
 
-        pauseButton.setLabel("Pause");
-        pauseButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                pauseButtonActionPerformed(evt);
-            }
-        });
-
-        resumeButton.setLabel("Resume");
-        resumeButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                resumeButtonActionPerformed(evt);
-            }
-        });
-
         backToMenuButton.setLabel("Back To Menu");
+        backToMenuButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                backToMenuButtonActionPerformed(evt);
+            }
+        });
 
         jTextField1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -159,6 +150,20 @@ public class GameLayout extends javax.swing.JFrame {
 
         jLabel2.setText("jLabel2");
 
+        pauseButton.setText("Pause");
+        pauseButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                pauseButtonActionPerformed(evt);
+            }
+        });
+
+        resumeButton.setText("Resume");
+        resumeButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                resumeButtonActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -176,18 +181,18 @@ public class GameLayout extends javax.swing.JFrame {
                         .addComponent(scoreLabel)
                         .addGap(75, 75, 75)
                         .addComponent(jLabel2)
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addContainerGap(369, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(jTextField1, javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
                                 .addComponent(startGameButton)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 147, Short.MAX_VALUE)
+                                .addGap(101, 101, 101)
                                 .addComponent(pauseButton)
-                                .addGap(123, 123, 123)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(resumeButton)
-                                .addGap(85, 85, 85)
+                                .addGap(114, 114, 114)
                                 .addComponent(backToMenuButton)))
                         .addGap(53, 53, 53))))
         );
@@ -208,9 +213,9 @@ public class GameLayout extends javax.swing.JFrame {
                 .addGap(21, 21, 21)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(backToMenuButton)
-                    .addComponent(resumeButton)
+                    .addComponent(startGameButton)
                     .addComponent(pauseButton)
-                    .addComponent(startGameButton))
+                    .addComponent(resumeButton))
                 .addContainerGap())
         );
 
@@ -225,6 +230,18 @@ public class GameLayout extends javax.swing.JFrame {
         // TODO add your handling code here:
         //passer.word = getTextField().getText();
     }//GEN-LAST:event_jTextField1KeyReleased
+
+    private void backToMenuButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backToMenuButtonActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_backToMenuButtonActionPerformed
+
+    private void pauseButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_pauseButtonActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_pauseButtonActionPerformed
+
+    private void resumeButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_resumeButtonActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_resumeButtonActionPerformed
 
     private void startGameButtonActionPerformed(java.awt.event.ActionEvent evt) {                                                
         // TODO add your handling code here:
