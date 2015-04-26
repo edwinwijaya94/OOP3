@@ -7,10 +7,8 @@ import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.Image;
-import java.awt.Point;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
-import javax.swing.JPanel;
 import javax.swing.SwingUtilities;
 
 /*
@@ -33,6 +31,10 @@ public class Cat extends Animal {
     
     public Cat()
     {
+
+    }
+    
+    public void draw() {
         ImageIcon icon = new ImageIcon("image/cat.png");
         Image image = icon.getImage();
         image = image.getScaledInstance(200, 100,  java.awt.Image.SCALE_SMOOTH); 
@@ -49,27 +51,28 @@ public class Cat extends Animal {
         int atas = (int)GameLayout.getInstance().getPanel().getLocationOnScreen().getY() - 100;
         label.setLocation(kanan,atas);
         label.setVisible(true);
+        GameLayout.getInstance().getPanel().add(label, BorderLayout.CENTER);
     }
     
     //method
     @Override
     public void move(){
-         GameLayout.getInstance().getPanel().add(label, BorderLayout.CENTER);
-         GameLayout.getInstance().getPanel().revalidate();
-         GameLayout.getInstance().getPanel().repaint();
+         if (label == null) 
+            draw();
          final long startTime = System.nanoTime();
          myThread = new Thread()  {
             public void run() {
                 int kiri = (int)GameLayout.getInstance().getPanel().getLocationOnScreen().getX();
-                while(label.getLocationOnScreen().getX() > kiri) {
-                    try {
+                try {
+                    while(label.getLocationOnScreen().getX() > kiri) {
                         updatePosition();
                         long runningTime = System.nanoTime() - startTime;
                         word = behaveWord(runningTime / 1000000);
                         label.setText(word);
                         Thread.sleep(100-speed);
-                    } catch (InterruptedException ex) {     
                     }
+                } catch (InterruptedException ex) {  
+                
                 }
             }
         };
