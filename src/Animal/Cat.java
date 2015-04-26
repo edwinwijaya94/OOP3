@@ -35,6 +35,7 @@ public class Cat extends Animal {
     }
     
     public void draw() {
+        setSpeed(50);
         ImageIcon icon = new ImageIcon("image/cat.png");
         Image image = icon.getImage();
         image = image.getScaledInstance(200, 100,  java.awt.Image.SCALE_SMOOTH); 
@@ -72,7 +73,8 @@ public class Cat extends Animal {
                         Thread.sleep(100-speed);
                     }
                 } catch (InterruptedException ex) {  
-                
+                    label.setVisible(false);
+                    //break;               
                 }
             }
         };

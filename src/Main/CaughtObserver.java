@@ -35,11 +35,15 @@ public class CaughtObserver implements EventObserver {
     
     @Override
     public void handle() {
-        AnimalFactory.getInstance().putAnimal(animal);
-        animal.label.setVisible(false);
+        gameLayout.getGameStatus().addScore(animal.getSpeed());
+        gameLayout.getTextField().setText("");
         animal.getThread().interrupt();
-        gameLayout.getAnimals().remove(animal);
-        //gameLayout.getAnimals().add(AnimalFactory.getInstance().getAnimal());        
+        animal.label.setVisible(true);
+        AnimalFactory.getInstance().putAnimal(animal);
         
+        gameLayout.getAnimals().remove(animal);
+        Animal tempAnimal = AnimalFactory.getInstance().getAnimal();
+        gameLayout.getAnimals().add(tempAnimal);
+        tempAnimal.move();
     }
 }

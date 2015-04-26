@@ -19,9 +19,8 @@ public class AnimalFactory {
     Constructor animalConstructor;
     public HashMap<String, ArrayList<Animal>> animalMap = new HashMap<>();
     public ArrayList<Animal> listAnimal = new ArrayList<>();
-    int id = 0;
-    int defaultt = 10;
-    Field tempAnimalName;
+    int defaultSize = 10;
+    String tempAnimalName;
     private static AnimalFactory instance;
     
     public static void registerAllAnimalClasses(String scannedPackage)
@@ -54,10 +53,6 @@ public class AnimalFactory {
     static
     {
         registerAllAnimalClasses("Animal");
-        /*try{
-            Class.forName("Animal.Cat");
-        }catch(ClassNotFoundException e){
-        }*/
     }
     
     private AnimalFactory()
@@ -73,32 +68,24 @@ public class AnimalFactory {
     public void registerAnimal(Class animal) {
         try {
             animalConstructor = animal.getDeclaredConstructor(new Class[] {});
-            Field[] fields = animal.getDeclaredFields();
-            for (Field f : fields) {
-                if("animalName".equals(f.getName())) {
-                    tempAnimalName =  f;
-                    break;
-                }
-            }
-            }catch(Exception e) {
-                System.out.println(e);
-            }
+            Field animalName = animal.getField("animalName");
+            tempAnimalName = (String)animalName.get(null);
+        }catch(Exception e) {}
             
-            for (int j=0;j<defaultt;j++)
-            {
-                try {
-                    Animal tempAnimal = (Animal)animalConstructor.newInstance(new Object[] {});
-                    listAnimal.add(tempAnimal);
-                }catch(Exception e) {
-                    System.out.println(e);
-                }
+        for (int j=0;j<defaultSize;j++)
+        {
+            try {
+                Animal tempAnimal = (Animal)animalConstructor.newInstance(new Object[] {});
+                listAnimal.add(tempAnimal);
+            }catch(Exception e) {
             }
-            animalMap.put(tempAnimalName.getName().toLowerCase(),listAnimal);
+        }
+        animalMap.put(tempAnimalName.toLowerCase(),listAnimal);
     }
     
-    public ArrayList<String> animalKey = new ArrayList<>();
     public Animal getAnimal() {
         // get all key of animalMap
+        ArrayList<String> animalKey = new ArrayList<>();
         animalKey.addAll(animalMap.keySet());
         
         //get random key
@@ -107,11 +94,17 @@ public class AnimalFactory {
         
         // get animal based on key
         ArrayList<Animal> animalList = animalMap.get(animalKey.get(i).toLowerCase());
+        GameLayout.getInstance().debug(new Integer(animalList.size()).toString());
         return animalList.remove(animalList.size()-1);
     }
     
     public void putAnimal(Animal animal) {
-        listAnimal.add(animal);
-        animalMap.put(tempAnimalName.getName().toLowerCase(),listAnimal);
+        try {
+                Field animalName = animal.getClass().getField("animalName");
+                tempAnimalName = (String)animalName.get(null);
+            }catch(Exception e) {}
+        
+        ArrayList<Animal> animalList = animalMap.get(tempAnimalName.toLowerCase());
+        animalList.add(animal);
     }
 }

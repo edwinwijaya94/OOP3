@@ -1,6 +1,7 @@
 package Main;
 
 import java.util.*;
+import javax.swing.JTextField;
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -14,18 +15,16 @@ public class TypeHandler extends Thread{
     
     private Thread thread;
     private String threadName = "TypeHandlerThread";
-    private GameLayout gameLayout;
-    private EventObserver eventHandler;
     private boolean pause = false;
-    
-    public TypeHandler(GameLayout gameLayout, EventObserver eventHandler)
+    public Passer passer;
+        
+    public TypeHandler(Passer passer)
     {
         if (thread == null)
         {
-            this.gameLayout = gameLayout;
-            this.eventHandler = eventHandler;
             thread = new Thread (this, threadName);
             thread.start ();
+            this.passer = passer;
         }
     }
     
@@ -41,6 +40,7 @@ public class TypeHandler extends Thread{
     {
         while (true){
             validateInput();
+            GameLayout.getInstance().debug(passer.word);
             while (pause) {
                 try{
                     wait();
@@ -54,7 +54,8 @@ public class TypeHandler extends Thread{
         ArrayList<Animal> animal = GameLayout.getInstance().getAnimals();
         for (int i=0;i<animal.size();i++)
         {
-            if (GameLayout.getInstance().getTextField().getText().equals(animal.get(i).getWord()))
+            //GameLayout.getInstance().debug(GameLayout.getInstance().getTextField().getText());
+            if (passer.word.equals(animal.get(i).getWord()))
             {
                 CaughtObserver.getInstance().setAnimal(animal.get(i));
                 CaughtObserver.getInstance().handle();
