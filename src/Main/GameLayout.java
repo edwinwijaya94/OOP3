@@ -1,13 +1,9 @@
 package Main;
 
-import java.awt.*;
-import java.awt.event.*;
 import java.util.*;
-import javax.swing.ImageIcon;
-import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
-import javax.swing.SwingUtilities;
+import javax.swing.SpringLayout;
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -92,8 +88,18 @@ public class GameLayout extends javax.swing.JFrame {
         });
 
         pauseButton.setLabel("Pause");
+        pauseButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                pauseButtonActionPerformed(evt);
+            }
+        });
 
         resumeButton.setLabel("Resume");
+        resumeButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                resumeButtonActionPerformed(evt);
+            }
+        });
 
         backToMenuButton.setLabel("Back To Menu");
 
@@ -170,14 +176,40 @@ public class GameLayout extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextField1ActionPerformed
 
+    private void pauseButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_pauseButtonActionPerformed
+        // TODO add your handling code here:
+        PauseObserver.getInstance().handle();
+        pauseButton.setEnabled(false);
+        resumeButton.setEnabled(true);
+    }//GEN-LAST:event_pauseButtonActionPerformed
+
+    private void resumeButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_resumeButtonActionPerformed
+        // TODO add your handling code here:
+        ResumeObserver.getInstance().handle();
+        pauseButton.setEnabled(true);
+        resumeButton.setEnabled(false);
+    }//GEN-LAST:event_resumeButtonActionPerformed
+
     private void startGameButtonActionPerformed(java.awt.event.ActionEvent evt) {                                                
         // TODO add your handling code here:
+        startGameButton.setEnabled(false);
+        resumeButton.setEnabled(false);
+        jPanel1.setLayout(new SpringLayout());
         for(int i = 0; i < 5; i++)
         {
             animals.add(AnimalFactory.getInstance().getAnimal());
+            animals.get(i).draw();
+        }
+        int x = (int)jPanel1.getBounds().getMaxX() - 200 - 20;
+        int y = (int)jPanel1.getLocationOnScreen().getY() - 20;
+        int gaps = (jPanel1.getHeight() - (5*100) - 40) / (5+1);
+        SpringUtilities.makeGrid(jPanel1, 5, 1, x, y, 0, gaps);
+        jPanel1.revalidate();
+        jPanel1.repaint();
+        for(int i = 0; i < 5; i++)
+        {
             animals.get(i).move();
         }
-        //getTextField().setText(((Integer)AnimalFactory.getInstance().animalMap.size()).toString());
     }
 
     /**

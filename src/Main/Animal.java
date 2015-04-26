@@ -2,10 +2,8 @@ package Main;
 
 
 
-import java.util.ArrayList;
 import java.awt.Point;
 import javax.swing.JLabel;
-import javax.swing.JPanel;
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -50,6 +48,7 @@ public abstract class Animal {
     }
     
     //abstract method
+    public abstract void draw();
     public abstract void move();
     public abstract String behaveWord(long currentTime);
 }

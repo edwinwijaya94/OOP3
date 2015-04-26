@@ -117,11 +117,17 @@
       <Properties>
         <Property name="label" type="java.lang.String" value="Pause"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="pauseButtonActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JButton" name="resumeButton">
       <Properties>
         <Property name="label" type="java.lang.String" value="Resume"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="resumeButtonActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JButton" name="backToMenuButton">
       <Properties>
