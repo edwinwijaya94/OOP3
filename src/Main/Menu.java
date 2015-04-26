@@ -46,8 +46,8 @@ public class Menu extends javax.swing.JFrame {
         howToPlayButton = new javax.swing.JButton();
         aboutButton = new javax.swing.JButton();
         exitGameButton = new javax.swing.JButton();
-        jLabel1 = new javax.swing.JLabel();
-        BackgroundMenu = new javax.swing.JLabel();
+        TyperAnimal = new javax.swing.JLabel();
+        backgroundMenu = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -61,42 +61,44 @@ public class Menu extends javax.swing.JFrame {
             }
         });
         jPanel1.add(startNewGameButton);
-        startNewGameButton.setBounds(360, 190, 120, 29);
+        startNewGameButton.setBounds(360, 190, 120, 23);
         startNewGameButton.getAccessibleContext().setAccessibleDescription("");
 
         viewHighScoreButton.setText("View High Scores");
         jPanel1.add(viewHighScoreButton);
-        viewHighScoreButton.setBounds(360, 240, 120, 29);
+        viewHighScoreButton.setBounds(360, 240, 120, 23);
 
         howToPlayButton.setText("How to Play");
         jPanel1.add(howToPlayButton);
-        howToPlayButton.setBounds(360, 290, 120, 29);
+        howToPlayButton.setBounds(360, 290, 120, 23);
 
         aboutButton.setText("About");
         jPanel1.add(aboutButton);
-        aboutButton.setBounds(360, 340, 120, 29);
+        aboutButton.setBounds(360, 340, 120, 23);
 
         exitGameButton.setText("Exit Game");
         jPanel1.add(exitGameButton);
-        exitGameButton.setBounds(360, 390, 120, 29);
+        exitGameButton.setBounds(360, 390, 120, 23);
 
-        jLabel1.setFont(new java.awt.Font("Perpetua Titling MT", 1, 30)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(1, 61, 79));
-        jLabel1.setText("TYPER ANIMAL");
-        jPanel1.add(jLabel1);
-        jLabel1.setBounds(300, 110, 250, 50);
-        jPanel1.add(BackgroundMenu);
-        BackgroundMenu.setBounds(0, 0, 0, 510);
+        TyperAnimal.setFont(new java.awt.Font("Perpetua Titling MT", 1, 30)); // NOI18N
+        TyperAnimal.setForeground(new java.awt.Color(1, 61, 79));
+        TyperAnimal.setText("TYPER ANIMAL");
+        jPanel1.add(TyperAnimal);
+        TyperAnimal.setBounds(300, 110, 250, 50);
+
+        backgroundMenu.setIcon(new javax.swing.ImageIcon("D:\\Users\\Jessica\\Pictures\\Background\\menu2.png")); // NOI18N
+        jPanel1.add(backgroundMenu);
+        backgroundMenu.setBounds(0, 0, 800, 510);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 801, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 801, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 510, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 510, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
 
         pack();
@@ -142,11 +144,11 @@ public class Menu extends javax.swing.JFrame {
     }
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel BackgroundMenu;
+    private javax.swing.JLabel TyperAnimal;
     private javax.swing.JButton aboutButton;
+    private javax.swing.JLabel backgroundMenu;
     private javax.swing.JButton exitGameButton;
     private javax.swing.JButton howToPlayButton;
-    private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JButton startNewGameButton;
     private javax.swing.JButton viewHighScoreButton;
