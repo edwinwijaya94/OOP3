@@ -36,7 +36,7 @@ public class Cat extends Animal {
     }
     
     public void draw() {
-        setSpeed(50);
+        setSpeed(5);
         ImageIcon icon = new ImageIcon("image/cat.png");
         Image image = icon.getImage();
         image = image.getScaledInstance(200, 100,  java.awt.Image.SCALE_SMOOTH); 

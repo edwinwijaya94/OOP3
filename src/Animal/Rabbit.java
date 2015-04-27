@@ -37,7 +37,7 @@ public class Rabbit extends Animal{
     }
     
     public void draw() {
-        setSpeed(50);
+        setSpeed(20);
         ImageIcon icon = new ImageIcon("image/rabbit.png");
         Image image = icon.getImage();
         image = image.getScaledInstance(200, 100,  java.awt.Image.SCALE_SMOOTH); 

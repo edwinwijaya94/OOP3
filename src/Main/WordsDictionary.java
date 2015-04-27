@@ -13,7 +13,7 @@ public class WordsDictionary
 	private static ArrayList<String> words = new ArrayList<>();
         private static WordsDictionary instance;
         
-        public static WordsDictionary getInstance()
+        public static synchronized WordsDictionary getInstance()
         {
             if (instance == null)
             {
@@ -28,7 +28,7 @@ public class WordsDictionary
 		getWordsFromExternalFiles();
 	}
 	
-	private static void getWordsFromExternalFiles()
+	private synchronized static void getWordsFromExternalFiles()
 	{
 		BufferedReader br = null;
 		try {

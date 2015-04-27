@@ -18,7 +18,7 @@ import javax.swing.JPanel;
 public class AnimalFactory {
     Constructor animalConstructor;
     public HashMap<String, ArrayList<Animal>> animalMap = new HashMap<>();
-    public ArrayList<Animal> listAnimal = new ArrayList<>();
+    public ArrayList<Animal> listAnimal;
     int defaultSize = 10;
     String tempAnimalName;
     private static AnimalFactory instance;
@@ -58,7 +58,7 @@ public class AnimalFactory {
     private AnimalFactory()
     {}
     
-    public static AnimalFactory getInstance()
+    public synchronized static AnimalFactory getInstance()
     {
         if (instance == null)
             instance = new AnimalFactory();
@@ -67,6 +67,7 @@ public class AnimalFactory {
     
     public void registerAnimal(Class animal) {
         try {
+            listAnimal = new ArrayList<>();
             animalConstructor = animal.getDeclaredConstructor(new Class[] {});
             Field animalName = animal.getField("animalName");
             tempAnimalName = (String)animalName.get(null);
@@ -83,22 +84,24 @@ public class AnimalFactory {
         animalMap.put(tempAnimalName.toLowerCase(),listAnimal);
     }
     
-    public Animal getAnimal() {
-        // get all key of animalMap
-        ArrayList<String> animalKey = new ArrayList<>();
+    public ArrayList<String> animalKey = new ArrayList<>();
+    public synchronized Animal getAnimal() {
+        // get all key of animalMap   
+        animalKey.clear();
         animalKey.addAll(animalMap.keySet());
-        
+        //GameLayout.getInstance().debug(AnimalFactory.getInstance().animalKey.toString());
         //get random key
         Random rand = new Random();
         int i = rand.nextInt(animalKey.size()); //random key index
         
         // get animal based on key
         ArrayList<Animal> animalList = animalMap.get(animalKey.get(i).toLowerCase());
-        GameLayout.getInstance().debug(new Integer(animalList.size()).toString());
+        //GameLayout.getInstance().debug(animalMap.get("cat").toString());
+        //GameLayout.getInstance().debug(new Integer(animalList.size()).toString());
         return animalList.remove(animalList.size()-1);
     }
     
-    public void putAnimal(Animal animal) {
+    public synchronized void putAnimal(Animal animal) {
         try {
                 Field animalName = animal.getClass().getField("animalName");
                 tempAnimalName = (String)animalName.get(null);

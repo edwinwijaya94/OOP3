@@ -40,7 +40,7 @@ public class TypeHandler extends Thread{
     {
         while (true){
             validateInput();
-            GameLayout.getInstance().debug(passer.word);
+            //GameLayout.getInstance().debug(passer.word);
             //GameLayout.getInstance().debug("test");
             while (pause) {
                 try{

@@ -19,7 +19,7 @@ import javax.swing.event.DocumentListener;
 
 class Passer
 {
-    public volatile String word = "def";
+    public volatile String word = "default";
 }
 
 public class GameLayout extends javax.swing.JFrame {
@@ -71,7 +71,7 @@ public class GameLayout extends javax.swing.JFrame {
         return gameStatus;
     }
     
-    public static GameLayout getInstance()
+    public synchronized static GameLayout getInstance()
     {
         if (instance == null)
         {
@@ -248,8 +248,9 @@ public class GameLayout extends javax.swing.JFrame {
         startGameButton.setEnabled(false);
         resumeButton.setEnabled(false);
         jPanel1.setLayout(new SpringLayout());
-        typeHandler = new TypeHandler(passer);
         gameStatus = new GameStatus();
+        
+        //GameLayout.getInstance().debug(AnimalFactory.getInstance().animalKey.toString());
         for(int i = 0; i < 5; i++)
         {
             animals.add(AnimalFactory.getInstance().getAnimal());
@@ -265,6 +266,7 @@ public class GameLayout extends javax.swing.JFrame {
         {
             animals.get(i).move();
         }
+        typeHandler = new TypeHandler(passer);
     }
 
     /**
