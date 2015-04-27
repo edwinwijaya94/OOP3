@@ -10,13 +10,16 @@ import java.util.*;
 
 public class WordsDictionary
 {
-	private ArrayList<String> words = new ArrayList<>();
+	private static ArrayList<String> words = new ArrayList<>();
         private static WordsDictionary instance;
-    
+        
         public static WordsDictionary getInstance()
         {
             if (instance == null)
+            {
                 instance = new WordsDictionary();
+                getWordsFromExternalFiles();
+            }
             return instance;
         }
         
@@ -25,15 +28,16 @@ public class WordsDictionary
 		getWordsFromExternalFiles();
 	}
 	
-	private void getWordsFromExternalFiles()
+	private static void getWordsFromExternalFiles()
 	{
 		BufferedReader br = null;
 		try {
 			String sCurrentLine;
-			br = new BufferedReader(new FileReader("wordlist.txt"));
+			br = new BufferedReader(new FileReader("src/Main/wordlist.txt"));
 
 			while ((sCurrentLine = br.readLine()) != null) {
 				words.add(sCurrentLine);
+                                //GameLayout.getInstance().debug(sCurrentLine);
 			}
 		} catch (IOException e) {
 			e.printStackTrace();
@@ -45,24 +49,25 @@ public class WordsDictionary
 			}
 		}
 		Collections.shuffle(words);
-		Collections.sort(words,new Comparator<String>() {
+		
+                /*Collections.sort(words,new Comparator<String>() {
             public int compare(String s1, String s2) {
 				return s1.length() - s2.length();
             }
-        });
+        });*/
 	}
 	
-	public synchronized String getWordsFromDictionary()
+	public static synchronized String getWordsFromDictionary()
 	{
 		return words.remove(0);
 	}
 	
 	public static void main(String[] args)
 	{
-		WordsDictionary wd = new WordsDictionary();
+		//WordsDictionary wd = new WordsDictionary();
 		for (int i=0;i<5000;i++)
 		{
-			System.out.println(wd.getWordsFromDictionary());
+			System.out.println(WordsDictionary.getInstance().getWordsFromDictionary());
 		}
 	}
 }

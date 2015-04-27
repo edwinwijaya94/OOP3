@@ -3,6 +3,7 @@ package Animal;
 import Main.AnimalFactory;
 import Main.GameLayout;
 import Main.Animal;
+import Main.WordsDictionary;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Font;
@@ -92,8 +93,10 @@ public class Cat extends Animal {
     
     @Override
     public String behaveWord(long currentTime) {
-        //if (currentWord == "") currentWord = WordsDictionary.getInstance().getWordsFromDictionary();
-        //return currentWord;
-        return "asem";
+        if (currentWord == "") currentWord = WordsDictionary.getInstance().getWordsFromDictionary();
+        return currentWord;
+        //GameLayout.getInstance().debug(WordsDictionary.getInstance().getWordsFromDictionary());
+        //return "asem";
+        //return WordsDictionary.getInstance().getWordsFromDictionary();
     }
 }
