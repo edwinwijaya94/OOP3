@@ -30,29 +30,6 @@ public class Wolf extends Animal {
         AnimalFactory.getInstance().registerAnimal(Wolf.class);
     }
     
-    /*
-    public void draw() {
-        setSpeed(5);
-        ImageIcon icon = new ImageIcon("image/cat.png");
-        Image image = icon.getImage();
-        image = image.getScaledInstance(200, 100,  java.awt.Image.SCALE_SMOOTH); 
-        icon = new ImageIcon(image);
-        label = new JLabel();
-        label.setText("");
-        label.setIcon(icon);
-        label.setSize(200,100);
-        label.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        label.setForeground(Color.GREEN);
-        label.setFont(label.getFont().deriveFont((float)(label.getFont().getSize()+20)));
-        label.setFont(label.getFont().deriveFont(Font.BOLD));
-        int kanan = (int)GameLayout.getInstance().getPanel().getBounds().getMaxX() - label.getWidth() - 20;
-        int atas = (int)GameLayout.getInstance().getPanel().getLocationOnScreen().getY() - 100;
-        label.setLocation(kanan,atas);
-        label.setVisible(true);
-        GameLayout.getInstance().getPanel().add(label, BorderLayout.CENTER);
-    }
-    */
-    
     private void checkDeath()
     {
         
@@ -60,7 +37,7 @@ public class Wolf extends Animal {
     
     public void draw(int position) {
         currentWord = "";
-        setSpeed(5);
+        setSpeed(35);
         ImageIcon icon = new ImageIcon("image/wolf1.gif");
         Image image = icon.getImage();
         //image = image.getScaledInstance(170, 170,  java.awt.Image.SCALE_SMOOTH); 
