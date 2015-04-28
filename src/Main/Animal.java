@@ -49,7 +49,8 @@ public abstract class Animal {
     }
     
     //abstract method
-    public abstract void draw();
+    //public abstract void draw();
+    public abstract void draw(int position);
     public abstract void move();
     public abstract String behaveWord(long currentTime);
 }

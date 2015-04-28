@@ -52,18 +52,18 @@ public class TypeHandler extends Thread{
     
     public void validateInput()
     {
-        ArrayList<Animal> animal = GameLayout.getInstance().getAnimals();
-        for (int i=0;i<animal.size();i++)
+        Animal[] animal = GameLayout.getInstance().getAnimals();
+        for (int i=0;i<GameLayout.getInstance().getAnimalSize();i++)
         {
             //GameLayout.getInstance().debug(GameLayout.getInstance().getTextField().getText());
-            if (passer.word.equals(animal.get(i).getWord()))
+            if (passer.word.equals(animal[i].getWord()))
             {
-                CaughtObserver.getInstance().setAnimal(animal.get(i));
+                CaughtObserver.getInstance().setIndex(i);
                 CaughtObserver.getInstance().handle();
                 return;
             }
         }
-        GameLayout.getInstance().getStartGameButton().setEnabled(true);
-        GameLayout.getInstance().getStartGameButton().setText("Restart Game ?");
+        //GameLayout.getInstance().getStartGameButton().setEnabled(true);
+        //GameLayout.getInstance().getStartGameButton().setText("Restart Game ?");
     }
 }

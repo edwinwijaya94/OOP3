@@ -12,6 +12,7 @@ package Main;
 public class CaughtObserver implements EventObserver {
 
     private GameLayout gameLayout = GameLayout.getInstance();
+    private int animalIndex;
     private Animal animal;
     
     private static CaughtObserver instance;
@@ -28,9 +29,10 @@ public class CaughtObserver implements EventObserver {
     {
     }
     
-    public void setAnimal(Animal animal)
+    public void setIndex(int index)
     {
-        this.animal = animal;
+        this.animalIndex = index;
+        animal = gameLayout.getAnimals()[index];
     }
     
     @Override
@@ -38,12 +40,14 @@ public class CaughtObserver implements EventObserver {
         gameLayout.getGameStatus().addScore(animal.getSpeed());
         gameLayout.getTextField().setText("");
         animal.getThread().interrupt();
-        animal.label.setVisible(true);
         AnimalFactory.getInstance().putAnimal(animal);
         
-        gameLayout.getAnimals().remove(animal);
+        gameLayout.getAnimals()[animalIndex] = null;
         Animal tempAnimal = AnimalFactory.getInstance().getAnimal();
-        gameLayout.getAnimals().add(tempAnimal);
+        gameLayout.getAnimals()[animalIndex] = tempAnimal;
+        tempAnimal.draw(animalIndex);
+        gameLayout.getPanel().revalidate();
+        gameLayout.getPanel().repaint();
         tempAnimal.move();
     }
 }

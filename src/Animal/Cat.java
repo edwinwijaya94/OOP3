@@ -34,7 +34,7 @@ public class Cat extends Animal {
     {
 
     }
-    
+    /*
     public void draw() {
         setSpeed(5);
         ImageIcon icon = new ImageIcon("image/cat.png");
@@ -55,26 +55,63 @@ public class Cat extends Animal {
         label.setVisible(true);
         GameLayout.getInstance().getPanel().add(label, BorderLayout.CENTER);
     }
+    */
+    
+    private void checkDeath()
+    {
+        
+    }
+    
+    public void draw(int position) {
+        currentWord = "";
+        setSpeed(5);
+        ImageIcon icon = new ImageIcon("image/cat2.gif");
+        Image image = icon.getImage();
+        image = image.getScaledInstance(130, 130,  java.awt.Image.SCALE_SMOOTH); 
+        //icon = new ImageIcon(image);
+        label = new JLabel();
+        label.setText("");
+        label.setIcon(icon);
+        label.setSize(250,160);
+        label.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        label.setForeground(Color.GREEN);
+        label.setFont(label.getFont().deriveFont((float)(label.getFont().getSize()+20)));
+        label.setFont(label.getFont().deriveFont(Font.BOLD));
+        int kanan = (int)GameLayout.getInstance().getPanel().getBounds().getMaxX() - label.getWidth() - 20;
+        int atas = (int)GameLayout.getInstance().getPanel().getLocationOnScreen().getY() - 100;
+        atas += position * label.getWidth()/2 + position*15 ;
+        label.setLocation(kanan,atas);
+        label.setVisible(true);
+        //GameLayout.getInstance().getPanel().add(label, BorderLayout.CENTER);
+        GameLayout.getInstance().getPanel().add(label);
+    }
     
     //method
     @Override
     public void move(){
-         if (label == null) 
-            draw();
+         /*if (label == null) 
+            draw();*/
          final long startTime = System.nanoTime();
          myThread = new Thread()  {
             public void run() {
                 int kiri = (int)GameLayout.getInstance().getPanel().getLocationOnScreen().getX();
                 try {
                     while(label.getLocationOnScreen().getX() > kiri) {
-                        updatePosition();
+                        //updatePosition();
+                        label.setLocation((int)label.getLocation().getX()-10, (int)label.getLocation().getY());
                         long runningTime = System.nanoTime() - startTime;
                         word = behaveWord(runningTime / 1000000);
                         label.setText(word);
                         Thread.sleep(100-speed);
                     }
+                    GameLayout.getInstance().getPanel().remove(label);
+                    GameLayout.getInstance().getPanel().revalidate();
+                    GameLayout.getInstance().getPanel().repaint();
+                    return;
                 } catch (InterruptedException ex) {  
-                    label.setVisible(false);
+                    //label.setVisible(false);
+                    GameLayout.getInstance().getPanel().remove(label);
+                    return;
                     //break;               
                 }
             }

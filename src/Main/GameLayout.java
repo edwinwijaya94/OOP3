@@ -23,7 +23,8 @@ public class GameLayout extends javax.swing.JFrame {
     
     //attributes
     private static GameLayout instance;
-    static ArrayList<Animal> animals = new ArrayList<Animal>();
+    private static int animalSize = 5;
+    static Animal[] animals = new Animal[animalSize];
     //Background background;
     TypeHandler typeHandler;
     GameStatus gameStatus;
@@ -107,7 +108,7 @@ public class GameLayout extends javax.swing.JFrame {
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
+            .addGap(0, 571, Short.MAX_VALUE)
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -247,24 +248,25 @@ public class GameLayout extends javax.swing.JFrame {
         startGameButton.setEnabled(false);
         resumeButton.setEnabled(false);
         inputField.requestFocusInWindow();
-        jPanel1.setLayout(new SpringLayout());
+        //jPanel1.setLayout(new SpringLayout());
+        jPanel1.setLayout(null);
         gameStatus = new GameStatus();
         
         //GameLayout.getInstance().debug(AnimalFactory.getInstance().animalKey.toString());
         for(int i = 0; i < 5; i++)
         {
-            animals.add(AnimalFactory.getInstance().getAnimal());
-            animals.get(i).draw();
+            animals[i] = AnimalFactory.getInstance().getAnimal();
+            animals[i].draw(i);
         }
-        int x = (int)jPanel1.getBounds().getMaxX() - 200 - 20;
-        int y = (int)jPanel1.getLocationOnScreen().getY() - 20;
-        int gaps = (jPanel1.getHeight() - (5*100) - 40) / (5+1);
-        SpringUtilities.makeGrid(jPanel1, 5, 1, x, y, 0, gaps);
+        //int x = (int)jPanel1.getBounds().getMaxX() - 200 - 20;
+        //int y = (int)jPanel1.getLocationOnScreen().getY() - 20;
+        //int gaps = (jPanel1.getHeight() - (5*100) - 40) / (5+1);
+        //SpringUtilities.makeGrid(jPanel1, 5, 1, x, y, 0, gaps);
         jPanel1.revalidate();
         jPanel1.repaint();
         for(int i = 0; i < 5; i++)
         {
-            animals.get(i).move();
+            animals[i].move();
         }
         typeHandler = new TypeHandler(passer);
     }
@@ -305,11 +307,11 @@ public class GameLayout extends javax.swing.JFrame {
         
         while(true)
         {
-            for (int i=0;i<animals.size();i++)
+            for (int i=0;i<animalSize;i++)
             {
                 try
                 {
-                    animals.get(i).getThread().join();
+                    animals[i].getThread().join();
                 }catch(Exception e){}
             }
         }
@@ -319,7 +321,7 @@ public class GameLayout extends javax.swing.JFrame {
         return jPanel1;
     }
     
-    public ArrayList<Animal> getAnimals() {
+    public Animal[] getAnimals() {
         return animals;
     }
     
@@ -333,6 +335,11 @@ public class GameLayout extends javax.swing.JFrame {
     
     public JButton getStartGameButton(){
         return startGameButton;
+    }
+    
+    public int getAnimalSize()
+    {
+        return animalSize;
     }
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
