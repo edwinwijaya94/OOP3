@@ -12,12 +12,28 @@ package Main;
 import java.util.*;
 
 public class ExitObserver implements EventObserver {
+    
+    private static ExitObserver instance;
+    
+    public static ExitObserver getInstance()
+    {
+        if (instance == null){
+            instance = new ExitObserver();
+        }
+        return instance;
+    }
+    
+    private ExitObserver()
+    {
+    }
+    
+    
     @Override
     public void handle() {
-        ArrayList<Animal> animalList = GameLayout.getInstance().getAnimals();
+        Animal[] animalList = GameLayout.getInstance().getAnimals();
         
-        for (int i = 0; i < (animalList.size()); i++) {
-            animalList.get(i).getThread().interrupt();
+        for (int i = 0; i < GameLayout.getInstance().getAnimalSize(); i++) {
+            animalList[i].getThread().interrupt();
         }
     }
 }

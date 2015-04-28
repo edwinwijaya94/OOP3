@@ -3,6 +3,7 @@ package Animal;
 import Main.AnimalFactory;
 import Main.GameLayout;
 import Main.Animal;
+import Main.EscapeObserver;
 import Main.WordsDictionary;
 import java.awt.BorderLayout;
 import java.awt.Color;
@@ -88,6 +89,7 @@ public class Horse extends Animal {
                     GameLayout.getInstance().getPanel().remove(label);
                     GameLayout.getInstance().getPanel().revalidate();
                     GameLayout.getInstance().getPanel().repaint();
+                    EscapeObserver.getInstance().handle();
                     return;
                 } catch (InterruptedException ex) {  
                     GameLayout.getInstance().getPanel().remove(label);

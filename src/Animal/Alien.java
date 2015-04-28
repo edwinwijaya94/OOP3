@@ -3,6 +3,8 @@ package Animal;
 import Main.AnimalFactory;
 import Main.GameLayout;
 import Main.Animal;
+import Main.CaughtObserver;
+import Main.EscapeObserver;
 import Main.WordsDictionary;
 import java.awt.Color;
 import java.awt.Font;
@@ -26,11 +28,6 @@ public class Alien extends Animal {
 // registering the class to AnimalFactory
     static {
         AnimalFactory.getInstance().registerAnimal(Alien.class);
-    }
-    
-    private void checkDeath()
-    { 
-    
     }
     
     public void draw(int position) {
@@ -80,6 +77,7 @@ public class Alien extends Animal {
                     GameLayout.getInstance().getPanel().remove(label);
                     GameLayout.getInstance().getPanel().revalidate();
                     GameLayout.getInstance().getPanel().repaint();
+                    EscapeObserver.getInstance().handle();
                     return;
                 } catch (InterruptedException ex) {  
                     GameLayout.getInstance().getPanel().remove(label);

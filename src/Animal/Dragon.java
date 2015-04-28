@@ -7,6 +7,8 @@ package Animal;
 
 import Main.Animal;
 import Main.AnimalFactory;
+import Main.CaughtObserver;
+import Main.EscapeObserver;
 import Main.GameLayout;
 import Main.WordsDictionary;
 import java.awt.Color;
@@ -108,6 +110,7 @@ public class Dragon extends Animal{
                     GameLayout.getInstance().getPanel().remove(label);
                     GameLayout.getInstance().getPanel().revalidate();
                     GameLayout.getInstance().getPanel().repaint();
+                    EscapeObserver.getInstance().handle();
                     return;
                 } catch (InterruptedException ex) {  
                     //label.setVisible(false);
