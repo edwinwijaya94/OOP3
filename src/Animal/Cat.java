@@ -94,16 +94,20 @@ public class Cat extends Animal {
     public void move(){
          /*if (label == null) 
             draw();*/
-         final long startTime = System.nanoTime();
+         
          myThread = new Thread()  {
             public void run() {
                 int kiri = (int)GameLayout.getInstance().getPanel().getLocationOnScreen().getX();
                 try {
+                    long startTime = System.nanoTime();
                     while(label.getLocationOnScreen().getX() > kiri) {
                         //updatePosition();
                         label.setLocation((int)label.getLocation().getX()-10, (int)label.getLocation().getY());
                         long runningTime = System.nanoTime() - startTime;
-                        word = behaveWord(runningTime / 1000000);
+                        if(word.isEmpty() || runningTime >= 2000){
+                            word = behaveWord(runningTime / 1000000);
+                            startTime = System.nanoTime(); // reset the clock
+                        }
                         label.setText(word);
                         Thread.sleep(100-speed);
                     }
