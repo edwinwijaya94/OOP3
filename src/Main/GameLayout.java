@@ -4,6 +4,10 @@ import java.util.*;
 import javax.swing.*;
 import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
+import java.awt.Graphics;
+import java.awt.Graphics2D;
+import java.awt.RenderingHints;
+import Main.Background;
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -50,6 +54,15 @@ public class GameLayout extends javax.swing.JFrame {
     public volatile Passer passer = new Passer();
     Object correctLock = new Object();
     int totalCorrectWords = 0;
+    Background bg = new Background(this);
+    @Override
+    public void paint(Graphics g) {
+        super.paint(g);
+	Graphics2D g2d = (Graphics2D) g;
+	g2d.setRenderingHint(RenderingHints.KEY_ANTIALIASING,
+	RenderingHints.VALUE_ANTIALIAS_ON);
+	bg.paint(g2d);
+    }
     
     public int getTotalCorrectWords()
     {
@@ -339,6 +352,7 @@ public class GameLayout extends javax.swing.JFrame {
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 getInstance().setVisible(true);
+                getInstance().repaint();
             }
         });
         
