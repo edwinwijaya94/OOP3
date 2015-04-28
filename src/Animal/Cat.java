@@ -11,6 +11,8 @@ import java.awt.Image;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.SwingUtilities;
+import java.util.*;
+
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -133,10 +135,30 @@ public class Cat extends Animal {
     
     @Override
     public String behaveWord(long currentTime) {
-        if (currentWord == "") currentWord = WordsDictionary.getInstance().getWordsFromDictionary();
-        return currentWord;
-        //GameLayout.getInstance().debug(WordsDictionary.getInstance().getWordsFromDictionary());
-        //return "asem";
-        //return WordsDictionary.getInstance().getWordsFromDictionary();
+        if (currentWord == ""){ 
+            currentWord = WordsDictionary.getInstance().getWordsFromDictionary();
+            return currentWord;
+        }
+        else{ // randomize character
+            String temp = currentWord;
+            String newWord ="";
+            int n = temp.length();
+            Random rand = new Random();
+            for(int i = 0; i < n; i++){
+                int r = rand.nextInt(temp.length());
+                newWord += temp.charAt(r);
+                if(i == n-1)
+                        temp="";
+                else{
+                        if(r == 0)
+                                temp = temp.substring(r+1);
+                        else if(r == temp.length())
+                                temp = temp.substring(0,r);
+                        else
+                                temp = temp.substring(0,r) + temp.substring(r+1);	
+                }
+            }
+            return newWord;
+        }
     }
 }
