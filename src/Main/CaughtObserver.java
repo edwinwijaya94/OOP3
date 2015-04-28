@@ -46,8 +46,6 @@ public class CaughtObserver implements EventObserver {
         Animal tempAnimal = AnimalFactory.getInstance().getAnimal();
         gameLayout.getAnimals()[animalIndex] = tempAnimal;
         tempAnimal.draw(animalIndex);
-        gameLayout.getPanel().revalidate();
-        gameLayout.getPanel().repaint();
         //tempAnimal.move();
     }
 }
