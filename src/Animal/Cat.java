@@ -67,7 +67,7 @@ public class Cat extends Animal {
         setSpeed(5);
         ImageIcon icon = new ImageIcon("image/cat2.gif");
         Image image = icon.getImage();
-        image = image.getScaledInstance(130, 130,  java.awt.Image.SCALE_SMOOTH); 
+        //image = image.getScaledInstance(130, 130,  java.awt.Image.SCALE_SMOOTH); 
         //icon = new ImageIcon(image);
         label = new JLabel();
         label.setText("");
@@ -99,10 +99,12 @@ public class Cat extends Animal {
                 try {
                     while(label.getLocationOnScreen().getX() > kiri) {
                         //updatePosition();
-                        label.setLocation((int)label.getLocation().getX()-10, (int)label.getLocation().getY());
                         long runningTime = System.nanoTime() - startTime;
                         word = behaveWord(runningTime / 1000000);
+                        label.setLocation((int)label.getLocation().getX()-10, (int)label.getLocation().getY());
                         label.setText(word);
+                        GameLayout.getInstance().getPanel().revalidate();
+                        GameLayout.getInstance().getPanel().repaint();
                         Thread.sleep(100-speed);
                     }
                     GameLayout.getInstance().getPanel().remove(label);
@@ -110,7 +112,6 @@ public class Cat extends Animal {
                     GameLayout.getInstance().getPanel().repaint();
                     return;
                 } catch (InterruptedException ex) {  
-                    //label.setVisible(false);
                     GameLayout.getInstance().getPanel().remove(label);
                     GameLayout.getInstance().getPanel().revalidate();
                     GameLayout.getInstance().getPanel().repaint();
