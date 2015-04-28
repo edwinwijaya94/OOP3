@@ -21,13 +21,13 @@ import javax.swing.SwingUtilities;
  *
  * @author elvan_owen
  */
-public class Bayleef extends Animal {
-    public static String animalName = "Bayleef";
+public class Pokefish extends Animal {
+    public static String animalName = "Pokefish";
     public String currentWord = "";
     
 // registering the class to AnimalFactory
     static {
-        AnimalFactory.getInstance().registerAnimal(Bayleef.class);
+        AnimalFactory.getInstance().registerAnimal(Pokefish.class);
     }
     
     private void checkDeath()
@@ -38,7 +38,7 @@ public class Bayleef extends Animal {
     public void draw(int position) {
         currentWord = "";
         setSpeed(5);
-        ImageIcon icon = new ImageIcon("image/bayleef.gif");
+        ImageIcon icon = new ImageIcon("image/pokefish.gif");
         Image image = icon.getImage();
         label = new JLabel();
         label.setText("");

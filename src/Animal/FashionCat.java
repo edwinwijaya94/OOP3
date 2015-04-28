@@ -21,13 +21,13 @@ import javax.swing.SwingUtilities;
  *
  * @author elvan_owen
  */
-public class Bayleef extends Animal {
-    public static String animalName = "Bayleef";
+public class FashionCat extends Animal {
+    public static String animalName = "FashionCat";
     public String currentWord = "";
     
 // registering the class to AnimalFactory
     static {
-        AnimalFactory.getInstance().registerAnimal(Bayleef.class);
+        AnimalFactory.getInstance().registerAnimal(FashionCat.class);
     }
     
     private void checkDeath()
@@ -38,14 +38,14 @@ public class Bayleef extends Animal {
     public void draw(int position) {
         currentWord = "";
         setSpeed(5);
-        ImageIcon icon = new ImageIcon("image/bayleef.gif");
+        ImageIcon icon = new ImageIcon("image/ccat.gif");
         Image image = icon.getImage();
         label = new JLabel();
         label.setText("");
         label.setIcon(icon);
         label.setSize(250,160);
         label.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        label.setForeground(Color.black);
+        label.setForeground(Color.white);
         label.setFont(label.getFont().deriveFont((float)(label.getFont().getSize()+13)));
         label.setFont(label.getFont().deriveFont(Font.BOLD));
         int kanan = (int)GameLayout.getInstance().getPanel().getBounds().getMaxX() - label.getWidth() - 20;
