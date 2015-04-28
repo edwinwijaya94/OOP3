@@ -21,13 +21,13 @@ import javax.swing.SwingUtilities;
  *
  * @author elvan_owen
  */
-public class Hooh extends Animal {
-    public static String animalName = "Hooh";
+public class BeautifulMermaid extends Animal {
+    public static String animalName = "BeautifulMermaid";
     public String currentWord = "";
     
 // registering the class to AnimalFactory
     static {
-        AnimalFactory.getInstance().registerAnimal(Hooh.class);
+        AnimalFactory.getInstance().registerAnimal(BeautifulMermaid.class);
     }
     
     private void checkDeath()
@@ -37,20 +37,20 @@ public class Hooh extends Animal {
     
     public void draw(int position) {
         currentWord = "";
-        setSpeed(35);
-        ImageIcon icon = new ImageIcon("image/hooh.gif");
+        setSpeed(1);
+        ImageIcon icon = new ImageIcon("image/mermaid.gif");
         Image image = icon.getImage();
         label = new JLabel();
         label.setText("");
         label.setIcon(icon);
-        label.setSize(250,210);
-        label.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        label.setForeground(Color.cyan);
+        label.setSize(550,200);
+        label.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
+        label.setForeground(Color.pink);
         label.setFont(label.getFont().deriveFont((float)(label.getFont().getSize()+13)));
         label.setFont(label.getFont().deriveFont(Font.BOLD));
         int kanan = (int)GameLayout.getInstance().getPanel().getBounds().getMaxX() - label.getWidth() - 20;
         int atas = (int)GameLayout.getInstance().getPanel().getLocationOnScreen().getY() - 100;
-        atas += position * label.getWidth()/2.1 + position*15 + 7;
+        atas += position * label.getWidth()/5 + position*15 + 5;
         label.setLocation(kanan,atas);
         label.setVisible(true);
         GameLayout.getInstance().getPanel().add(label);
@@ -60,6 +60,8 @@ public class Hooh extends Animal {
     //method
     @Override
     public void move(){
+         /*if (label == null) 
+            draw();*/
          final long startTime = System.nanoTime();
          myThread = new Thread()  {
             public void run() {
@@ -104,5 +106,8 @@ public class Hooh extends Animal {
     public String behaveWord(long currentTime) {
         if (currentWord == "") currentWord = WordsDictionary.getInstance().getWordsFromDictionary();
         return currentWord;
+        //GameLayout.getInstance().debug(WordsDictionary.getInstance().getWordsFromDictionary());
+        //return "asem";
+        //return WordsDictionary.getInstance().getWordsFromDictionary();
     }
 }

@@ -37,7 +37,7 @@ public class CrazyWolf extends Animal {
     
     public void draw(int position) {
         currentWord = "";
-        setSpeed(5);
+        setSpeed(0);
         ImageIcon icon = new ImageIcon("image/wolf101.gif");
         Image image = icon.getImage();
         label = new JLabel();

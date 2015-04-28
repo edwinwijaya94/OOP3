@@ -37,7 +37,7 @@ public class Bayleef extends Animal {
     
     public void draw(int position) {
         currentWord = "";
-        setSpeed(5);
+        setSpeed(8);
         ImageIcon icon = new ImageIcon("image/bayleef.gif");
         Image image = icon.getImage();
         label = new JLabel();
@@ -45,8 +45,8 @@ public class Bayleef extends Animal {
         label.setIcon(icon);
         label.setSize(250,160);
         label.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        label.setForeground(Color.black);
-        label.setFont(label.getFont().deriveFont((float)(label.getFont().getSize()+13)));
+        label.setForeground(Color.red);
+        label.setFont(label.getFont().deriveFont((float)(label.getFont().getSize()+20)));
         label.setFont(label.getFont().deriveFont(Font.BOLD));
         int kanan = (int)GameLayout.getInstance().getPanel().getBounds().getMaxX() - label.getWidth() - 20;
         int atas = (int)GameLayout.getInstance().getPanel().getLocationOnScreen().getY() - 100;

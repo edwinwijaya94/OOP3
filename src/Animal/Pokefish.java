@@ -37,7 +37,7 @@ public class Pokefish extends Animal {
     
     public void draw(int position) {
         currentWord = "";
-        setSpeed(5);
+        setSpeed(10);
         ImageIcon icon = new ImageIcon("image/pokefish.gif");
         Image image = icon.getImage();
         label = new JLabel();

@@ -37,20 +37,20 @@ public class Lugia extends Animal {
     
     public void draw(int position) {
         currentWord = "";
-        setSpeed(5);
+        setSpeed(35);
         ImageIcon icon = new ImageIcon("image/lugia.gif");
         Image image = icon.getImage();
         label = new JLabel();
         label.setText("");
         label.setIcon(icon);
-        label.setSize(250,160);
+        label.setSize(250,190);
         label.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         label.setForeground(Color.red);
         label.setFont(label.getFont().deriveFont((float)(label.getFont().getSize()+13)));
         label.setFont(label.getFont().deriveFont(Font.BOLD));
         int kanan = (int)GameLayout.getInstance().getPanel().getBounds().getMaxX() - label.getWidth() - 20;
         int atas = (int)GameLayout.getInstance().getPanel().getLocationOnScreen().getY() - 100;
-        atas += position * label.getWidth()/2 + position*15 ;
+        atas += position * label.getWidth()/2 + position*15 + 10;
         label.setLocation(kanan,atas);
         label.setVisible(true);
         GameLayout.getInstance().getPanel().add(label);

@@ -37,7 +37,7 @@ public class CrazyDinosaur extends Animal {
     
     public void draw(int position) {
         currentWord = "";
-        setSpeed(5);
+        setSpeed(45);
         ImageIcon icon = new ImageIcon("image/greendin.gif");
         Image image = icon.getImage();
         label = new JLabel();
@@ -45,12 +45,12 @@ public class CrazyDinosaur extends Animal {
         label.setIcon(icon);
         label.setSize(250,160);
         label.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
-        label.setForeground(Color.black);
+        label.setForeground(Color.green);
         label.setFont(label.getFont().deriveFont((float)(label.getFont().getSize()+13)));
         label.setFont(label.getFont().deriveFont(Font.BOLD));
         int kanan = (int)GameLayout.getInstance().getPanel().getBounds().getMaxX() - label.getWidth() - 20;
         int atas = (int)GameLayout.getInstance().getPanel().getLocationOnScreen().getY() - 100;
-        atas += position * label.getWidth()/2 + position*15 ;
+        atas += position * label.getWidth()/2 + position*15 +5;
         label.setLocation(kanan,atas);
         label.setVisible(true);
         GameLayout.getInstance().getPanel().add(label);

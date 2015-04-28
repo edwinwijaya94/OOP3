@@ -21,13 +21,13 @@ import javax.swing.SwingUtilities;
  *
  * @author elvan_owen
  */
-public class Hooh extends Animal {
-    public static String animalName = "Hooh";
+public class CuteCat extends Animal {
+    public static String animalName = "CuteCat";
     public String currentWord = "";
     
 // registering the class to AnimalFactory
     static {
-        AnimalFactory.getInstance().registerAnimal(Hooh.class);
+        AnimalFactory.getInstance().registerAnimal(CuteCat.class);
     }
     
     private void checkDeath()
@@ -37,22 +37,25 @@ public class Hooh extends Animal {
     
     public void draw(int position) {
         currentWord = "";
-        setSpeed(35);
-        ImageIcon icon = new ImageIcon("image/hooh.gif");
+        setSpeed(20);
+        ImageIcon icon = new ImageIcon("image/cute.gif");
         Image image = icon.getImage();
+        //image = image.getScaledInstance(170, 170,  java.awt.Image.SCALE_SMOOTH); 
+        //icon = new ImageIcon(image);
         label = new JLabel();
         label.setText("");
         label.setIcon(icon);
-        label.setSize(250,210);
+        label.setSize(250,170);
         label.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        label.setForeground(Color.cyan);
+        label.setForeground(Color.BLUE);
         label.setFont(label.getFont().deriveFont((float)(label.getFont().getSize()+13)));
         label.setFont(label.getFont().deriveFont(Font.BOLD));
         int kanan = (int)GameLayout.getInstance().getPanel().getBounds().getMaxX() - label.getWidth() - 20;
         int atas = (int)GameLayout.getInstance().getPanel().getLocationOnScreen().getY() - 100;
-        atas += position * label.getWidth()/2.1 + position*15 + 7;
+        atas += position * label.getWidth()/2.1 + position*15 + 15;
         label.setLocation(kanan,atas);
         label.setVisible(true);
+        //GameLayout.getInstance().getPanel().add(label, BorderLayout.CENTER);
         GameLayout.getInstance().getPanel().add(label);
         move();
     }
@@ -60,6 +63,8 @@ public class Hooh extends Animal {
     //method
     @Override
     public void move(){
+         /*if (label == null) 
+            draw();*/
          final long startTime = System.nanoTime();
          myThread = new Thread()  {
             public void run() {
@@ -104,5 +109,8 @@ public class Hooh extends Animal {
     public String behaveWord(long currentTime) {
         if (currentWord == "") currentWord = WordsDictionary.getInstance().getWordsFromDictionary();
         return currentWord;
+        //GameLayout.getInstance().debug(WordsDictionary.getInstance().getWordsFromDictionary());
+        //return "asem";
+        //return WordsDictionary.getInstance().getWordsFromDictionary();
     }
 }
