@@ -16,6 +16,7 @@ import javax.swing.JLabel;
 public abstract class Animal {
     
     //attributes
+    public static String animalName;
     protected JLabel label;
     public Thread myThread;
     public int speed = 0;

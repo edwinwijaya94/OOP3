@@ -1,10 +1,7 @@
 package Main;
 
 import java.util.*;
-import javax.swing.JLabel;
-import javax.swing.JPanel;
-import javax.swing.JTextField;
-import javax.swing.SpringLayout;
+import javax.swing.*;
 import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
 /*
@@ -58,6 +55,7 @@ public class GameLayout extends javax.swing.JFrame {
             warn();
         }
       });
+        startGameButton.requestFocusInWindow();
         //AnimalFactory.getInstance().createAnimal();
     }
     
@@ -91,16 +89,17 @@ public class GameLayout extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         startGameButton = new javax.swing.JButton();
         backToMenuButton = new javax.swing.JButton();
-        jTextField1 = new javax.swing.JTextField();
+        inputField = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
         playerNameLabel = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         scoreLabel = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
-        pauseButton = new javax.swing.JButton();
         resumeButton = new javax.swing.JButton();
+        pauseButton = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setExtendedState(6);
 
         jPanel1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
@@ -112,7 +111,7 @@ public class GameLayout extends javax.swing.JFrame {
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 351, Short.MAX_VALUE)
+            .addGap(0, 355, Short.MAX_VALUE)
         );
 
         startGameButton.setLabel("Start Game");
@@ -129,14 +128,14 @@ public class GameLayout extends javax.swing.JFrame {
             }
         });
 
-        jTextField1.addActionListener(new java.awt.event.ActionListener() {
+        inputField.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField1ActionPerformed(evt);
+                inputFieldActionPerformed(evt);
             }
         });
-        jTextField1.addKeyListener(new java.awt.event.KeyAdapter() {
+        inputField.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
-                jTextField1KeyReleased(evt);
+                inputFieldKeyReleased(evt);
             }
         });
 
@@ -150,17 +149,17 @@ public class GameLayout extends javax.swing.JFrame {
 
         jLabel2.setText("jLabel2");
 
-        pauseButton.setText("Pause");
-        pauseButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                pauseButtonActionPerformed(evt);
-            }
-        });
-
         resumeButton.setText("Resume");
         resumeButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 resumeButtonActionPerformed(evt);
+            }
+        });
+
+        pauseButton.setText("Pause");
+        pauseButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                pauseButtonActionPerformed(evt);
             }
         });
 
@@ -181,20 +180,18 @@ public class GameLayout extends javax.swing.JFrame {
                         .addComponent(scoreLabel)
                         .addGap(75, 75, 75)
                         .addComponent(jLabel2)
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGap(0, 162, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jTextField1, javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                                .addComponent(startGameButton)
-                                .addGap(101, 101, 101)
-                                .addComponent(pauseButton)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(resumeButton)
-                                .addGap(114, 114, 114)
-                                .addComponent(backToMenuButton)))
-                        .addGap(53, 53, 53))))
+                        .addComponent(startGameButton)
+                        .addGap(87, 87, 87)
+                        .addComponent(pauseButton)
+                        .addGap(37, 37, 37)
+                        .addComponent(resumeButton)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(backToMenuButton))
+                    .addComponent(inputField)
+                    .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -206,33 +203,35 @@ public class GameLayout extends javax.swing.JFrame {
                     .addComponent(jLabel3)
                     .addComponent(scoreLabel)
                     .addComponent(jLabel2))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(16, 16, 16)
+                .addComponent(inputField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(21, 21, 21)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(backToMenuButton)
                     .addComponent(startGameButton)
-                    .addComponent(pauseButton)
-                    .addComponent(resumeButton))
+                    .addComponent(resumeButton)
+                    .addComponent(pauseButton))
                 .addContainerGap())
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
+    private void inputFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_inputFieldActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField1ActionPerformed
+    }//GEN-LAST:event_inputFieldActionPerformed
 
-    private void jTextField1KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField1KeyReleased
+    private void inputFieldKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_inputFieldKeyReleased
         // TODO add your handling code here:
         passer.word = getTextField().getText();
-    }//GEN-LAST:event_jTextField1KeyReleased
+    }//GEN-LAST:event_inputFieldKeyReleased
 
     private void backToMenuButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backToMenuButtonActionPerformed
         // TODO add your handling code here:
+        this.setVisible(false);
+        //Menu.setVisible(true);
     }//GEN-LAST:event_backToMenuButtonActionPerformed
 
     private void pauseButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_pauseButtonActionPerformed
@@ -247,6 +246,7 @@ public class GameLayout extends javax.swing.JFrame {
         // TODO add your handling code here:
         startGameButton.setEnabled(false);
         resumeButton.setEnabled(false);
+        inputField.requestFocusInWindow();
         jPanel1.setLayout(new SpringLayout());
         gameStatus = new GameStatus();
         
@@ -324,20 +324,24 @@ public class GameLayout extends javax.swing.JFrame {
     }
     
     public JTextField getTextField() {
-        return jTextField1;
+        return inputField;
     }
 
     public JLabel getScoreLabel(){
         return scoreLabel;
     }
     
+    public JButton getStartGameButton(){
+        return startGameButton;
+    }
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton backToMenuButton;
+    private javax.swing.JTextField inputField;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JTextField jTextField1;
     private javax.swing.JButton pauseButton;
     private javax.swing.JLabel playerNameLabel;
     private javax.swing.JButton resumeButton;

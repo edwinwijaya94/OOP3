@@ -63,5 +63,7 @@ public class TypeHandler extends Thread{
                 return;
             }
         }
+        GameLayout.getInstance().getStartGameButton().setEnabled(true);
+        GameLayout.getInstance().getStartGameButton().setText("Restart Game ?");
     }
 }
