@@ -19,6 +19,25 @@ class Passer
     public volatile String word = "default";
 }
 
+class GambarThread extends Thread {
+   private Thread t;
+   private String threadName = "gambarThread";
+   
+   public void run() {
+      GameLayout.getInstance().getPanel().revalidate();
+      GameLayout.getInstance().getPanel().repaint();
+   }
+   
+   public void start ()
+   {
+      if (t == null)
+      {
+         t = new Thread (this, threadName);
+         t.start ();
+      }
+   }
+}
+
 public class GameLayout extends javax.swing.JFrame {
     
     //attributes
@@ -264,13 +283,13 @@ public class GameLayout extends javax.swing.JFrame {
         //SpringUtilities.makeGrid(jPanel1, 5, 1, x, y, 0, gaps);
         jPanel1.revalidate();
         jPanel1.repaint();
-        for(int i = 0; i < 5; i++)
+        /*for(int i = 0; i < 5; i++)
         {
             animals[i].move();
-        }
+        }*/
         typeHandler = new TypeHandler(passer);
     }
-
+    
     /**
      * @param args the command line arguments
      */
@@ -305,6 +324,14 @@ public class GameLayout extends javax.swing.JFrame {
             }
         });
         
+        /*GambarThread gambarThread = new GambarThread();
+        gambarThread.start();
+        try
+        {
+            gambarThread.join();
+        }catch(Exception e){}
+        */
+        
         while(true)
         {
             for (int i=0;i<animalSize;i++)
@@ -314,7 +341,7 @@ public class GameLayout extends javax.swing.JFrame {
                     animals[i].getThread().join();
                 }catch(Exception e){}
             }
-        }
+        }  
     }
     
     public JPanel getPanel() {

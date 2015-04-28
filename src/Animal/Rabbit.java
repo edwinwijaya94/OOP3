@@ -79,6 +79,7 @@ public class Rabbit extends Animal{
         label.setVisible(true);
         //GameLayout.getInstance().getPanel().add(label, BorderLayout.CENTER);
         GameLayout.getInstance().getPanel().add(label);
+        move();
     }
     
     //method
@@ -106,6 +107,8 @@ public class Rabbit extends Animal{
                 } catch (InterruptedException ex) {  
                     //label.setVisible(false);
                     GameLayout.getInstance().getPanel().remove(label);
+                    GameLayout.getInstance().getPanel().revalidate();
+                    GameLayout.getInstance().getPanel().repaint();
                     return;
                     //break;               
                 }

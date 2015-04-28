@@ -48,6 +48,6 @@ public class CaughtObserver implements EventObserver {
         tempAnimal.draw(animalIndex);
         gameLayout.getPanel().revalidate();
         gameLayout.getPanel().repaint();
-        tempAnimal.move();
+        //tempAnimal.move();
     }
 }

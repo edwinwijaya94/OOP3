@@ -84,20 +84,17 @@ public class AnimalFactory {
         animalMap.put(tempAnimalName.toLowerCase(),listAnimal);
     }
     
-    public ArrayList<String> animalKey = new ArrayList<>();
     public synchronized Animal getAnimal() {
         // get all key of animalMap   
-        animalKey.clear();
+        ArrayList<String> animalKey = new ArrayList<>();
         animalKey.addAll(animalMap.keySet());
-        //GameLayout.getInstance().debug(AnimalFactory.getInstance().animalKey.toString());
+        
         //get random key
         Random rand = new Random();
         int i = rand.nextInt(animalKey.size()); //random key index
         
         // get animal based on key
         ArrayList<Animal> animalList = animalMap.get(animalKey.get(i).toLowerCase());
-        //GameLayout.getInstance().debug(animalMap.get("cat").toString());
-        //GameLayout.getInstance().debug(new Integer(animalList.size()).toString());
         return animalList.remove(animalList.size()-1);
     }
     
