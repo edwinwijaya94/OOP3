@@ -24,7 +24,8 @@ public abstract class Animal {
     public Point position= new Point();
     public EventObserver[] eventObserver;
     public String word="";
-    
+    public long changeWordDuration = 8000;
+    public String currentWord="";
     //getter, setter
     public final int getSpeed(){
         return speed;
@@ -60,5 +61,9 @@ public abstract class Animal {
     //public abstract void draw();
     public abstract void draw(int position);
     public abstract void move();
-    public abstract String behaveWord(long currentTime);
+    public String behaveWord(long currentTime){
+        if (currentWord == "") currentWord = WordsDictionary.getInstance().getWordsFromDictionary();
+        else currentWord = currentWord.substring(1) + currentWord.charAt(0);
+        return currentWord;
+    }
 }

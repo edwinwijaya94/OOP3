@@ -75,7 +75,7 @@ public class Bird extends Animal {
         label.setForeground(Color.GREEN);
         label.setFont(label.getFont().deriveFont((float)(label.getFont().getSize()+20)));
         label.setFont(label.getFont().deriveFont(Font.BOLD));
-        int kanan = (int)GameLayout.getInstance().getPanel().getBounds().getMaxX() - label.getWidth() - 20;
+        int kanan = (int)GameLayout.getInstance().getPanel().getBounds().getMaxX();
         int atas = (int)GameLayout.getInstance().getPanel().getLocationOnScreen().getY() - 100;
         atas += position * label.getWidth()/2 + position*15 ;
         label.setLocation(kanan,atas);

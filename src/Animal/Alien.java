@@ -4,13 +4,11 @@ import Main.AnimalFactory;
 import Main.GameLayout;
 import Main.Animal;
 import Main.WordsDictionary;
-import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.Image;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
-import javax.swing.SwingUtilities;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -31,8 +29,8 @@ public class Alien extends Animal {
     }
     
     private void checkDeath()
-    {
-        
+    { 
+    
     }
     
     public void draw(int position) {
@@ -60,17 +58,18 @@ public class Alien extends Animal {
     //method
     @Override
     public void move(){
-         /*if (label == null) 
-            draw();*/
-         final long startTime = System.nanoTime();
          myThread = new Thread()  {
             public void run() {
                 int kiri = (int)GameLayout.getInstance().getPanel().getLocationOnScreen().getX();
                 try {
+                    long startTime = System.nanoTime();
                     while(label.getLocationOnScreen().getX() > kiri) {
-                        //updatePosition();
                         long runningTime = System.nanoTime() - startTime;
-                        word = behaveWord(runningTime / 1000000);
+                        if (word.isEmpty() || runningTime/1000000 >=changeWordDuration)
+                        {
+                            word = behaveWord(runningTime / 1000000);
+                            startTime = System.nanoTime();
+                        }
                         label.setLocation((int)label.getLocation().getX()-10, (int)label.getLocation().getY());
                         label.setText(word);
                         GameLayout.getInstance().getPanel().revalidate();
@@ -94,21 +93,11 @@ public class Alien extends Animal {
         myThread.start();
     }                                               
 
-     private void updatePosition() {
-        SwingUtilities.invokeLater (new Runnable() {
-            @Override
-            public void run() {
-               label.setLocation((int)label.getLocation().getX()-10, (int)label.getLocation().getY());
-            }
-        });
-    }
-    
+    /*
     @Override
-    public String behaveWord(long currentTime) {
+    public String behaveWord(long duration){
         if (currentWord == "") currentWord = WordsDictionary.getInstance().getWordsFromDictionary();
+        currentWord = currentWord.substring(1) + currentWord.charAt(0);
         return currentWord;
-        //GameLayout.getInstance().debug(WordsDictionary.getInstance().getWordsFromDictionary());
-        //return "asem";
-        //return WordsDictionary.getInstance().getWordsFromDictionary();
-    }
+    }*/
 }
