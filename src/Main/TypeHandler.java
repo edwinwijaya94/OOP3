@@ -58,6 +58,7 @@ public class TypeHandler extends Thread{
             //GameLayout.getInstance().debug(GameLayout.getInstance().getTextField().getText());
             if (passer.word.equals(animal[i].getWord()))
             {
+                GameLayout.getInstance().addTotalCorrectWords();
                 CaughtObserver.getInstance().setIndex(i);
                 CaughtObserver.getInstance().handle();
                 return;

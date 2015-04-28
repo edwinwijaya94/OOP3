@@ -78,7 +78,8 @@ public class Monkey extends Animal {
                         label.setText(word);
                         GameLayout.getInstance().getPanel().revalidate();
                         GameLayout.getInstance().getPanel().repaint();
-                        Thread.sleep(100-speed);
+                        //Thread.sleep(100-speed);
+                        delay(speed);
                     }
                     GameLayout.getInstance().getPanel().remove(label);
                     GameLayout.getInstance().getPanel().revalidate();

@@ -47,6 +47,14 @@ public abstract class Animal {
     public final Thread getThread() {
         return myThread;
     }
+    public void delay(int animalSpeed) throws InterruptedException
+    {
+        int fastestSpeed = 30;
+        int maximumAnimalSpeed = 100;
+        int duration = maximumAnimalSpeed - animalSpeed - GameLayout.getInstance().getTotalCorrectWords()/7;
+        duration = duration > fastestSpeed ? duration : fastestSpeed;
+        Thread.sleep(duration);
+    }
     
     //abstract method
     //public abstract void draw();

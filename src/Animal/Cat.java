@@ -103,14 +103,15 @@ public class Cat extends Animal {
                     while(label.getLocationOnScreen().getX() > kiri) {
                         updatePosition();
                         long runningTime = System.nanoTime() - startTime;
-                        if(word.isEmpty() || runningTime >= 5000){
+                        if(word.isEmpty() || runningTime/1000000 >= 5000){
                             word = behaveWord(runningTime / 1000000);
                             startTime = System.nanoTime(); // reset the clock
                         }
                         label.setText(word);
                         GameLayout.getInstance().getPanel().revalidate();
                         GameLayout.getInstance().getPanel().repaint();
-                        Thread.sleep(100-speed);
+                        //Thread.sleep(100-speed);
+                        delay(speed);
                     }
                     GameLayout.getInstance().getPanel().remove(label);
                     GameLayout.getInstance().getPanel().revalidate();

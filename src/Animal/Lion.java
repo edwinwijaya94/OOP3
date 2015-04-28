@@ -103,7 +103,8 @@ public class Lion extends Animal {
                         long runningTime = System.nanoTime() - startTime;
                         word = behaveWord(runningTime / 1000000);
                         label.setText(word);
-                        Thread.sleep(100-speed);
+                        //Thread.sleep(100-speed);
+                        delay(speed);
                     }
                     GameLayout.getInstance().getPanel().remove(label);
                     GameLayout.getInstance().getPanel().revalidate();

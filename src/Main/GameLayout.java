@@ -48,6 +48,24 @@ public class GameLayout extends javax.swing.JFrame {
     TypeHandler typeHandler;
     GameStatus gameStatus;
     public volatile Passer passer = new Passer();
+    Object correctLock = new Object();
+    int totalCorrectWords = 0;
+    
+    public int getTotalCorrectWords()
+    {
+        synchronized(correctLock)
+        {
+            return totalCorrectWords;
+        }
+    }
+    
+    public void addTotalCorrectWords()
+    {
+        synchronized(correctLock)
+        {
+            totalCorrectWords++;
+        }
+    }
     
     /**
      * Creates new form GameLayout
