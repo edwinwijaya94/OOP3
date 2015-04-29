@@ -34,7 +34,7 @@ public class Dog extends Animal {
     
     public Dog()
     {
-        
+        setLive(2);
     }
     
     public void draw(int position) {

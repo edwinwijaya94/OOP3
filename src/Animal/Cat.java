@@ -36,7 +36,7 @@ public class Cat extends Animal {
     
     public Cat()
     {
-
+        
     }
     
     private void checkDeath()
@@ -83,7 +83,7 @@ public class Cat extends Animal {
                     while(label.getLocationOnScreen().getX() > kiri) {
                         updatePosition();
                         long runningTime = (System.nanoTime() - startTime)/1000000;
-                        if(word.isEmpty() || runningTime >= 3000){ //randomize chars every 3 seconds
+                        if(word.isEmpty() || runningTime >= changeWordDuration){ //randomize chars every 3 seconds
                             word = behaveWord(runningTime);
                             startTime = System.nanoTime(); // reset the clock
                         }
