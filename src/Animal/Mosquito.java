@@ -54,7 +54,7 @@ public class Mosquito extends Animal {
         atas += position * label.getWidth()/2 + position*15 ;
         label.setLocation(kanan,atas);
         label.setVisible(true);
-        GameLayout.getInstance().getPanel().add(label);
+        GameLayout.getInstance().getPanel().add(label, 0);
         move();
     }
     
