@@ -101,10 +101,10 @@ public class Cat extends Animal {
                 try {
                     long startTime = System.nanoTime();
                     while(label.getLocationOnScreen().getX() > kiri) {
-                        //updatePosition();
-                        long runningTime = System.nanoTime() - startTime;
-                        if(word.isEmpty() || runningTime >= 2000){
-                            word = behaveWord(runningTime / 1000000);
+                        updatePosition();
+                        long runningTime = (System.nanoTime() - startTime)/1000000;
+                        if(word.isEmpty() || runningTime >= 3000){ //randomize chars every 3 seconds
+                            word = behaveWord(runningTime);
                             startTime = System.nanoTime(); // reset the clock
                         }
                         label.setText(word);
@@ -144,25 +144,7 @@ public class Cat extends Animal {
             return currentWord;
         }
         else{ // randomize character
-            String temp = currentWord;
-            String newWord ="";
-            int n = temp.length();
-            Random rand = new Random();
-            for(int i = 0; i < n; i++){
-                int r = rand.nextInt(temp.length());
-                newWord += temp.charAt(r);
-                if(i == n-1)
-                        temp="";
-                else{
-                        if(r == 0)
-                                temp = temp.substring(r+1);
-                        else if(r == temp.length())
-                                temp = temp.substring(0,r);
-                        else
-                                temp = temp.substring(0,r) + temp.substring(r+1);	
-                }
-            }
-            return newWord;
+            return randomizeChars(currentWord);
         }
     }
 }

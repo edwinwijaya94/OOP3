@@ -32,7 +32,7 @@ public class Dog extends Animal {
     
     public Dog()
     {
-
+        
     }
     
     public void draw(int position) {
@@ -128,8 +128,9 @@ public class Dog extends Animal {
     
     @Override
     public String behaveWord(long currentTime) {
+        
         if (currentWord == "") currentWord = WordsDictionary.getInstance().getWordsFromDictionary();
-        return currentWord;
+            return currentWord;
         //GameLayout.getInstance().debug(WordsDictionary.getInstance().getWordsFromDictionary());
         //return "asem";
         //return WordsDictionary.getInstance().getWordsFromDictionary();
