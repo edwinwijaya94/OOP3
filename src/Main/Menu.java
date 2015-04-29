@@ -136,6 +136,9 @@ public class Menu extends javax.swing.JFrame {
 
     private void viewHighScoreButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_viewHighScoreButtonActionPerformed
         // TODO add your handling code here:
+        ViewHighScoreState highScoreState = new ViewHighScoreState();
+        highScoreState.doAction();
+        this.dispose();
     }//GEN-LAST:event_viewHighScoreButtonActionPerformed
 
     private void howToPlayButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_howToPlayButtonActionPerformed
