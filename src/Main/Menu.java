@@ -11,6 +11,8 @@ package Main;
  */
 public class Menu extends javax.swing.JFrame {
     
+    private static Menu instance;
+    
     // attributes
     private State menuState;
     
@@ -26,15 +28,24 @@ public class Menu extends javax.swing.JFrame {
     /**
      * Creates new form Menu
      */
-    public Menu() {
+    private Menu() {
         initComponents();
         menuState=null;
         this.setVisible(true);
-        GameLayout.getInstance().getGameStatus().getHighScoreFromFile();
+        HighScore.getInstance().getHighScoreFromFile();
         System.out.println("Reading data..");
-        System.out.println(GameLayout.getInstance().getGameStatus().highScore);
+        System.out.println(HighScore.getInstance().getHighScore());
     }
-
+    
+    public synchronized static Menu getInstance()
+    {
+        if (instance == null)
+        {
+            instance = new Menu();
+        }
+        return instance;
+    }
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -112,7 +123,7 @@ public class Menu extends javax.swing.JFrame {
         jPanel1.add(TyperAnimal);
         TyperAnimal.setBounds(300, 110, 250, 50);
 
-        backgroundMenu.setIcon(new javax.swing.ImageIcon("D:\\Users\\Jessica\\OOP3\\image\\menu.png")); // NOI18N
+        backgroundMenu.setIcon(new javax.swing.ImageIcon("image/menu.png")); // NOI18N
         jPanel1.add(backgroundMenu);
         backgroundMenu.setBounds(0, 0, 800, 510);
 
