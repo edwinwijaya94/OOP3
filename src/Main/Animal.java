@@ -27,6 +27,8 @@ public abstract class Animal {
     public String word="";
     public int live = 1;
     
+    public long changeWordDuration = 8000;
+    public String currentWord="";
     //getter, setter
     public final int getSpeed(){
         return speed;
@@ -58,12 +60,24 @@ public abstract class Animal {
     public final void setLive(int n){
         live = n;
     }
+    public void delay(int animalSpeed) throws InterruptedException
+    {
+        int fastestSpeed = 30;
+        int maximumAnimalSpeed = 100;
+        int duration = maximumAnimalSpeed - animalSpeed - GameLayout.getInstance().getTotalCorrectWords()/7;
+        duration = duration > fastestSpeed ? duration : fastestSpeed;
+        Thread.sleep(duration);
+    }
     
     //abstract method
     //public abstract void draw();
     public abstract void draw(int position);
     public abstract void move();
-    public abstract String behaveWord(long currentTime);
+    public String behaveWord(long currentTime){
+        if (currentWord == "") currentWord = WordsDictionary.getInstance().getWordsFromDictionary();
+        currentWord = currentWord.substring(1) + currentWord.charAt(0);
+        return currentWord;
+    }
     
     // method library for use in behaveWord()
     public final String randomizeChars(String currentWord){

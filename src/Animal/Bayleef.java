@@ -3,6 +3,8 @@ package Animal;
 import Main.AnimalFactory;
 import Main.GameLayout;
 import Main.Animal;
+import Main.CaughtObserver;
+import Main.EscapeObserver;
 import Main.WordsDictionary;
 import java.awt.BorderLayout;
 import java.awt.Color;
@@ -37,7 +39,7 @@ public class Bayleef extends Animal {
     
     public void draw(int position) {
         currentWord = "";
-        setSpeed(5);
+        setSpeed(8);
         ImageIcon icon = new ImageIcon("image/bayleef.gif");
         Image image = icon.getImage();
         label = new JLabel();
@@ -45,10 +47,10 @@ public class Bayleef extends Animal {
         label.setIcon(icon);
         label.setSize(250,160);
         label.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        label.setForeground(Color.black);
-        label.setFont(label.getFont().deriveFont((float)(label.getFont().getSize()+13)));
+        label.setForeground(Color.red);
+        label.setFont(label.getFont().deriveFont((float)(label.getFont().getSize()+20)));
         label.setFont(label.getFont().deriveFont(Font.BOLD));
-        int kanan = (int)GameLayout.getInstance().getPanel().getBounds().getMaxX() - label.getWidth() - 20;
+        int kanan = (int)GameLayout.getInstance().getPanel().getBounds().getMaxX();
         int atas = (int)GameLayout.getInstance().getPanel().getLocationOnScreen().getY() - 100;
         atas += position * label.getWidth()/2 + position*15 ;
         label.setLocation(kanan,atas);
@@ -60,26 +62,29 @@ public class Bayleef extends Animal {
     //method
     @Override
     public void move(){
-         /*if (label == null) 
-            draw();*/
-         final long startTime = System.nanoTime();
          myThread = new Thread()  {
             public void run() {
                 int kiri = (int)GameLayout.getInstance().getPanel().getLocationOnScreen().getX();
                 try {
+                    long startTime = System.nanoTime();
                     while(label.getLocationOnScreen().getX() > kiri) {
-                        //updatePosition();
                         long runningTime = System.nanoTime() - startTime;
-                        word = behaveWord(runningTime / 1000000);
+                        if (word.isEmpty() || runningTime/1000000 >=changeWordDuration)
+                        {
+                            word = behaveWord(runningTime / 1000000);
+                            startTime = System.nanoTime();
+                        }
                         label.setLocation((int)label.getLocation().getX()-10, (int)label.getLocation().getY());
                         label.setText(word);
                         GameLayout.getInstance().getPanel().revalidate();
                         GameLayout.getInstance().getPanel().repaint();
-                        Thread.sleep(100-speed);
+                        //Thread.sleep(100-speed);
+                        delay(speed);
                     }
                     GameLayout.getInstance().getPanel().remove(label);
                     GameLayout.getInstance().getPanel().revalidate();
                     GameLayout.getInstance().getPanel().repaint();
+                    EscapeObserver.getInstance().handle();
                     return;
                 } catch (InterruptedException ex) {  
                     GameLayout.getInstance().getPanel().remove(label);
@@ -101,13 +106,5 @@ public class Bayleef extends Animal {
             }
         });
     }
-    
-    @Override
-    public String behaveWord(long currentTime) {
-        if (currentWord == "") currentWord = WordsDictionary.getInstance().getWordsFromDictionary();
-        return currentWord;
-        //GameLayout.getInstance().debug(WordsDictionary.getInstance().getWordsFromDictionary());
-        //return "asem";
-        //return WordsDictionary.getInstance().getWordsFromDictionary();
-    }
+
 }

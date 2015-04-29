@@ -3,6 +3,8 @@ package Animal;
 import Main.AnimalFactory;
 import Main.GameLayout;
 import Main.Animal;
+import Main.CaughtObserver;
+import Main.EscapeObserver;
 import Main.WordsDictionary;
 import java.awt.BorderLayout;
 import java.awt.Color;
@@ -50,7 +52,7 @@ public class Dog extends Animal {
         label.setForeground(Color.WHITE);
         label.setFont(label.getFont().deriveFont((float)(label.getFont().getSize()+20)));
         label.setFont(label.getFont().deriveFont(Font.BOLD));
-        int kanan = (int)GameLayout.getInstance().getPanel().getBounds().getMaxX() - label.getWidth() - 20;
+        int kanan = (int)GameLayout.getInstance().getPanel().getBounds().getMaxX();
         int atas = (int)GameLayout.getInstance().getPanel().getLocationOnScreen().getY() - 100;
         atas += position * label.getWidth()/2 + position*15 ;
         label.setLocation(kanan,atas);
@@ -99,11 +101,13 @@ public class Dog extends Animal {
                         label.setText(word);
                         GameLayout.getInstance().getPanel().revalidate();
                         GameLayout.getInstance().getPanel().repaint();
-                        Thread.sleep(100-speed);
+                        //Thread.sleep(100-speed);
+                        delay(speed);
                     }
                     GameLayout.getInstance().getPanel().remove(label);
                     GameLayout.getInstance().getPanel().revalidate();
                     GameLayout.getInstance().getPanel().repaint();
+                    EscapeObserver.getInstance().handle();
                     return;
                 } catch (InterruptedException ex) {  
                     GameLayout.getInstance().getPanel().remove(label);
@@ -126,7 +130,7 @@ public class Dog extends Animal {
         });
     }
     
-    @Override
+    /*@Override
     public String behaveWord(long currentTime) {
         
         if (currentWord == "") currentWord = WordsDictionary.getInstance().getWordsFromDictionary();
@@ -134,5 +138,5 @@ public class Dog extends Animal {
         //GameLayout.getInstance().debug(WordsDictionary.getInstance().getWordsFromDictionary());
         //return "asem";
         //return WordsDictionary.getInstance().getWordsFromDictionary();
-    }
+    }*/
 }

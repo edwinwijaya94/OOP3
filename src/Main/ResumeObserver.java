@@ -28,11 +28,11 @@ public class ResumeObserver implements EventObserver {
     
     @Override
     public void handle() {
-        ArrayList<Animal> animal = GameLayout.getInstance().getAnimals();
+        Animal[] animal = GameLayout.getInstance().getAnimals();
         ArrayList<Integer> animalSpeed = PauseObserver.getInstance().getAnimalSpeed();
-        for (int i=0;i<animal.size();i++)
+        for (int i=0;i<GameLayout.getInstance().getAnimalSize();i++)
         {
-            animal.get(i).speed = animalSpeed.get(i);
+            animal[i].speed = animalSpeed.get(i);
         }
     }
 }

@@ -3,6 +3,7 @@ package Animal;
 import Main.AnimalFactory;
 import Main.GameLayout;
 import Main.Animal;
+import Main.EscapeObserver;
 import Main.WordsDictionary;
 import java.awt.BorderLayout;
 import java.awt.Color;
@@ -30,29 +31,6 @@ public class Wolf extends Animal {
         AnimalFactory.getInstance().registerAnimal(Wolf.class);
     }
     
-    /*
-    public void draw() {
-        setSpeed(5);
-        ImageIcon icon = new ImageIcon("image/cat.png");
-        Image image = icon.getImage();
-        image = image.getScaledInstance(200, 100,  java.awt.Image.SCALE_SMOOTH); 
-        icon = new ImageIcon(image);
-        label = new JLabel();
-        label.setText("");
-        label.setIcon(icon);
-        label.setSize(200,100);
-        label.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        label.setForeground(Color.GREEN);
-        label.setFont(label.getFont().deriveFont((float)(label.getFont().getSize()+20)));
-        label.setFont(label.getFont().deriveFont(Font.BOLD));
-        int kanan = (int)GameLayout.getInstance().getPanel().getBounds().getMaxX() - label.getWidth() - 20;
-        int atas = (int)GameLayout.getInstance().getPanel().getLocationOnScreen().getY() - 100;
-        label.setLocation(kanan,atas);
-        label.setVisible(true);
-        GameLayout.getInstance().getPanel().add(label, BorderLayout.CENTER);
-    }
-    */
-    
     private void checkDeath()
     {
         
@@ -60,7 +38,7 @@ public class Wolf extends Animal {
     
     public void draw(int position) {
         currentWord = "";
-        setSpeed(5);
+        setSpeed(35);
         ImageIcon icon = new ImageIcon("image/wolf1.gif");
         Image image = icon.getImage();
         //image = image.getScaledInstance(170, 170,  java.awt.Image.SCALE_SMOOTH); 
@@ -73,7 +51,7 @@ public class Wolf extends Animal {
         label.setForeground(Color.BLUE);
         label.setFont(label.getFont().deriveFont((float)(label.getFont().getSize()+13)));
         label.setFont(label.getFont().deriveFont(Font.BOLD));
-        int kanan = (int)GameLayout.getInstance().getPanel().getBounds().getMaxX() - label.getWidth() - 20;
+        int kanan = (int)GameLayout.getInstance().getPanel().getBounds().getMaxX();
         int atas = (int)GameLayout.getInstance().getPanel().getLocationOnScreen().getY() - 100;
         atas += position * label.getWidth()/2 + position*15 ;
         label.setLocation(kanan,atas);
@@ -93,19 +71,25 @@ public class Wolf extends Animal {
             public void run() {
                 int kiri = (int)GameLayout.getInstance().getPanel().getLocationOnScreen().getX();
                 try {
+                    long startTime = System.nanoTime();
                     while(label.getLocationOnScreen().getX() > kiri) {
-                        //updatePosition();
                         long runningTime = System.nanoTime() - startTime;
-                        word = behaveWord(runningTime / 1000000);
+                        if (word.isEmpty() || runningTime/1000000 >=changeWordDuration)
+                        {
+                            word = behaveWord(runningTime / 1000000);
+                            startTime = System.nanoTime();
+                        }
                         label.setLocation((int)label.getLocation().getX()-10, (int)label.getLocation().getY());
                         label.setText(word);
                         GameLayout.getInstance().getPanel().revalidate();
                         GameLayout.getInstance().getPanel().repaint();
-                        Thread.sleep(100-speed);
+                        //Thread.sleep(100-speed);
+                        delay(speed);
                     }
                     GameLayout.getInstance().getPanel().remove(label);
                     GameLayout.getInstance().getPanel().revalidate();
                     GameLayout.getInstance().getPanel().repaint();
+                    EscapeObserver.getInstance().handle();
                     return;
                 } catch (InterruptedException ex) {  
                     GameLayout.getInstance().getPanel().remove(label);
@@ -127,13 +111,12 @@ public class Wolf extends Animal {
             }
         });
     }
-    
+  
+    /*
     @Override
-    public String behaveWord(long currentTime) {
+    public String behaveWord(long duration){
         if (currentWord == "") currentWord = WordsDictionary.getInstance().getWordsFromDictionary();
+        currentWord = currentWord.substring(1) + currentWord.charAt(0);
         return currentWord;
-        //GameLayout.getInstance().debug(WordsDictionary.getInstance().getWordsFromDictionary());
-        //return "asem";
-        //return WordsDictionary.getInstance().getWordsFromDictionary();
-    }
+    }*/
 }
