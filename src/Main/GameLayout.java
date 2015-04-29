@@ -381,7 +381,7 @@ public class GameLayout extends javax.swing.JFrame {
     		public void componentShown(ComponentEvent e) {}
         
         });
-                System.out.println("main");
+                //System.out.println("main");
                 //getInstance().setExtendedState(MAXIMIZED_BOTH);
                 getInstance().setVisible(true);
                 //getInstance().repaint();
