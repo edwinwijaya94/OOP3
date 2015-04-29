@@ -77,6 +77,36 @@ public class GameLayout extends javax.swing.JFrame {
     private GameLayout() {
         initComponents();
         
+                addComponentListener(new ComponentListener() {
+            public void componentResized(ComponentEvent e) {
+                        
+                        //System.out.println(e.getComponent().toString());
+    			//System.out.println(e.getComponent().getSize().height);
+                        int panelHeight = e.getComponent().getSize().height;
+                        //System.out.println(panelHeight);
+                        int panelWidth = e.getComponent().getSize().width;
+                        //System.out.println(panelWidth);
+                        
+                        
+                        JLabel labelb = new JLabel();
+                        ImageIcon icon2 = new ImageIcon("image/gamelayout.png");
+                        Image image = icon2.getImage();
+                        image = image.getScaledInstance(panelWidth, panelHeight,  java.awt.Image.SCALE_SMOOTH); 
+                        icon2 = new ImageIcon(image);
+                        labelb.setIcon(icon2);
+                        labelb.setSize(1942,1040);
+                        labelb.setLocation(0,0);
+                        jLayeredPane1.add(labelb, 1);
+    		}
+
+    		public void componentHidden(ComponentEvent e) {}
+
+    		public void componentMoved(ComponentEvent e) {}
+
+    		public void componentShown(ComponentEvent e) {}
+        
+        });
+        
         getTextField().getDocument().addDocumentListener(new DocumentListener() {
 
         public void warn() {
@@ -367,44 +397,8 @@ public class GameLayout extends javax.swing.JFrame {
         }
         //</editor-fold>
 
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                getInstance().addComponentListener(new ComponentListener() {
-            public void componentResized(ComponentEvent e) {
-                        
-                        //System.out.println(e.getComponent().toString());
-    			//System.out.println(e.getComponent().getSize().height);
-                        int panelHeight = e.getComponent().getSize().height;
-                        //System.out.println(panelHeight);
-                        int panelWidth = e.getComponent().getSize().width;
-                        //System.out.println(panelWidth);
-                        
-                        
-                        JLabel labelb = new JLabel();
-                        ImageIcon icon2 = new ImageIcon("image/gamelayout.png");
-                        Image image = icon2.getImage();
-                        image = image.getScaledInstance(panelWidth, panelHeight,  java.awt.Image.SCALE_SMOOTH); 
-                        icon2 = new ImageIcon(image);
-                        labelb.setIcon(icon2);
-                        labelb.setSize(1942,1040);
-                        labelb.setLocation(0,0);
-                        getInstance().getPanel().add(labelb, 1);
-    		}
-
-    		public void componentHidden(ComponentEvent e) {}
-
-    		public void componentMoved(ComponentEvent e) {}
-
-    		public void componentShown(ComponentEvent e) {}
-        
-        });
-                //System.out.println("main");
-                //getInstance().setExtendedState(MAXIMIZED_BOTH);
                 getInstance().setVisible(true);
-                //getInstance().repaint();
-            }
-        });
+            
         
         
         
