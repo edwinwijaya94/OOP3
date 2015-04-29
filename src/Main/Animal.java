@@ -41,6 +41,8 @@ public abstract class Animal {
     public long changeWordDuration = 3000;
     public String currentWord="";
     
+    public static int speedLevel = 0;
+    
     //getter, setter
     public final int getDefaultLive() {
         return defaultLive;
@@ -85,11 +87,19 @@ public abstract class Animal {
         return label;
     }
     
+    public static int getSpeedLevel(){
+        return speedLevel;
+    }
+    public static void setSpeedLevel(int n){
+        speedLevel = n;
+    }
+    
     public void delay(int animalSpeed) throws InterruptedException
     {
         int fastestSpeed = 30;
         int maximumAnimalSpeed = 100;
         int duration = maximumAnimalSpeed - animalSpeed - GameLayout.getInstance().getTotalCorrectWords()/7;
+        duration -= speedLevel;
         duration = duration > fastestSpeed ? duration : fastestSpeed;
         Thread.sleep(duration);
     }

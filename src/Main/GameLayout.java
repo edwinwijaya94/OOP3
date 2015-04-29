@@ -355,7 +355,7 @@ public class GameLayout extends javax.swing.JFrame {
         
         // ask for player's name
         String name = JOptionPane.showInputDialog(this, "What's your name?");
-
+        
         // get the user's input. note that if they press Cancel, 'name' will be NN
         if(name == null){
             getGameStatus().setPlayerName(getGameStatus().getPlayerName());
@@ -365,6 +365,26 @@ public class GameLayout extends javax.swing.JFrame {
             getGameStatus().setPlayerName(name);
         }
         
+        //set level
+        Object[] possibilities = {"easy", "medium", "hard"};
+        String level = (String)JOptionPane.showInputDialog(
+                    this,
+                    "Choose difficulty :\n",
+                    "Difficulty Level",
+                    JOptionPane.PLAIN_MESSAGE,
+                    null,
+                    possibilities,
+                    "medium");
+        
+        if(level == null || level.equals("medium")){
+            Animal.setSpeedLevel(0);
+        }
+        else{
+            if(level.equals("easy"))
+                Animal.setSpeedLevel(-50);
+            else
+                Animal.setSpeedLevel(25);
+        }
         
         for(int i = 0; i < 5; i++)
         {
