@@ -175,6 +175,11 @@ public class Menu extends javax.swing.JFrame {
         this.dispose();
     }//GEN-LAST:event_exitGameButtonActionPerformed
 
+    public void showMenuFrame()
+    {
+        this.setVisible(true);
+    }
+    
     /**
      * @param args the command line arguments
      */

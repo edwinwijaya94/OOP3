@@ -306,7 +306,8 @@ public class GameLayout extends javax.swing.JFrame {
 
     private void backToMenuButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backToMenuButtonActionPerformed
         // TODO add your handling code here:
-        Menu stateMenu = Menu.getInstance();
+        //Menu stateMenu = Menu.getInstance();
+        Menu.getInstance().showMenuFrame();
         this.setVisible(false);
         //Menu.setVisible(true);
     }//GEN-LAST:event_backToMenuButtonActionPerformed
@@ -317,6 +318,7 @@ public class GameLayout extends javax.swing.JFrame {
             {
                 try
                 {
+                    animals[i].getLabel().setVisible(false);
                     animals[i].getThread().interrupt();
                 }catch(Exception e){}
             }

@@ -126,7 +126,7 @@ public class Dino extends Animal {
                     return;
                 } catch (InterruptedException ex) {  
                     //label.setVisible(false);
-                    GameLayout.getInstance().getPanel().remove(label);
+                    //GameLayout.getInstance().getPanel().remove(label);
                     GameLayout.getInstance().getPanel().revalidate();
                     GameLayout.getInstance().getPanel().repaint();
                     return;
