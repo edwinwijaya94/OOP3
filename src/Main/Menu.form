@@ -52,7 +52,7 @@
           </Events>
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-              <AbsoluteConstraints x="360" y="190" width="120" height="-1"/>
+              <AbsoluteConstraints x="360" y="190" width="130" height="-1"/>
             </Constraint>
           </Constraints>
         </Component>
@@ -60,9 +60,12 @@
           <Properties>
             <Property name="text" type="java.lang.String" value="View High Scores"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="viewHighScoreButtonActionPerformed"/>
+          </Events>
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-              <AbsoluteConstraints x="360" y="240" width="120" height="-1"/>
+              <AbsoluteConstraints x="360" y="240" width="130" height="-1"/>
             </Constraint>
           </Constraints>
         </Component>
@@ -70,9 +73,12 @@
           <Properties>
             <Property name="text" type="java.lang.String" value="How to Play"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="howToPlayButtonActionPerformed"/>
+          </Events>
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-              <AbsoluteConstraints x="360" y="290" width="120" height="-1"/>
+              <AbsoluteConstraints x="360" y="290" width="130" height="-1"/>
             </Constraint>
           </Constraints>
         </Component>
@@ -80,9 +86,12 @@
           <Properties>
             <Property name="text" type="java.lang.String" value="About"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="aboutButtonActionPerformed"/>
+          </Events>
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-              <AbsoluteConstraints x="360" y="340" width="120" height="-1"/>
+              <AbsoluteConstraints x="360" y="340" width="130" height="-1"/>
             </Constraint>
           </Constraints>
         </Component>
@@ -90,9 +99,12 @@
           <Properties>
             <Property name="text" type="java.lang.String" value="Exit Game"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="exitGameButtonActionPerformed"/>
+          </Events>
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-              <AbsoluteConstraints x="360" y="390" width="120" height="-1"/>
+              <AbsoluteConstraints x="360" y="390" width="130" height="-1"/>
             </Constraint>
           </Constraints>
         </Component>
@@ -113,11 +125,6 @@
           </Constraints>
         </Component>
         <Component class="javax.swing.JLabel" name="backgroundMenu">
-          <Properties>
-            <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="2" name="D:\Users\Jessica\Pictures\Background\menu2.png"/>
-            </Property>
-          </Properties>
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
               <AbsoluteConstraints x="0" y="0" width="800" height="510"/>

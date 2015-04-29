@@ -36,6 +36,7 @@ public class EscapeObserver implements EventObserver{
             animalList[i].getThread().interrupt();
             animalList[i] = null;
         }
+        // stop background music
         GameLayout.getInstance().stopBackgroundClip();
         
         //game over, tell the player
@@ -45,6 +46,9 @@ public class EscapeObserver implements EventObserver{
                     "Game Over !",
                     JOptionPane.INFORMATION_MESSAGE
                 );
+        // add to highscore
+        GameStatus gameStatus = GameLayout.getInstance().getGameStatus(); 
+        gameStatus.addHighScore(gameStatus.getPlayerName(), gameStatus.getScore());
     }
     
 }
