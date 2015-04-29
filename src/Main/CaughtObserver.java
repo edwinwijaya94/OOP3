@@ -68,7 +68,8 @@ public class CaughtObserver implements EventObserver {
             tempAnimal.draw(animalIndex);
         }
         else{ // still has live
-            animal.setCurrentWord(WordsDictionary.getInstance().getWordsFromDictionary());
+            //animal.setCurrentWord(WordsDictionary.getInstance().getWordsFromDictionary());
+            animal.setCurrentWord("");
         }
 
         //tempAnimal.move();

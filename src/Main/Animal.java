@@ -28,7 +28,7 @@ public abstract class Animal {
     public Point position= new Point();
     public EventObserver[] eventObserver;
     public String word="";
-    public int live = 2;
+    public int live = 1;
     
     public long changeWordDuration = 3000;
     public String currentWord="";
@@ -117,5 +117,58 @@ public abstract class Animal {
             }
         }
         return newWord;
+    }
+    public final String encodeChars(String currentWord){
+        String temp = currentWord;
+        for(int i = 0; i < temp.length(); i++){
+            switch(temp.charAt(i)){
+                case 'a':{
+                    if(i == 0)
+                            temp = "4" + temp.substring(i+1);
+                    else if(i == temp.length())
+                            temp = temp.substring(0,i-1)+ "4";
+                    else
+                            temp = temp.substring(0,i) + "4" + temp.substring(i+1);
+                    break;
+                }
+                case 'e':{
+                    if(i == 0)
+                            temp = "3" + temp.substring(i+1);
+                    else if(i == temp.length())
+                            temp = temp.substring(0,i-1)+ "3";
+                    else
+                            temp = temp.substring(0,i) + "3" + temp.substring(i+1);
+                    break;
+                }
+                case 'i':{
+                    if(i == 0)
+                            temp = "1" + temp.substring(i+1);
+                    else if(i == temp.length())
+                            temp = temp.substring(0,i-1)+ "1";
+                    else
+                            temp = temp.substring(0,i) + "1" + temp.substring(i+1);
+                    break;
+                }
+                case 'j':{
+                    if(i == 0)
+                            temp = "7" + temp.substring(i+1);
+                    else if(i == temp.length())
+                            temp = temp.substring(0,i-1)+ "7";
+                    else
+                            temp = temp.substring(0,i) + "7" + temp.substring(i+1);
+                    break;
+                }
+                case 's':{
+                    if(i == 0)
+                            temp = "5" + temp.substring(i+1);
+                    else if(i == temp.length())
+                            temp = temp.substring(0,i-1)+ "5";
+                    else
+                            temp = temp.substring(0,i) + "5" + temp.substring(i+1);
+                    break;
+                }
+            }
+        }
+        return temp;
     }
 }

@@ -88,17 +88,19 @@ public class Dog extends Animal {
     public void move(){
          /*if (label == null) 
             draw();*/
-         final long startTime = System.nanoTime();
          myThread = new Thread()  {
             public void run() {
                 int kiri = (int)GameLayout.getInstance().getPanel().getLocationOnScreen().getX();
                 try {
+                    long startTime = System.nanoTime();
                     while(label.getLocationOnScreen().getX() > kiri) {
                         //updatePosition();
                         long runningTime = (System.nanoTime() - startTime)/nsToms;
-                        word = behaveWord(runningTime / 1000000);
-                        label.setLocation((int)label.getLocation().getX()-10, (int)label.getLocation().getY());
+                        if(word.isEmpty() || runningTime >= changeWordDuration){
+                            word = behaveWord(runningTime);
+                        }
                         label.setText(word);
+                        label.setLocation((int)label.getLocation().getX()-10, (int)label.getLocation().getY());
                         GameLayout.getInstance().getPanel().revalidate();
                         GameLayout.getInstance().getPanel().repaint();
                         //Thread.sleep(100-speed);
@@ -132,11 +134,12 @@ public class Dog extends Animal {
     
     /*@Override
     public String behaveWord(long currentTime) {
-        
-        if (currentWord == "") currentWord = WordsDictionary.getInstance().getWordsFromDictionary();
+        if (currentWord == "") {
+            currentWord = WordsDictionary.getInstance().getWordsFromDictionary();
             return currentWord;
-        //GameLayout.getInstance().debug(WordsDictionary.getInstance().getWordsFromDictionary());
-        //return "asem";
-        //return WordsDictionary.getInstance().getWordsFromDictionary();
+        }
+        else{ //encode chars, player must type real word
+            return encodeChars(currentWord);
+        }
     }*/
 }
