@@ -59,7 +59,7 @@ public class TypeHandler extends Thread{
         {
             if (passer.word.equals(animal[i].getWord()))
             {
-                // Play music
+                // Play music when answer corrected
                 String path = "music/yes.wav";
                 try{
                     File audioFile = new File(path);
