@@ -85,8 +85,8 @@ public class HighScore extends javax.swing.JFrame {
      * Creates new form HighScore
      */
     private HighScore() {
-        initComponents();
         this.setVisible(true);
+        initComponents();
     }
     
     public ArrayList<HighScoreTuple> getHighScore()

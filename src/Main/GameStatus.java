@@ -39,6 +39,5 @@ public class GameStatus {
     public void  setPlayerName(String name){
         playerName =  name;
         GameLayout.getInstance().getPlayerNameLabel().setText(name);
-        playerName = name;
     }
 }
