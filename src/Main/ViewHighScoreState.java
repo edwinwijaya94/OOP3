@@ -12,6 +12,6 @@ package Main;
 public class ViewHighScoreState implements State {
     @Override
     public void doAction() {
-        HighScore score = new HighScore();
+        HighScore score = HighScore.getInstance();
     }
 }

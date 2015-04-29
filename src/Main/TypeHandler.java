@@ -56,21 +56,7 @@ public class TypeHandler extends Thread{
                 //System.out.println("null");
             if (passer.word.equals(animal[i].getWord()))
             {
-                // Play music when answer corrected
-                String path = "music/yes.wav";
-                try{
-                    File audioFile = new File(path);
-                    AudioInputStream audioStream = AudioSystem.getAudioInputStream(audioFile);
- 
-                    AudioFormat format = audioStream.getFormat();
-                    DataLine.Info info = new DataLine.Info(Clip.class, format);
-                    Clip audioClip = (Clip) AudioSystem.getLine(info);
- 
-                    audioClip.open(audioStream);            
-                    audioClip.start();
-                }catch(Exception e){
-                    System.out.println(e);
-                }
+                animal[i].playSound();
                 
                 GameLayout.getInstance().addTotalCorrectWords();
                 CaughtObserver.getInstance().setIndex(i);

@@ -3,7 +3,13 @@ package Main;
 
 
 import java.awt.Point;
+import java.io.File;
 import java.util.Random;
+import javax.sound.sampled.AudioFormat;
+import javax.sound.sampled.AudioInputStream;
+import javax.sound.sampled.AudioSystem;
+import javax.sound.sampled.Clip;
+import javax.sound.sampled.DataLine;
 import javax.swing.JLabel;
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -86,6 +92,26 @@ public abstract class Animal {
         duration = duration > fastestSpeed ? duration : fastestSpeed;
         Thread.sleep(duration);
     }
+    
+    // default sound for animal
+    public void playSound(){
+        // Play music when answer corrected
+        String path = "music/yes.wav";
+        try{
+            File audioFile = new File(path);
+            AudioInputStream audioStream = AudioSystem.getAudioInputStream(audioFile);
+
+            AudioFormat format = audioStream.getFormat();
+            DataLine.Info info = new DataLine.Info(Clip.class, format);
+            Clip audioClip = (Clip) AudioSystem.getLine(info);
+
+            audioClip.open(audioStream);            
+            audioClip.start();
+        }catch(Exception e){
+            System.out.println(e);
+        }
+    }
+    
     
     //abstract method
     //public abstract void draw();

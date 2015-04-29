@@ -14,6 +14,7 @@ public class StartNewGameState implements State {
     @Override
     public void doAction() {
         GameLayout GL = GameLayout.getInstance();
+        GameLayout.getInstance().getTextField().setText("");
         GL.setVisible(true);
     }
 }

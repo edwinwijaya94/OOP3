@@ -10,6 +10,12 @@ import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.Image;
+import java.io.File;
+import javax.sound.sampled.AudioFormat;
+import javax.sound.sampled.AudioInputStream;
+import javax.sound.sampled.AudioSystem;
+import javax.sound.sampled.Clip;
+import javax.sound.sampled.DataLine;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.SwingUtilities;
@@ -55,6 +61,7 @@ public class Cyclist extends Animal {
         atas += position * label.getWidth()/2 + position*15 ;
         label.setLocation(kanan,atas);
         label.setVisible(true);
+        label.setBackground(new Color(0,0,0,10));
         GameLayout.getInstance().getPanel().add(label, 0);
         move();
     }
@@ -110,6 +117,24 @@ public class Cyclist extends Animal {
         });
     }
 
+     @Override
+    public void playSound(){
+        // Play music when answer corrected
+        String path = "music/cyclist.wav";
+        try{
+            File audioFile = new File(path);
+            AudioInputStream audioStream = AudioSystem.getAudioInputStream(audioFile);
+
+            AudioFormat format = audioStream.getFormat();
+            DataLine.Info info = new DataLine.Info(Clip.class, format);
+            Clip audioClip = (Clip) AudioSystem.getLine(info);
+
+            audioClip.open(audioStream);            
+            audioClip.start();
+        }catch(Exception e){
+            System.out.println(e);
+        }
+    }
     /*
     @Override
     public String behaveWord(long duration){

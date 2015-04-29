@@ -10,10 +10,16 @@ import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.Image;
+import java.io.File;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.SwingUtilities;
 import java.util.*;
+import javax.sound.sampled.AudioFormat;
+import javax.sound.sampled.AudioInputStream;
+import javax.sound.sampled.AudioSystem;
+import javax.sound.sampled.Clip;
+import javax.sound.sampled.DataLine;
 
 
 /*
@@ -83,7 +89,7 @@ public class Cat extends Animal {
                     while(label.getLocation().getX() > kiri) {
                         updatePosition();
                         long runningTime = (System.nanoTime() - startTime)/1000000;
-                        if(word.isEmpty() || runningTime >= changeWordDuration){ //randomize chars every 3 seconds
+                        if(word.isEmpty() || runningTime >= changeWordDuration + 1500){ //randomize chars every 4.5 seconds
                             word = behaveWord(runningTime);
                             startTime = System.nanoTime(); // reset the clock
                         }
@@ -127,6 +133,25 @@ public class Cat extends Animal {
         }
         else{ // randomize character
             return randomizeChars(currentWord);
+        }
+    }
+    
+    @Override
+    public void playSound(){
+        // Play music when answer corrected
+        String path = "music/cat.wav";
+        try{
+            File audioFile = new File(path);
+            AudioInputStream audioStream = AudioSystem.getAudioInputStream(audioFile);
+
+            AudioFormat format = audioStream.getFormat();
+            DataLine.Info info = new DataLine.Info(Clip.class, format);
+            Clip audioClip = (Clip) AudioSystem.getLine(info);
+
+            audioClip.open(audioStream);            
+            audioClip.start();
+        }catch(Exception e){
+            System.out.println(e);
         }
     }
 }

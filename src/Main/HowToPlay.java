@@ -56,7 +56,7 @@ public class HowToPlay extends javax.swing.JFrame {
         jPanel1.add(BackToMenu);
         BackToMenu.setBounds(643, 470, 130, 29);
 
-        backgroundHowToPlay.setIcon(new javax.swing.ImageIcon("D:\\Users\\Jessica\\OOP3\\image\\howtoplay.png")); // NOI18N
+        backgroundHowToPlay.setIcon(new javax.swing.ImageIcon("image/howtoplay.png")); // NOI18N
         jPanel1.add(backgroundHowToPlay);
         backgroundHowToPlay.setBounds(0, 0, 800, 510);
 
@@ -76,7 +76,7 @@ public class HowToPlay extends javax.swing.JFrame {
 
     private void BackToMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BackToMenuActionPerformed
         // TODO add your handling code here:
-        Menu stateMenu = new Menu();
+        Menu stateMenu = Menu.getInstance();
         this.dispose();
     }//GEN-LAST:event_BackToMenuActionPerformed
 

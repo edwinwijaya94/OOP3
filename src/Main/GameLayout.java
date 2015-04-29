@@ -127,11 +127,6 @@ public class GameLayout extends javax.swing.JFrame {
         startGameButton.requestFocusInWindow();
     }
     
-    public void debug(String input)
-    {
-        jLabel2.setText(input);
-    }
-    
     public GameStatus getGameStatus()
     {
         return gameStatus;
@@ -163,7 +158,6 @@ public class GameLayout extends javax.swing.JFrame {
         playerNameLabel = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         scoreLabel = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
         resumeButton = new javax.swing.JButton();
         pauseButton = new javax.swing.JButton();
 
@@ -224,7 +218,7 @@ public class GameLayout extends javax.swing.JFrame {
         jLabel1.setText("Player Name :");
 
         playerNameLabel.setFont(new java.awt.Font("Kartika", 1, 14)); // NOI18N
-        playerNameLabel.setText("NN");
+        playerNameLabel.setText("Player");
 
         jLabel3.setFont(new java.awt.Font("Kartika", 1, 14)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(1, 61, 79));
@@ -233,8 +227,6 @@ public class GameLayout extends javax.swing.JFrame {
         scoreLabel.setFont(new java.awt.Font("Kartika", 1, 14)); // NOI18N
         scoreLabel.setForeground(new java.awt.Color(204, 0, 0));
         scoreLabel.setText("0");
-
-        jLabel2.setText("jLabel2");
 
         resumeButton.setText("Resume");
         resumeButton.addActionListener(new java.awt.event.ActionListener() {
@@ -266,9 +258,7 @@ public class GameLayout extends javax.swing.JFrame {
                         .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(scoreLabel)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jLabel2)
-                        .addGap(70, 70, 70))
+                        .addGap(70, 235, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addComponent(startGameButton)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 87, Short.MAX_VALUE)
@@ -288,7 +278,6 @@ public class GameLayout extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
                     .addComponent(scoreLabel)
-                    .addComponent(jLabel2)
                     .addComponent(playerNameLabel)
                     .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(11, 11, 11)
@@ -318,7 +307,7 @@ public class GameLayout extends javax.swing.JFrame {
 
     private void backToMenuButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backToMenuButtonActionPerformed
         // TODO add your handling code here:
-        Menu stateMenu = new Menu();
+        Menu stateMenu = Menu.getInstance();
         this.setVisible(false);
         //Menu.setVisible(true);
     }//GEN-LAST:event_backToMenuButtonActionPerformed
@@ -366,8 +355,7 @@ public class GameLayout extends javax.swing.JFrame {
 
         // get the user's input. note that if they press Cancel, 'name' will be NN
         if(name == null){
-            //playerNameLabel.setText("NN");
-            getGameStatus().setPlayerName("NN");
+            getGameStatus().setPlayerName(getGameStatus().getPlayerName());
         }
         else{
             //playerNameLabel.setText(name);
@@ -493,7 +481,6 @@ public class GameLayout extends javax.swing.JFrame {
     private javax.swing.JButton backToMenuButton;
     private javax.swing.JTextField inputField;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLayeredPane jLayeredPane1;
     private javax.swing.JPanel jPanel1;

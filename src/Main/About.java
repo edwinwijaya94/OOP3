@@ -47,7 +47,7 @@ public class About extends javax.swing.JFrame {
         jPanel1.add(namaAnggota);
         namaAnggota.setBounds(280, 160, 270, 200);
 
-        logoITB.setIcon(new javax.swing.ImageIcon("D:\\Users\\Jessica\\Pictures\\Background\\ITB.png")); // NOI18N
+        logoITB.setIcon(new javax.swing.ImageIcon("image/ITB.png")); // NOI18N
         logoITB.setAlignmentY(0.0F);
         jPanel1.add(logoITB);
         logoITB.setBounds(360, 370, 100, 110);
@@ -68,7 +68,7 @@ public class About extends javax.swing.JFrame {
         jPanel1.add(BackToMenu);
         BackToMenu.setBounds(650, 470, 140, 29);
 
-        backgroundAbout.setIcon(new javax.swing.ImageIcon("D:\\Users\\Jessica\\OOP3\\image\\about.png")); // NOI18N
+        backgroundAbout.setIcon(new javax.swing.ImageIcon("image/about.png")); // NOI18N
         jPanel1.add(backgroundAbout);
         backgroundAbout.setBounds(0, 0, 800, 510);
 
@@ -88,7 +88,7 @@ public class About extends javax.swing.JFrame {
 
     private void BackToMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BackToMenuActionPerformed
         // TODO add your handling code here:
-        Menu stateMenu = new Menu();
+        Menu stateMenu = Menu.getInstance();
         this.dispose();
     }//GEN-LAST:event_BackToMenuActionPerformed
 
