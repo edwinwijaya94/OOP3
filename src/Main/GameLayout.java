@@ -94,7 +94,7 @@ public class GameLayout extends javax.swing.JFrame {
                         image = image.getScaledInstance(panelWidth, panelHeight,  java.awt.Image.SCALE_SMOOTH); 
                         icon2 = new ImageIcon(image);
                         labelb.setIcon(icon2);
-                        labelb.setSize(panelWidth, panelHeight);
+                        labelb.setSize(panelWidth,panelHeight);
                         labelb.setLocation(0,0);
                         jLayeredPane1.add(labelb, 1);
     		}
@@ -322,6 +322,7 @@ public class GameLayout extends javax.swing.JFrame {
 
     private void backToMenuButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backToMenuButtonActionPerformed
         // TODO add your handling code here:
+        Menu stateMenu = new Menu();
         this.setVisible(false);
         //Menu.setVisible(true);
     }//GEN-LAST:event_backToMenuButtonActionPerformed

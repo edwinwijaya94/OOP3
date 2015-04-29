@@ -68,7 +68,7 @@ public class About extends javax.swing.JFrame {
         jPanel1.add(BackToMenu);
         BackToMenu.setBounds(650, 470, 140, 29);
 
-        backgroundAbout.setIcon(new javax.swing.ImageIcon("D:\\Users\\Jessica\\Pictures\\Background\\about.png")); // NOI18N
+        backgroundAbout.setIcon(new javax.swing.ImageIcon("D:\\Users\\Jessica\\OOP3\\image\\about.png")); // NOI18N
         jPanel1.add(backgroundAbout);
         backgroundAbout.setBounds(0, 0, 800, 510);
 
