@@ -93,7 +93,7 @@ public class GameLayout extends javax.swing.JFrame {
                         image = image.getScaledInstance(panelWidth, panelHeight,  java.awt.Image.SCALE_SMOOTH); 
                         icon2 = new ImageIcon(image);
                         labelb.setIcon(icon2);
-                        labelb.setSize(1942,1040);
+                        labelb.setSize(panelWidth, panelHeight);
                         labelb.setLocation(0,0);
                         jLayeredPane1.add(labelb, 1);
     		}
