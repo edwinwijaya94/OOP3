@@ -35,6 +35,11 @@ public class EscapeObserver implements EventObserver{
             animalList[i].getThread().interrupt();
             animalList[i] = null;
         }
+        // stop background music
         GameLayout.getInstance().stopBackgroundClip();
+        
+        // add to highscore
+        GameStatus gameStatus = GameLayout.getInstance().getGameStatus(); 
+        gameStatus.addHighScore(gameStatus.getPlayerName(), gameStatus.getScore());
     }
 }
