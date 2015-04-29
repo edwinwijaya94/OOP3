@@ -30,6 +30,9 @@ public class Menu extends javax.swing.JFrame {
         initComponents();
         menuState=null;
         this.setVisible(true);
+        GameLayout.getInstance().getGameStatus().getHighScoreFromFile();
+        System.out.println("Reading data..");
+        System.out.println(GameLayout.getInstance().getGameStatus().highScore);
     }
 
     /**

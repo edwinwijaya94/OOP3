@@ -54,8 +54,12 @@ public class EscapeObserver implements EventObserver{
                 );
         // add to highscore
         //System.out.println("b");
-  //      GameStatus gameStatus = GameLayout.getInstance().getGameStatus(); 
-//        gameStatus.addHighScore(gameStatus.getPlayerName(), gameStatus.getScore());
+        GameStatus gameStatus = GameLayout.getInstance().getGameStatus(); 
+        gameStatus.addHighScore(gameStatus.getPlayerName(), gameStatus.getScore());
+        System.out.println("Writing data..");
+        System.out.println(gameStatus.highScore);
+        
+        gameStatus.writeHighScoretoFile();
         }
     }
     
