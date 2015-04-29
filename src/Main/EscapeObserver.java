@@ -35,5 +35,6 @@ public class EscapeObserver implements EventObserver{
             animalList[i].getThread().interrupt();
             animalList[i] = null;
         }
+        GameLayout.getInstance().stopBackgroundClip();
     }
 }

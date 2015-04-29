@@ -93,10 +93,14 @@ public class Rabbit extends Animal{
             public void run() {
                 int kiri = (int)GameLayout.getInstance().getPanel().getLocationOnScreen().getX();
                 try {
+                    long startTime = System.nanoTime();
                     while(label.getLocationOnScreen().getX() > kiri) {
-                        //updatePosition();
                         long runningTime = System.nanoTime() - startTime;
-                        word = behaveWord(runningTime / 1000000);
+                        if (word.isEmpty() || runningTime/1000000 >=changeWordDuration)
+                        {
+                            word = behaveWord(runningTime / 1000000);
+                            startTime = System.nanoTime();
+                        }
                         label.setLocation((int)label.getLocation().getX()-10, (int)label.getLocation().getY());
                         label.setText(word);
                         GameLayout.getInstance().getPanel().revalidate();
@@ -130,12 +134,12 @@ public class Rabbit extends Animal{
         });
     }
     
-    @Override
+    /*@Override
     public String behaveWord(long currentTime) {
         if (currentWord == "") currentWord = WordsDictionary.getInstance().getWordsFromDictionary();
         return currentWord;
         //GameLayout.getInstance().debug(WordsDictionary.getInstance().getWordsFromDictionary());
         //return "asem";
         //return WordsDictionary.getInstance().getWordsFromDictionary();
-    }
+    }*/
 }

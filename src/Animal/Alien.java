@@ -40,7 +40,7 @@ public class Alien extends Animal {
         label.setIcon(icon);
         label.setSize(300,200);
         label.setHorizontalTextPosition(javax.swing.SwingConstants.LEFT);
-        label.setForeground(Color.green);
+        label.setForeground(Color.red);
         label.setFont(label.getFont().deriveFont((float)(label.getFont().getSize()+13)));
         label.setFont(label.getFont().deriveFont(Font.BOLD));
         int kanan = (int)GameLayout.getInstance().getPanel().getBounds().getMaxX();
@@ -55,20 +55,26 @@ public class Alien extends Animal {
     //method
     @Override
     public void move(){
+         /*if (label == null) 
+            draw();*/
          myThread = new Thread()  {
             public void run() {
                 int kiri = (int)GameLayout.getInstance().getPanel().getLocationOnScreen().getX();
                 try {
                     long startTime = System.nanoTime();
                     while(label.getLocationOnScreen().getX() > kiri) {
-                        long runningTime = System.nanoTime() - startTime;
-                        if (word.isEmpty() || runningTime/1000000 >=changeWordDuration)
-                        {
-                            word = behaveWord(runningTime / 1000000);
-                            startTime = System.nanoTime();
+                        //updatePosition();
+                        long runningTime = (System.nanoTime() - startTime)/nsToms;
+                        if(word.isEmpty()){
+                            word = behaveWord(runningTime);
+                            label.setText(word);
+                        }
+                        else if(runningTime >= changeWordDuration){ //encode chars
+                            currentWord = behaveWord(runningTime);
+                            startTime = System.nanoTime(); // reset the clock
+                            label.setText(currentWord);
                         }
                         label.setLocation((int)label.getLocation().getX()-10, (int)label.getLocation().getY());
-                        label.setText(word);
                         GameLayout.getInstance().getPanel().revalidate();
                         GameLayout.getInstance().getPanel().repaint();
                         //Thread.sleep(100-speed);
@@ -91,11 +97,15 @@ public class Alien extends Animal {
         myThread.start();
     }                                               
 
-    /*
+    
     @Override
-    public String behaveWord(long duration){
-        if (currentWord == "") currentWord = WordsDictionary.getInstance().getWordsFromDictionary();
-        currentWord = currentWord.substring(1) + currentWord.charAt(0);
-        return currentWord;
-    }*/
+    public String behaveWord(long currentTime) {
+        if (currentWord == "") {
+            currentWord = WordsDictionary.getInstance().getWordsFromDictionary();
+            return currentWord;
+        }
+        else{ //encode chars, player must type real word
+            return encodeChars(currentWord);
+        }
+    }
 }

@@ -1,6 +1,5 @@
 package Main;
 
-import java.util.*;
 import javax.swing.*;
 import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
@@ -11,6 +10,12 @@ import Main.Background;
 import java.awt.Image;
 import java.awt.event.ComponentEvent;
 import java.awt.event.ComponentListener;
+import java.io.File;
+import javax.sound.sampled.AudioFormat;
+import javax.sound.sampled.AudioInputStream;
+import javax.sound.sampled.AudioSystem;
+import javax.sound.sampled.Clip;
+import javax.sound.sampled.DataLine;
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -26,25 +31,6 @@ class Passer
     public volatile String word = "default";
 }
 
-class GambarThread extends Thread {
-   private Thread t;
-   private String threadName = "gambarThread";
-   
-   public void run() {
-      GameLayout.getInstance().getPanel().revalidate();
-      GameLayout.getInstance().getPanel().repaint();
-   }
-   
-   public void start ()
-   {
-      if (t == null)
-      {
-         t = new Thread (this, threadName);
-         t.start ();
-      }
-   }
-}
-
 public class GameLayout extends javax.swing.JFrame {
     
     //attribute 
@@ -58,6 +44,7 @@ public class GameLayout extends javax.swing.JFrame {
     Object correctLock = new Object();
     int totalCorrectWords = 0;
     Background bg = new Background(this);
+    Clip backgroundClip;
     @Override
     public void paint(Graphics g) {
         super.paint(g);
@@ -111,7 +98,6 @@ public class GameLayout extends javax.swing.JFrame {
         }
       });
         startGameButton.requestFocusInWindow();
-        //AnimalFactory.getInstance().createAnimal();
     }
     
     public void debug(String input)
@@ -322,27 +308,18 @@ public class GameLayout extends javax.swing.JFrame {
         startGameButton.setEnabled(false);
         resumeButton.setEnabled(false);
         inputField.requestFocusInWindow();
-        //jPanel1.setLayout(new SpringLayout());
         jPanel1.setLayout(null);
         gameStatus = new GameStatus();
         
-        //GameLayout.getInstance().debug(AnimalFactory.getInstance().animalKey.toString());
         for(int i = 0; i < 5; i++)
         {
             animals[i] = AnimalFactory.getInstance().getAnimal();
             animals[i].draw(i);
         }
-        //int x = (int)jPanel1.getBounds().getMaxX() - 200 - 20;
-        //int y = (int)jPanel1.getLocationOnScreen().getY() - 20;
-        //int gaps = (jPanel1.getHeight() - (5*100) - 40) / (5+1);
-        //SpringUtilities.makeGrid(jPanel1, 5, 1, x, y, 0, gaps);
         jPanel1.revalidate();
         jPanel1.repaint();
-        /*for(int i = 0; i < 5; i++)
-        {
-            animals[i].move();
-        }*/
         typeHandler = new TypeHandler(passer);
+        startBackgroundClip();
     }
     
     /**
@@ -413,14 +390,6 @@ public class GameLayout extends javax.swing.JFrame {
         
         
         
-        /*GambarThread gambarThread = new GambarThread();
-        gambarThread.start();
-        try
-        {
-            gambarThread.join();
-        }catch(Exception e){}
-        */
-        
         while(true)
         {
             for (int i=0;i<animalSize;i++)
@@ -447,6 +416,30 @@ public class GameLayout extends javax.swing.JFrame {
 
     public JLabel getScoreLabel(){
         return scoreLabel;
+    }
+    
+    public void startBackgroundClip()
+    {
+        String path = "music/samba.wav";
+        try{
+            File audioFile = new File(path);
+            AudioInputStream audioStream = AudioSystem.getAudioInputStream(audioFile);
+
+            AudioFormat format = audioStream.getFormat();
+            DataLine.Info info = new DataLine.Info(Clip.class, format);
+            backgroundClip = (Clip) AudioSystem.getLine(info);
+
+            backgroundClip.open(audioStream);            
+            backgroundClip.start();
+            backgroundClip.loop(Clip.LOOP_CONTINUOUSLY);
+        }catch(Exception e){
+            System.out.println(e);
+        }
+    }
+    
+    public void stopBackgroundClip()
+    {
+        backgroundClip.stop();
     }
     
     public JButton getStartGameButton(){

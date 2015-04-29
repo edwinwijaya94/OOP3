@@ -15,6 +15,7 @@ public class About extends javax.swing.JFrame {
      * Creates new form About
      */
     public About() {
+        this.setVisible(true);
         initComponents();
     }
 
@@ -31,6 +32,7 @@ public class About extends javax.swing.JFrame {
         namaAnggota = new javax.swing.JLabel();
         logoITB = new javax.swing.JLabel();
         informatika = new javax.swing.JLabel();
+        BackToMenu = new javax.swing.JButton();
         backgroundAbout = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -56,6 +58,16 @@ public class About extends javax.swing.JFrame {
         jPanel1.add(informatika);
         informatika.setBounds(350, 480, 150, 24);
 
+        BackToMenu.setFont(new java.awt.Font("Kartika", 1, 14)); // NOI18N
+        BackToMenu.setText("Back To Menu");
+        BackToMenu.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BackToMenuActionPerformed(evt);
+            }
+        });
+        jPanel1.add(BackToMenu);
+        BackToMenu.setBounds(650, 470, 140, 29);
+
         backgroundAbout.setIcon(new javax.swing.ImageIcon("D:\\Users\\Jessica\\Pictures\\Background\\about.png")); // NOI18N
         jPanel1.add(backgroundAbout);
         backgroundAbout.setBounds(0, 0, 800, 510);
@@ -74,42 +86,15 @@ public class About extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(About.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(About.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(About.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(About.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
+    private void BackToMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BackToMenuActionPerformed
+        // TODO add your handling code here:
+        Menu stateMenu = new Menu();
+        this.dispose();
+    }//GEN-LAST:event_BackToMenuActionPerformed
 
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new About().setVisible(true);
-            }
-        });
-    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton BackToMenu;
     private javax.swing.JLabel backgroundAbout;
     private javax.swing.JLabel informatika;
     private javax.swing.JPanel jPanel1;

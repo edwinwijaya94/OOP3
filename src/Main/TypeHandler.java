@@ -1,7 +1,11 @@
 package Main;
 
-import java.util.*;
-import javax.swing.JTextField;
+import java.io.FileInputStream;
+import java.io.*;
+import javax.sound.sampled.*;
+import sun.audio.AudioPlayer;
+import sun.audio.AudioStream;
+
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -40,8 +44,6 @@ public class TypeHandler extends Thread{
     {
         while (true){
             validateInput();
-            //GameLayout.getInstance().debug(passer.word);
-            //GameLayout.getInstance().debug("test");
             while (pause) {
                 try{
                     wait();
@@ -55,9 +57,24 @@ public class TypeHandler extends Thread{
         Animal[] animal = GameLayout.getInstance().getAnimals();
         for (int i=0;i<GameLayout.getInstance().getAnimalSize();i++)
         {
-            //GameLayout.getInstance().debug(GameLayout.getInstance().getTextField().getText());
             if (passer.word.equals(animal[i].getWord()))
             {
+                // Play music when answer corrected
+                String path = "music/yes.wav";
+                try{
+                    File audioFile = new File(path);
+                    AudioInputStream audioStream = AudioSystem.getAudioInputStream(audioFile);
+ 
+                    AudioFormat format = audioStream.getFormat();
+                    DataLine.Info info = new DataLine.Info(Clip.class, format);
+                    Clip audioClip = (Clip) AudioSystem.getLine(info);
+ 
+                    audioClip.open(audioStream);            
+                    audioClip.start();
+                }catch(Exception e){
+                    System.out.println(e);
+                }
+                
                 GameLayout.getInstance().addTotalCorrectWords();
                 CaughtObserver.getInstance().setIndex(i);
                 CaughtObserver.getInstance().handle();

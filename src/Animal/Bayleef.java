@@ -107,11 +107,4 @@ public class Bayleef extends Animal {
         });
     }
 
-    /*
-    @Override
-    public String behaveWord(long duration){
-        if (currentWord == "") currentWord = WordsDictionary.getInstance().getWordsFromDictionary();
-        currentWord = currentWord.substring(1) + currentWord.charAt(0);
-        return currentWord;
-    }*/
 }
