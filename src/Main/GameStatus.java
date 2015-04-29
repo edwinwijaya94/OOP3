@@ -55,7 +55,7 @@ public class GameStatus {
     // attributes
     private int score;
     private String playerName;
-    private String highscoreFileName = "data/highscore.txt";
+    private String highscoreFileName = "data/highscore.dat";
     private ArrayList<HighScoreTuple> highScore;
     
     public GameStatus(){
