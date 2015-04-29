@@ -1,14 +1,5 @@
 package Main;
 
-import java.io.FileInputStream;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.ObjectInputStream;
-import java.io.ObjectOutputStream;
-import static java.lang.System.in;
-import static java.lang.System.out;
-import java.util.ArrayList;
-
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -19,44 +10,10 @@ import java.util.ArrayList;
  * @author Edwin
  */
 
-class HighScoreTuple
-{
-    private String playerName;
-    private int score;
-    
-    public HighScoreTuple(String playerName, int score)
-    {
-        this.playerName = playerName;
-        this.score = score;
-    }
-    
-    public String getPlayerName()
-    {
-        return playerName;
-    }
-    
-    public int getScore()
-    {
-        return score;
-    }
-    
-    public void setScore(int newScore)
-    {
-        score = newScore;
-    }
-    
-    public void setPlayerName(String newPlayerName)
-    {
-        playerName = newPlayerName;
-    }
-}
-
 public class GameStatus {
     // attributes
     private int score;
     private String playerName;
-    private String highscoreFileName = "data/highscore.txt";
-    private ArrayList<HighScoreTuple> highScore;
     
     public GameStatus(){
         score = 0;

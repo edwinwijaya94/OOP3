@@ -15,6 +15,7 @@ import javax.swing.JOptionPane;
 public class EscapeObserver implements EventObserver{
     
     private static EscapeObserver instance;
+    private int counter = 0;
     
     public static EscapeObserver getInstance()
     {
@@ -32,6 +33,14 @@ public class EscapeObserver implements EventObserver{
     public synchronized void handle() {
         Animal[] animalList = GameLayout.getInstance().getAnimals();
         //System.out.println("a");
+        counter++;
+        System.out.println("Counter : " + counter);
+        if (counter == 5)
+        {
+            GameLayout.getInstance().getStartGameButton().setEnabled(true);
+            GameLayout.getInstance().getTextField().setText("");
+            counter = 0;
+        }
         if (GameLayout.getInstance().getTypeHandler().isAlive())
         {
         GameLayout.getInstance().getTypeHandler().interrupt();
@@ -43,8 +52,6 @@ public class EscapeObserver implements EventObserver{
         // stop background music
         GameLayout.getInstance().stopBackgroundClip();
         
-        GameLayout.getInstance().getStartGameButton().setEnabled(true);
-        
         //game over, tell the player
         JOptionPane.showMessageDialog(GameLayout.getInstance(), 
                 GameLayout.getInstance().getGameStatus().getPlayerName() + ", your score is "
@@ -54,8 +61,9 @@ public class EscapeObserver implements EventObserver{
                 );
         // add to highscore
         //System.out.println("b");
-  //      GameStatus gameStatus = GameLayout.getInstance().getGameStatus(); 
-//        gameStatus.addHighScore(gameStatus.getPlayerName(), gameStatus.getScore());
+        GameStatus gameStatus = GameLayout.getInstance().getGameStatus();
+        HighScore.getInstance().addHighScore(gameStatus.getPlayerName(), gameStatus.getScore());
+        HighScore.getInstance().writeHighScoretoFile();
         }
     }
     
