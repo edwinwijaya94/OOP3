@@ -68,6 +68,7 @@ public class CaughtObserver implements EventObserver {
             animal.setWord("");
             animal.setCurrentWord("");
    
+            
             gameLayout.getAnimals()[animalIndex] = null;
             Animal tempAnimal = AnimalFactory.getInstance().getAnimal();
             gameLayout.getAnimals()[animalIndex] = tempAnimal;
