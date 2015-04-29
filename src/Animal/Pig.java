@@ -61,7 +61,7 @@ public class Pig extends Animal {
         label.setLocation(kanan,atas);
         label.setVisible(true);
         //GameLayout.getInstance().getPanel().add(label, BorderLayout.CENTER);
-        GameLayout.getInstance().getPanel().add(label);
+        GameLayout.getInstance().getPanel().add(label, 0);
         move();
     }
     

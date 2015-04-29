@@ -48,7 +48,7 @@ public class Alien extends Animal {
         atas += position * label.getWidth()/2.6 + position*15 + 5 ;
         label.setLocation(kanan,atas);
         label.setVisible(true);
-        GameLayout.getInstance().getPanel().add(label);
+        GameLayout.getInstance().getPanel().add(label, 0);
         move();
     }
     

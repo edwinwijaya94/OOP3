@@ -55,7 +55,7 @@ public class GreenDragon extends Animal {
         atas += position * label.getWidth()/3.7 + position*15 + 10;
         label.setLocation(kanan,atas);
         label.setVisible(true);
-        GameLayout.getInstance().getPanel().add(label);
+        GameLayout.getInstance().getPanel().add(label, 0);
         move();
     }
     

@@ -54,7 +54,7 @@ public class Hooh extends Animal {
         atas += position * label.getWidth()/2.1 + position*15 + 7;
         label.setLocation(kanan,atas);
         label.setVisible(true);
-        GameLayout.getInstance().getPanel().add(label);
+        GameLayout.getInstance().getPanel().add(label, 0);
         move();
     }
     
