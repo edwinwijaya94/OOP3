@@ -82,7 +82,6 @@ public class GameStatus {
     public void  setPlayerName(String name){
         playerName =  name;
         GameLayout.getInstance().getPlayerNameLabel().setText(name);
-        playerName = name;
     }
     
     public void addHighScore(String playerName, int score)

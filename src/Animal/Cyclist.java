@@ -55,6 +55,7 @@ public class Cyclist extends Animal {
         atas += position * label.getWidth()/2 + position*15 ;
         label.setLocation(kanan,atas);
         label.setVisible(true);
+        label.setBackground(new Color(0,0,0,64));
         GameLayout.getInstance().getPanel().add(label, 0);
         move();
     }
