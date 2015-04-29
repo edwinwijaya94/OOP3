@@ -46,7 +46,7 @@ public class HighScore extends javax.swing.JFrame {
         jPanel1.add(BackToMenu);
         BackToMenu.setBounds(643, 480, 140, 29);
 
-        scoreBackground.setIcon(new javax.swing.ImageIcon("D:\\Users\\Jessica\\Pictures\\Background\\Score.png")); // NOI18N
+        scoreBackground.setIcon(new javax.swing.ImageIcon("D:\\Users\\Jessica\\OOP3\\image\\score.png")); // NOI18N
         jPanel1.add(scoreBackground);
         scoreBackground.setBounds(0, 10, 800, 510);
 

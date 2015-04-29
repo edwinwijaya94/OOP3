@@ -109,7 +109,7 @@ public class Menu extends javax.swing.JFrame {
         jPanel1.add(TyperAnimal);
         TyperAnimal.setBounds(300, 110, 250, 50);
 
-        backgroundMenu.setIcon(new javax.swing.ImageIcon("D:\\Users\\Jessica\\Pictures\\Background\\menu2.png")); // NOI18N
+        backgroundMenu.setIcon(new javax.swing.ImageIcon("D:\\Users\\Jessica\\OOP3\\image\\menu.png")); // NOI18N
         jPanel1.add(backgroundMenu);
         backgroundMenu.setBounds(0, 0, 800, 510);
 
