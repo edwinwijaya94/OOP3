@@ -14,6 +14,12 @@ import Main.WordsDictionary;
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.Image;
+import java.io.File;
+import javax.sound.sampled.AudioFormat;
+import javax.sound.sampled.AudioInputStream;
+import javax.sound.sampled.AudioSystem;
+import javax.sound.sampled.Clip;
+import javax.sound.sampled.DataLine;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.SwingUtilities;
@@ -139,6 +145,26 @@ public class Bird extends Animal {
         });
     }
     
+    @Override
+    public void playSound(){
+        // Play music when answer corrected
+        String path = "music/bird.wav";
+        try{
+            File audioFile = new File(path);
+            AudioInputStream audioStream = AudioSystem.getAudioInputStream(audioFile);
+
+            AudioFormat format = audioStream.getFormat();
+            DataLine.Info info = new DataLine.Info(Clip.class, format);
+            Clip audioClip = (Clip) AudioSystem.getLine(info);
+
+            audioClip.open(audioStream);            
+            audioClip.start();
+        }catch(Exception e){
+            System.out.println(e);
+        }
+    } 
+     
+     
     /*@Override
     public String behaveWord(long currentTime) {
         if (currentWord == "") currentWord = WordsDictionary.getInstance().getWordsFromDictionary();

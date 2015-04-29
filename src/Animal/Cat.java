@@ -89,7 +89,7 @@ public class Cat extends Animal {
                     while(label.getLocation().getX() > kiri) {
                         updatePosition();
                         long runningTime = (System.nanoTime() - startTime)/1000000;
-                        if(word.isEmpty() || runningTime >= changeWordDuration){ //randomize chars every 3 seconds
+                        if(word.isEmpty() || runningTime >= changeWordDuration + 1500){ //randomize chars every 4.5 seconds
                             word = behaveWord(runningTime);
                             startTime = System.nanoTime(); // reset the clock
                         }
