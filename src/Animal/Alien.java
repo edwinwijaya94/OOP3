@@ -91,8 +91,8 @@ public class Alien extends Animal {
         myThread.start();
     }                                               
 
-    /*
-    @Override
+    
+    /*@Override
     public String behaveWord(long duration){
         if (currentWord == "") currentWord = WordsDictionary.getInstance().getWordsFromDictionary();
         currentWord = currentWord.substring(1) + currentWord.charAt(0);

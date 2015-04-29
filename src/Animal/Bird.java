@@ -133,12 +133,12 @@ public class Bird extends Animal {
         });
     }
     
-    @Override
+    /*@Override
     public String behaveWord(long currentTime) {
         if (currentWord == "") currentWord = WordsDictionary.getInstance().getWordsFromDictionary();
         return currentWord;
         //GameLayout.getInstance().debug(WordsDictionary.getInstance().getWordsFromDictionary());
         //return "asem";
         //return WordsDictionary.getInstance().getWordsFromDictionary();
-    }
+    }*/
 }
