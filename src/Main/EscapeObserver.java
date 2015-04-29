@@ -6,6 +6,7 @@
 package Main;
 
 import java.util.ArrayList;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -38,8 +39,16 @@ public class EscapeObserver implements EventObserver{
         // stop background music
         GameLayout.getInstance().stopBackgroundClip();
         
+        //game over, tell the player
+        JOptionPane.showMessageDialog(GameLayout.getInstance(), 
+                GameLayout.getInstance().getGameStatus().getPlayerName() + ", your score is "
+                    + Integer.toString(GameLayout.getInstance().getGameStatus().getScore()),
+                    "Game Over !",
+                    JOptionPane.INFORMATION_MESSAGE
+                );
         // add to highscore
         GameStatus gameStatus = GameLayout.getInstance().getGameStatus(); 
         gameStatus.addHighScore(gameStatus.getPlayerName(), gameStatus.getScore());
     }
+    
 }
