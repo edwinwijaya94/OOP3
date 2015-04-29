@@ -151,6 +151,7 @@ public abstract class Animal {
         }
         return newWord;
     }
+    
     public final String encodeChars(String currentWord){
         String temp = currentWord;
         for(int i = 0; i < temp.length(); i++){
@@ -198,6 +199,15 @@ public abstract class Animal {
                             temp = temp.substring(0,i-1)+ "5";
                     else
                             temp = temp.substring(0,i) + "5" + temp.substring(i+1);
+                    break;
+                }
+                case 'z':{
+                    if(i == 0)
+                            temp = "2" + temp.substring(i+1);
+                    else if(i == temp.length())
+                            temp = temp.substring(0,i-1)+ "2";
+                    else
+                            temp = temp.substring(0,i) + "2" + temp.substring(i+1);
                     break;
                 }
             }
