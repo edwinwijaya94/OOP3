@@ -1,22 +1,22 @@
-package Main;
-
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
+package Main;
+
 /**
  *
  * @author Jessica
  */
-public class About extends javax.swing.JFrame {
+public class HighScore extends javax.swing.JFrame {
 
     /**
-     * Creates new form About
+     * Creates new form HighScore
      */
-    public About() {
-        this.setVisible(true);
+    public HighScore() {
         initComponents();
+        this.setVisible(true);
     }
 
     /**
@@ -29,34 +29,12 @@ public class About extends javax.swing.JFrame {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
-        namaAnggota = new javax.swing.JLabel();
-        logoITB = new javax.swing.JLabel();
-        informatika = new javax.swing.JLabel();
         BackToMenu = new javax.swing.JButton();
-        backgroundAbout = new javax.swing.JLabel();
+        scoreBackground = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jPanel1.setLayout(null);
-
-        namaAnggota.setFont(new java.awt.Font("Kartika", 1, 20)); // NOI18N
-        namaAnggota.setForeground(new java.awt.Color(1, 61, 79));
-        namaAnggota.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        namaAnggota.setText("<html><center>Edwin Wijaya 13513040<br><br> Elvan Owen 13513082<br><br> Jessica Andjani 13513086<br><br> Vicko Novianto 13513092</center> </html>");
-        namaAnggota.setVerifyInputWhenFocusTarget(false);
-        jPanel1.add(namaAnggota);
-        namaAnggota.setBounds(280, 160, 270, 200);
-
-        logoITB.setIcon(new javax.swing.ImageIcon("D:\\Users\\Jessica\\Pictures\\Background\\ITB.png")); // NOI18N
-        logoITB.setAlignmentY(0.0F);
-        jPanel1.add(logoITB);
-        logoITB.setBounds(360, 370, 100, 110);
-
-        informatika.setFont(new java.awt.Font("Kartika", 1, 16)); // NOI18N
-        informatika.setForeground(new java.awt.Color(1, 61, 79));
-        informatika.setText("INFORMATIKA ITB");
-        jPanel1.add(informatika);
-        informatika.setBounds(350, 480, 150, 24);
 
         BackToMenu.setFont(new java.awt.Font("Kartika", 1, 14)); // NOI18N
         BackToMenu.setText("Back To Menu");
@@ -66,21 +44,21 @@ public class About extends javax.swing.JFrame {
             }
         });
         jPanel1.add(BackToMenu);
-        BackToMenu.setBounds(650, 470, 140, 29);
+        BackToMenu.setBounds(643, 480, 140, 29);
 
-        backgroundAbout.setIcon(new javax.swing.ImageIcon("D:\\Users\\Jessica\\OOP3\\image\\about.png")); // NOI18N
-        jPanel1.add(backgroundAbout);
-        backgroundAbout.setBounds(0, 0, 800, 510);
+        scoreBackground.setIcon(new javax.swing.ImageIcon("D:\\Users\\Jessica\\OOP3\\image\\score.png")); // NOI18N
+        jPanel1.add(scoreBackground);
+        scoreBackground.setBounds(0, 10, 800, 510);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 801, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 800, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 510, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 522, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
 
         pack();
@@ -95,10 +73,7 @@ public class About extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton BackToMenu;
-    private javax.swing.JLabel backgroundAbout;
-    private javax.swing.JLabel informatika;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JLabel logoITB;
-    private javax.swing.JLabel namaAnggota;
+    private javax.swing.JLabel scoreBackground;
     // End of variables declaration//GEN-END:variables
 }

@@ -21,6 +21,7 @@ public abstract class Animal {
     
     //attributes
     public static String animalName;
+    protected int defaultLive = 1;
     protected JLabel label;
     public Thread myThread;
     public int speed = 0;
@@ -34,6 +35,9 @@ public abstract class Animal {
     public String currentWord="";
     
     //getter, setter
+    public final int getDefaultLive() {
+        return defaultLive;
+    }
     public final int getSpeed(){
         return speed;
     }
@@ -69,6 +73,9 @@ public abstract class Animal {
     }
     public void setCurrentWord(String s){
         currentWord = s;
+    }
+    public JLabel getLabel() {
+        return label;
     }
     
     public void delay(int animalSpeed) throws InterruptedException

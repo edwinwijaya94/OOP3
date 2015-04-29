@@ -80,6 +80,8 @@ public class GameStatus {
         return playerName;
     }
     public void  setPlayerName(String name){
+        playerName =  name;
+        GameLayout.getInstance().getPlayerNameLabel().setText(name);
         playerName = name;
     }
     

@@ -75,7 +75,7 @@ public class Pig extends Animal {
             public void run() {
                 int kiri = (int)GameLayout.getInstance().getPanel().getLocationOnScreen().getX();
                 try {
-                    while(label.getLocationOnScreen().getX() > kiri) {
+                    while(label.getLocation().getX() > kiri) {
                         //updatePosition();
                         label.setLocation((int)label.getLocation().getX()-10, (int)label.getLocation().getY());
                         long runningTime = System.nanoTime() - startTime;
@@ -90,7 +90,7 @@ public class Pig extends Animal {
                     EscapeObserver.getInstance().handle();
                     return;
                 } catch (InterruptedException ex) {  
-                    //label.setVisible(false);
+                    label.setVisible(false);
                     GameLayout.getInstance().getPanel().remove(label);
                     GameLayout.getInstance().getPanel().revalidate();
                     GameLayout.getInstance().getPanel().repaint();

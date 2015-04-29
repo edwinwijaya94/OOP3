@@ -51,6 +51,7 @@ public class CaughtObserver implements EventObserver {
         
         
         int n = animal.getLive();
+        //System.out.println(n);
         n--;
         animal.setLive(n);
         
@@ -60,6 +61,9 @@ public class CaughtObserver implements EventObserver {
         if(animal.getLive()== 0){ //caught
             
             animal.getThread().interrupt();
+            GameLayout.getInstance().getPanel().remove(animal.getLabel());
+            GameLayout.getInstance().getPanel().revalidate();
+            GameLayout.getInstance().getPanel().repaint();
             AnimalFactory.getInstance().putAnimal(animal);
 
             gameLayout.getAnimals()[animalIndex] = null;

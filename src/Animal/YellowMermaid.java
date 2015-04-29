@@ -69,7 +69,7 @@ public class YellowMermaid extends Animal {
                 int kiri = (int)GameLayout.getInstance().getPanel().getLocationOnScreen().getX();
                 try {
                     long startTime = System.nanoTime();
-                    while(label.getLocationOnScreen().getX() > kiri) {
+                    while(label.getLocation().getX() > kiri) {
                         long runningTime = System.nanoTime() - startTime;
                         if (word.isEmpty() || runningTime/1000000 >=changeWordDuration)
                         {

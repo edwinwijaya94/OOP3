@@ -6,6 +6,7 @@
 package Main;
 
 import java.util.ArrayList;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -28,18 +29,34 @@ public class EscapeObserver implements EventObserver{
     }
     
     @Override
-    public void handle() {
+    public synchronized void handle() {
         Animal[] animalList = GameLayout.getInstance().getAnimals();
-        
+        //System.out.println("a");
+        if (GameLayout.getInstance().getTypeHandler().isAlive())
+        {
+        GameLayout.getInstance().getTypeHandler().interrupt();
         for (int i = 0; i < GameLayout.getInstance().getAnimalSize(); i++) {
-            animalList[i].getThread().interrupt();
+        //    animalList[i].getThread().interrupt();
+            AnimalFactory.getInstance().putAnimal(animalList[i]);
             animalList[i] = null;
         }
         // stop background music
         GameLayout.getInstance().stopBackgroundClip();
         
+        GameLayout.getInstance().getStartGameButton().setEnabled(true);
+        
+        //game over, tell the player
+        JOptionPane.showMessageDialog(GameLayout.getInstance(), 
+                GameLayout.getInstance().getGameStatus().getPlayerName() + ", your score is "
+                    + Integer.toString(GameLayout.getInstance().getGameStatus().getScore()),
+                    "Game Over !",
+                    JOptionPane.INFORMATION_MESSAGE
+                );
         // add to highscore
-        GameStatus gameStatus = GameLayout.getInstance().getGameStatus(); 
-        gameStatus.addHighScore(gameStatus.getPlayerName(), gameStatus.getScore());
+        //System.out.println("b");
+  //      GameStatus gameStatus = GameLayout.getInstance().getGameStatus(); 
+//        gameStatus.addHighScore(gameStatus.getPlayerName(), gameStatus.getScore());
+        }
     }
+    
 }

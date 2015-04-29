@@ -93,7 +93,7 @@ public class Dog extends Animal {
                 int kiri = (int)GameLayout.getInstance().getPanel().getLocationOnScreen().getX();
                 try {
                     long startTime = System.nanoTime();
-                    while(label.getLocationOnScreen().getX() > kiri) {
+                    while(label.getLocation().getX() > kiri) {
                         //updatePosition();
                         long runningTime = (System.nanoTime() - startTime)/nsToms;
                         if(word.isEmpty() || runningTime >= changeWordDuration){

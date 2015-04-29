@@ -127,7 +127,7 @@
         <Component class="javax.swing.JLabel" name="backgroundMenu">
           <Properties>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="2" name="D:\Users\Jessica\Pictures\Background\menu2.png"/>
+              <Image iconType="2" name="D:\Users\Jessica\OOP3\image\menu.png"/>
             </Property>
           </Properties>
           <Constraints>

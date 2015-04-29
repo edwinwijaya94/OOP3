@@ -45,6 +45,7 @@ public class GameLayout extends javax.swing.JFrame {
     int totalCorrectWords = 0;
     Background bg = new Background(this);
     Clip backgroundClip;
+    
     @Override
     public void paint(Graphics g) {
         super.paint(g);
@@ -75,6 +76,36 @@ public class GameLayout extends javax.swing.JFrame {
      */
     private GameLayout() {
         initComponents();
+        
+                addComponentListener(new ComponentListener() {
+            public void componentResized(ComponentEvent e) {
+                        
+                        //System.out.println(e.getComponent().toString());
+    			//System.out.println(e.getComponent().getSize().height);
+                        int panelHeight = e.getComponent().getSize().height;
+                        //System.out.println(panelHeight);
+                        int panelWidth = e.getComponent().getSize().width;
+                        //System.out.println(panelWidth);
+                        
+                        
+                        JLabel labelb = new JLabel();
+                        ImageIcon icon2 = new ImageIcon("image/gamelayout.png");
+                        Image image = icon2.getImage();
+                        image = image.getScaledInstance(panelWidth, panelHeight,  java.awt.Image.SCALE_SMOOTH); 
+                        icon2 = new ImageIcon(image);
+                        labelb.setIcon(icon2);
+                        labelb.setSize(panelWidth,panelHeight);
+                        labelb.setLocation(0,0);
+                        jLayeredPane1.add(labelb, 1);
+    		}
+
+    		public void componentHidden(ComponentEvent e) {}
+
+    		public void componentMoved(ComponentEvent e) {}
+
+    		public void componentShown(ComponentEvent e) {}
+        
+        });
         
         getTextField().getDocument().addDocumentListener(new DocumentListener() {
 
@@ -291,25 +322,62 @@ public class GameLayout extends javax.swing.JFrame {
 
     private void backToMenuButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backToMenuButtonActionPerformed
         // TODO add your handling code here:
+        Menu stateMenu = new Menu();
         this.setVisible(false);
         //Menu.setVisible(true);
     }//GEN-LAST:event_backToMenuButtonActionPerformed
 
     private void pauseButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_pauseButtonActionPerformed
         // TODO add your handling code here:
+            for (int i=0;i<animalSize;i++)
+            {
+                try
+                {
+                    animals[i].getThread().interrupt();
+                }catch(Exception e){}
+            }
+            pauseButton.setEnabled(false);
+            resumeButton.setEnabled(true);
     }//GEN-LAST:event_pauseButtonActionPerformed
 
     private void resumeButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_resumeButtonActionPerformed
         // TODO add your handling code here:
+            for (int i=0;i<animalSize;i++)
+            {
+                try
+                {
+                    animals[i].getLabel().setVisible(true);
+                    animals[i].move();
+                }catch(Exception e){}
+            }
+            pauseButton.setEnabled(true);
+            resumeButton.setEnabled(false);
     }//GEN-LAST:event_resumeButtonActionPerformed
 
     private void startGameButtonActionPerformed(java.awt.event.ActionEvent evt) {                                                
         // TODO add your handling code here:
+        
+        
+        
         startGameButton.setEnabled(false);
         resumeButton.setEnabled(false);
         inputField.requestFocusInWindow();
         jPanel1.setLayout(null);
         gameStatus = new GameStatus();
+        
+        // ask for player's name
+        String name = JOptionPane.showInputDialog(this, "What's your name?");
+
+        // get the user's input. note that if they press Cancel, 'name' will be NN
+        if(name == null){
+            //playerNameLabel.setText("NN");
+            getGameStatus().setPlayerName("NN");
+        }
+        else{
+            //playerNameLabel.setText(name);
+            getGameStatus().setPlayerName(name);
+        }
+        
         
         for(int i = 0; i < 5; i++)
         {
@@ -349,44 +417,8 @@ public class GameLayout extends javax.swing.JFrame {
         }
         //</editor-fold>
 
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                getInstance().addComponentListener(new ComponentListener() {
-            public void componentResized(ComponentEvent e) {
-                        
-                        //System.out.println(e.getComponent().toString());
-    			//System.out.println(e.getComponent().getSize().height);
-                        int panelHeight = e.getComponent().getSize().height;
-                        //System.out.println(panelHeight);
-                        int panelWidth = e.getComponent().getSize().width;
-                        //System.out.println(panelWidth);
-                        
-                        
-                        JLabel labelb = new JLabel();
-                        ImageIcon icon2 = new ImageIcon("image/gamelayout.png");
-                        Image image = icon2.getImage();
-                        image = image.getScaledInstance(panelWidth, panelHeight,  java.awt.Image.SCALE_SMOOTH); 
-                        icon2 = new ImageIcon(image);
-                        labelb.setIcon(icon2);
-                        labelb.setSize(1942,1040);
-                        labelb.setLocation(0,0);
-                        getInstance().getPanel().add(labelb, 1);
-    		}
-
-    		public void componentHidden(ComponentEvent e) {}
-
-    		public void componentMoved(ComponentEvent e) {}
-
-    		public void componentShown(ComponentEvent e) {}
-        
-        });
-                System.out.println("main");
-                //getInstance().setExtendedState(MAXIMIZED_BOTH);
                 getInstance().setVisible(true);
-                //getInstance().repaint();
-            }
-        });
+            
         
         
         
@@ -414,6 +446,10 @@ public class GameLayout extends javax.swing.JFrame {
         return inputField;
     }
 
+    public JLabel getPlayerNameLabel(){
+        return playerNameLabel;
+    }
+    
     public JLabel getScoreLabel(){
         return scoreLabel;
     }
@@ -449,6 +485,10 @@ public class GameLayout extends javax.swing.JFrame {
     public int getAnimalSize()
     {
         return animalSize;
+    }
+    public TypeHandler getTypeHandler()
+    {
+        return typeHandler;
     }
 
             

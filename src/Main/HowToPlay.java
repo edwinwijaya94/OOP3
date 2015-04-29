@@ -56,7 +56,7 @@ public class HowToPlay extends javax.swing.JFrame {
         jPanel1.add(BackToMenu);
         BackToMenu.setBounds(643, 470, 130, 29);
 
-        backgroundHowToPlay.setIcon(new javax.swing.ImageIcon("D:\\Users\\Jessica\\Pictures\\Background\\howtoplay.png")); // NOI18N
+        backgroundHowToPlay.setIcon(new javax.swing.ImageIcon("D:\\Users\\Jessica\\OOP3\\image\\howtoplay.png")); // NOI18N
         jPanel1.add(backgroundHowToPlay);
         backgroundHowToPlay.setBounds(0, 0, 800, 510);
 
