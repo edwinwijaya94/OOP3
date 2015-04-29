@@ -85,8 +85,12 @@ public class HighScore extends javax.swing.JFrame {
      * Creates new form HighScore
      */
     private HighScore() {
-        this.setVisible(true);
         initComponents();
+    }
+    
+    public void showHighScoreFrame()
+    {
+        this.setVisible(true);
     }
     
     public ArrayList<HighScoreTuple> getHighScore()
@@ -202,7 +206,7 @@ public class HighScore extends javax.swing.JFrame {
     private void BackToMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BackToMenuActionPerformed
         // TODO add your handling code here:
         Menu stateMenu = Menu.getInstance();
-        this.dispose();
+        this.setVisible(false);
     }//GEN-LAST:event_BackToMenuActionPerformed
 
 
