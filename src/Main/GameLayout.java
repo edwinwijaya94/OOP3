@@ -41,6 +41,7 @@ public class GameLayout extends javax.swing.JFrame {
     int totalCorrectWords = 0;
     Background bg = new Background(this);
     Clip backgroundClip;
+    
     @Override
     public void paint(Graphics g) {
         super.paint(g);
@@ -280,11 +281,28 @@ public class GameLayout extends javax.swing.JFrame {
 
     private void startGameButtonActionPerformed(java.awt.event.ActionEvent evt) {                                                
         // TODO add your handling code here:
+        
+        
+        
         startGameButton.setEnabled(false);
         resumeButton.setEnabled(false);
         inputField.requestFocusInWindow();
         jPanel1.setLayout(null);
         gameStatus = new GameStatus();
+        
+        // ask for player's name
+        String name = JOptionPane.showInputDialog(this, "What's your name?");
+
+        // get the user's input. note that if they press Cancel, 'name' will be NN
+        if(name == null){
+            //playerNameLabel.setText("NN");
+            getGameStatus().setPlayerName("NN");
+        }
+        else{
+            //playerNameLabel.setText(name);
+            getGameStatus().setPlayerName(name);
+        }
+        
         
         for(int i = 0; i < 5; i++)
         {
@@ -356,6 +374,10 @@ public class GameLayout extends javax.swing.JFrame {
         return inputField;
     }
 
+    public JLabel getPlayerNameLabel(){
+        return playerNameLabel;
+    }
+    
     public JLabel getScoreLabel(){
         return scoreLabel;
     }
