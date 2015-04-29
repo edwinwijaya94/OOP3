@@ -11,6 +11,7 @@ import javax.sound.sampled.AudioSystem;
 import javax.sound.sampled.Clip;
 import javax.sound.sampled.DataLine;
 import javax.swing.JLabel;
+import java.util.*;
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -154,63 +155,24 @@ public abstract class Animal {
     
     public final String encodeChars(String currentWord){
         String temp = currentWord;
-        for(int i = 0; i < temp.length(); i++){
-            switch(temp.charAt(i)){
-                case 'a':{
-                    if(i == 0)
-                            temp = "4" + temp.substring(i+1);
-                    else if(i == temp.length())
-                            temp = temp.substring(0,i-1)+ "4";
-                    else
-                            temp = temp.substring(0,i) + "4" + temp.substring(i+1);
-                    break;
-                }
-                case 'e':{
-                    if(i == 0)
-                            temp = "3" + temp.substring(i+1);
-                    else if(i == temp.length())
-                            temp = temp.substring(0,i-1)+ "3";
-                    else
-                            temp = temp.substring(0,i) + "3" + temp.substring(i+1);
-                    break;
-                }
-                case 'i':{
-                    if(i == 0)
-                            temp = "1" + temp.substring(i+1);
-                    else if(i == temp.length())
-                            temp = temp.substring(0,i-1)+ "1";
-                    else
-                            temp = temp.substring(0,i) + "1" + temp.substring(i+1);
-                    break;
-                }
-                case 'j':{
-                    if(i == 0)
-                            temp = "7" + temp.substring(i+1);
-                    else if(i == temp.length())
-                            temp = temp.substring(0,i-1)+ "7";
-                    else
-                            temp = temp.substring(0,i) + "7" + temp.substring(i+1);
-                    break;
-                }
-                case 's':{
-                    if(i == 0)
-                            temp = "5" + temp.substring(i+1);
-                    else if(i == temp.length())
-                            temp = temp.substring(0,i-1)+ "5";
-                    else
-                            temp = temp.substring(0,i) + "5" + temp.substring(i+1);
-                    break;
-                }
-                case 'z':{
-                    if(i == 0)
-                            temp = "2" + temp.substring(i+1);
-                    else if(i == temp.length())
-                            temp = temp.substring(0,i-1)+ "2";
-                    else
-                            temp = temp.substring(0,i) + "2" + temp.substring(i+1);
-                    break;
-                }
-            }
+        HashMap<String, String> charsTable = new HashMap<>();
+		charsTable.put("a","4");
+		charsTable.put("e","3");
+		charsTable.put("i","1");
+		charsTable.put("j","7");
+		charsTable.put("o","0");
+		charsTable.put("s","5");
+		charsTable.put("z","2");
+		for(int i = 0; i < temp.length(); i++){
+			String encoded = charsTable.get(temp.substring(i,i+1));
+			if(encoded != null){
+				if(i == 0)
+					temp = encoded + temp.substring(i+1);
+				else if(i == temp.length())
+					temp = temp.substring(0,i-1)+ encoded;
+				else
+					temp = temp.substring(0,i) + encoded + temp.substring(i+1);	
+			}	
         }
         return temp;
     }

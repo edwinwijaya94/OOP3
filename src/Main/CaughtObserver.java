@@ -67,6 +67,7 @@ public class CaughtObserver implements EventObserver {
             AnimalFactory.getInstance().putAnimal(animal);
             animal.setWord("");
             animal.setCurrentWord("");
+   
             
             gameLayout.getAnimals()[animalIndex] = null;
             Animal tempAnimal = AnimalFactory.getInstance().getAnimal();
@@ -75,6 +76,7 @@ public class CaughtObserver implements EventObserver {
         }
         else{ // still has live
             //animal.setCurrentWord(WordsDictionary.getInstance().getWordsFromDictionary());
+            animal.setWord("");
             animal.setCurrentWord("");
         }
 
