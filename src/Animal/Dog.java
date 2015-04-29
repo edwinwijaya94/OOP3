@@ -34,7 +34,7 @@ public class Dog extends Animal {
     
     public Dog()
     {
-        
+        setLive(2);
     }
     
     public void draw(int position) {
@@ -95,7 +95,7 @@ public class Dog extends Animal {
                 try {
                     while(label.getLocationOnScreen().getX() > kiri) {
                         //updatePosition();
-                        long runningTime = System.nanoTime() - startTime;
+                        long runningTime = (System.nanoTime() - startTime)/nsToms;
                         word = behaveWord(runningTime / 1000000);
                         label.setLocation((int)label.getLocation().getX()-10, (int)label.getLocation().getY());
                         label.setText(word);

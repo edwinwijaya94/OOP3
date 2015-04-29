@@ -16,6 +16,9 @@ import javax.swing.JLabel;
  */
 public abstract class Animal {
     
+    //constant
+    public static final long nsToms = 1000000;
+    
     //attributes
     public static String animalName;
     protected JLabel label;
@@ -25,10 +28,11 @@ public abstract class Animal {
     public Point position= new Point();
     public EventObserver[] eventObserver;
     public String word="";
-    public int live = 1;
+    public int live = 2;
     
-    public long changeWordDuration = 8000;
+    public long changeWordDuration = 3000;
     public String currentWord="";
+    
     //getter, setter
     public final int getSpeed(){
         return speed;
@@ -60,6 +64,13 @@ public abstract class Animal {
     public final void setLive(int n){
         live = n;
     }
+    public String getCurrentWord(){
+        return currentWord;
+    }
+    public void setCurrentWord(String s){
+        currentWord = s;
+    }
+    
     public void delay(int animalSpeed) throws InterruptedException
     {
         int fastestSpeed = 30;
@@ -73,10 +84,16 @@ public abstract class Animal {
     //public abstract void draw();
     public abstract void draw(int position);
     public abstract void move();
-    public String behaveWord(long currentTime){
-        if (currentWord == "") currentWord = WordsDictionary.getInstance().getWordsFromDictionary();
-        currentWord = currentWord.substring(1) + currentWord.charAt(0);
+    
+    public final String behaveWordDefault(){
+        if (currentWord == "") 
+            currentWord = WordsDictionary.getInstance().getWordsFromDictionary();
+        //currentWord = currentWord.substring(1) + currentWord.charAt(0);
         return currentWord;
+    }
+    
+    public String behaveWord(long currentTime){
+        return behaveWordDefault();
     }
     
     // method library for use in behaveWord()
