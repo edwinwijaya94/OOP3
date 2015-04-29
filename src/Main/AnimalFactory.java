@@ -95,8 +95,8 @@ public class AnimalFactory {
         
         // get animal based on key
         ArrayList<Animal> animalList = animalMap.get(animalKey.get(i).toLowerCase());
-        return animalList.remove(animalList.size()-1);
-        //return animalMap.get("alien").remove(0);
+        //return animalList.remove(animalList.size()-1);
+        return animalMap.get("cyclist").remove(0);
     }
     
     public synchronized void putAnimal(Animal animal) {
@@ -104,7 +104,7 @@ public class AnimalFactory {
                 Field animalName = animal.getClass().getField("animalName");
                 tempAnimalName = (String)animalName.get(null);
             }catch(Exception e) {}
-        
+        animal.setLive(animal.getDefaultLive());
         ArrayList<Animal> animalList = animalMap.get(tempAnimalName.toLowerCase());
         animalList.add(animal);
     }

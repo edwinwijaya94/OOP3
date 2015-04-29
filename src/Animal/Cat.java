@@ -80,7 +80,7 @@ public class Cat extends Animal {
                 int kiri = (int)GameLayout.getInstance().getPanel().getLocationOnScreen().getX();
                 try {
                     long startTime = System.nanoTime();
-                    while(label.getLocationOnScreen().getX() > kiri) {
+                    while(label.getLocation().getX() > kiri) {
                         updatePosition();
                         long runningTime = (System.nanoTime() - startTime)/1000000;
                         if(word.isEmpty() || runningTime >= changeWordDuration){ //randomize chars every 3 seconds

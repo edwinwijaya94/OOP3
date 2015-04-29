@@ -98,7 +98,7 @@ public class Dragon extends Animal{
             public void run() {
                 int kiri = (int)GameLayout.getInstance().getPanel().getLocationOnScreen().getX();
                 try {
-                    while(label.getLocationOnScreen().getX() > kiri) {
+                    while(label.getLocation().getX() > kiri) {
                         //updatePosition();
                         label.setLocation((int)label.getLocation().getX()-10, (int)label.getLocation().getY());
                         long runningTime = System.nanoTime() - startTime;

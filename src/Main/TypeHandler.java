@@ -17,38 +17,33 @@ import sun.audio.AudioStream;
  */
 public class TypeHandler extends Thread{
     
-    private Thread thread;
+    //private Thread thread;
     private String threadName = "TypeHandlerThread";
     private boolean pause = false;
     public Passer passer;
         
     public TypeHandler(Passer passer)
     {
-        if (thread == null)
-        {
-            thread = new Thread (this, threadName);
-            thread.start ();
+        //if (thread == null)
+        //{
+            //thread = new Thread (this, threadName);
+            //thread.start ();
             this.passer = passer;
-        }
+            start();
+        //}
     }
     
-    public void pause(){
-        pause = true;
-    }
-    
-    public void unpause(){
-        pause = false;
-    }
     
     public void run()
     {
-        while (true){
+        //while (!Thread.interrupted()){
+        try {
+        while(true) {
             validateInput();
-            while (pause) {
-                try{
-                    wait();
-                }catch(Exception e){}
-            }
+            Thread.sleep(1);
+        }
+        } catch (InterruptedException e) { 
+        //System.out.println("interrupted"); 
         }
     }
     
@@ -57,6 +52,8 @@ public class TypeHandler extends Thread{
         Animal[] animal = GameLayout.getInstance().getAnimals();
         for (int i=0;i<GameLayout.getInstance().getAnimalSize();i++)
         {
+            //if (animal[i] == null)
+                //System.out.println("null");
             if (passer.word.equals(animal[i].getWord()))
             {
                 // Play music when answer corrected

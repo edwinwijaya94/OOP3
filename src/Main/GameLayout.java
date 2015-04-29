@@ -328,10 +328,29 @@ public class GameLayout extends javax.swing.JFrame {
 
     private void pauseButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_pauseButtonActionPerformed
         // TODO add your handling code here:
+            for (int i=0;i<animalSize;i++)
+            {
+                try
+                {
+                    animals[i].getThread().interrupt();
+                }catch(Exception e){}
+            }
+            pauseButton.setEnabled(false);
+            resumeButton.setEnabled(true);
     }//GEN-LAST:event_pauseButtonActionPerformed
 
     private void resumeButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_resumeButtonActionPerformed
         // TODO add your handling code here:
+            for (int i=0;i<animalSize;i++)
+            {
+                try
+                {
+                    animals[i].getLabel().setVisible(true);
+                    animals[i].move();
+                }catch(Exception e){}
+            }
+            pauseButton.setEnabled(true);
+            resumeButton.setEnabled(false);
     }//GEN-LAST:event_resumeButtonActionPerformed
 
     private void startGameButtonActionPerformed(java.awt.event.ActionEvent evt) {                                                
@@ -465,6 +484,10 @@ public class GameLayout extends javax.swing.JFrame {
     public int getAnimalSize()
     {
         return animalSize;
+    }
+    public TypeHandler getTypeHandler()
+    {
+        return typeHandler;
     }
 
             
