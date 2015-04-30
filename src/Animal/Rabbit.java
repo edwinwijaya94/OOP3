@@ -4,20 +4,19 @@ import Main.AnimalFactory;
 import Main.GameLayout;
 import Main.Animal;
 import Main.EscapeObserver;
-import Main.WordsDictionary;
-import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Font;
-import java.awt.Image;
 import java.io.File;
+import java.io.IOException;
 import javax.sound.sampled.AudioFormat;
 import javax.sound.sampled.AudioInputStream;
 import javax.sound.sampled.AudioSystem;
 import javax.sound.sampled.Clip;
 import javax.sound.sampled.DataLine;
+import javax.sound.sampled.LineUnavailableException;
+import javax.sound.sampled.UnsupportedAudioFileException;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
-import javax.swing.SwingUtilities;
 
 
 /*
@@ -43,13 +42,11 @@ public class Rabbit extends Animal{
 
     }
     
+    @Override
     public void draw(int position) {
         currentWord = "";
         setSpeed(20);
         ImageIcon icon = new ImageIcon("image/rabbit.gif");
-        Image image = icon.getImage();
-        //image = image.getScaledInstance(130, 130,  java.awt.Image.SCALE_SMOOTH); 
-        //icon = new ImageIcon(image);
         label = new JLabel();
         label.setText("");
         label.setIcon(icon);
@@ -63,7 +60,6 @@ public class Rabbit extends Animal{
         atas += position * label.getWidth()/2 + position*15 ;
         label.setLocation(kanan,atas);
         label.setVisible(true);
-        //GameLayout.getInstance().getPanel().add(label, BorderLayout.CENTER);
         GameLayout.getInstance().getPanel().add(label, 0);
         move();
     }
@@ -71,10 +67,9 @@ public class Rabbit extends Animal{
     //method
     @Override
     public void move(){
-         /*if (label == null) 
-            draw();*/
          final long startTime = System.nanoTime();
          myThread = new Thread()  {
+            @Override
             public void run() {
                 int kiri = (int)GameLayout.getInstance().getPanel().getLocationOnScreen().getX();
                 try {
@@ -90,35 +85,19 @@ public class Rabbit extends Animal{
                         label.setText(word);
                         GameLayout.getInstance().getPanel().revalidate();
                         GameLayout.getInstance().getPanel().repaint();
-                        //Thread.sleep(100-speed);
                         delay(speed);
                     }
                     GameLayout.getInstance().getPanel().remove(label);
                     GameLayout.getInstance().getPanel().revalidate();
                     GameLayout.getInstance().getPanel().repaint();
                     EscapeObserver.getInstance().handle();
-                    return;
-                } catch (InterruptedException ex) {  
-                    //GameLayout.getInstance().getPanel().remove(label);
-                    GameLayout.getInstance().getPanel().revalidate();
-                    GameLayout.getInstance().getPanel().repaint();
-                    return;
-                    //break;               
+                } catch (InterruptedException ex) {               
                 }
             }
         };
         myThread.start();
     }                                               
 
-     private void updatePosition() {
-        SwingUtilities.invokeLater (new Runnable() {
-            @Override
-            public void run() {
-               label.setLocation((int)label.getLocation().getX()-10, (int)label.getLocation().getY());
-            }
-        });
-    }
-    
     @Override
     public void playSound(){
         // Play music when answer corrected
@@ -133,17 +112,8 @@ public class Rabbit extends Animal{
 
             audioClip.open(audioStream);            
             audioClip.start();
-        }catch(Exception e){
+        }catch(UnsupportedAudioFileException | IOException | LineUnavailableException e){
             System.out.println(e);
         }
     } 
-    
-    /*@Override
-    public String behaveWord(long currentTime) {
-        if (currentWord == "") currentWord = WordsDictionary.getInstance().getWordsFromDictionary();
-        return currentWord;
-        //GameLayout.getInstance().debug(WordsDictionary.getInstance().getWordsFromDictionary());
-        //return "asem";
-        //return WordsDictionary.getInstance().getWordsFromDictionary();
-    }*/
 }

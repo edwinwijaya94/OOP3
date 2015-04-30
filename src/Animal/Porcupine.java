@@ -4,14 +4,10 @@ import Main.AnimalFactory;
 import Main.GameLayout;
 import Main.Animal;
 import Main.EscapeObserver;
-import Main.WordsDictionary;
-import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Font;
-import java.awt.Image;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
-import javax.swing.SwingUtilities;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -30,17 +26,12 @@ public class Porcupine extends Animal {
     static {
         AnimalFactory.getInstance().registerAnimal(Porcupine.class);
     }
-    
-    private void checkDeath()
-    {
-        
-    }
-    
+
+    @Override
     public void draw(int position) {
         currentWord = "";
         setSpeed(5);
         ImageIcon icon = new ImageIcon("image/porcupine.gif");
-        Image image = icon.getImage();
         label = new JLabel();
         label.setText("");
         label.setIcon(icon);
@@ -61,10 +52,9 @@ public class Porcupine extends Animal {
     //method
     @Override
     public void move(){
-         /*if (label == null) 
-            draw();*/
          final long startTime = System.nanoTime();
          myThread = new Thread()  {
+            @Override
             public void run() {
                 int kiri = (int)GameLayout.getInstance().getPanel().getLocationOnScreen().getX();
                 try {
@@ -87,33 +77,10 @@ public class Porcupine extends Animal {
                     GameLayout.getInstance().getPanel().revalidate();
                     GameLayout.getInstance().getPanel().repaint();
                     EscapeObserver.getInstance().handle();
-                    return;
-                } catch (InterruptedException ex) {  
-                    //GameLayout.getInstance().getPanel().remove(label);
-                    GameLayout.getInstance().getPanel().revalidate();
-                    GameLayout.getInstance().getPanel().repaint();
-                    return;
-                    //break;               
+                } catch (InterruptedException ex) {                
                 }
             }
         };
         myThread.start();
     }                                               
-
-     private void updatePosition() {
-        SwingUtilities.invokeLater (new Runnable() {
-            @Override
-            public void run() {
-               label.setLocation((int)label.getLocation().getX()-10, (int)label.getLocation().getY());
-            }
-        });
-    }
-   
-    /*
-    @Override
-    public String behaveWord(long duration){
-        if (currentWord == "") currentWord = WordsDictionary.getInstance().getWordsFromDictionary();
-        currentWord = currentWord.substring(1) + currentWord.charAt(0);
-        return currentWord;
-    }*/
 }

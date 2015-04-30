@@ -9,13 +9,10 @@ import Main.Animal;
 import Main.AnimalFactory;
 import Main.EscapeObserver;
 import Main.GameLayout;
-import Main.WordsDictionary;
 import java.awt.Color;
 import java.awt.Font;
-import java.awt.Image;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
-import javax.swing.SwingUtilities;
 
 /**
  *
@@ -34,19 +31,12 @@ public class Rubah extends Animal {
     {
 
     }
-    
-    private void checkDeath()
-    {
-        
-    }
-    
+
+    @Override
     public void draw(int position) {
         currentWord = "";
         setSpeed(5);
         ImageIcon icon = new ImageIcon("image/rubah.gif");
-        Image image = icon.getImage();
-        image = image.getScaledInstance(130, 130,  java.awt.Image.SCALE_SMOOTH); 
-        //icon = new ImageIcon(image);
         label = new JLabel();
         label.setText("");
         label.setIcon(icon);
@@ -60,7 +50,6 @@ public class Rubah extends Animal {
         atas += position * label.getWidth()/2 + position*15 ;
         label.setLocation(kanan,atas);
         label.setVisible(true);
-        //GameLayout.getInstance().getPanel().add(label, BorderLayout.CENTER);
         GameLayout.getInstance().getPanel().add(label, 0);
         move();
     }
@@ -68,10 +57,9 @@ public class Rubah extends Animal {
     //method
     @Override
     public void move(){
-         /*if (label == null) 
-            draw();*/
          final long startTime = System.nanoTime();
          myThread = new Thread()  {
+            @Override
             public void run() {
                 int kiri = (int)GameLayout.getInstance().getPanel().getLocationOnScreen().getX();
                 try {
@@ -87,42 +75,16 @@ public class Rubah extends Animal {
                         label.setText(word);
                         GameLayout.getInstance().getPanel().revalidate();
                         GameLayout.getInstance().getPanel().repaint();
-                        //Thread.sleep(100-speed);
                         delay(speed);
                     }
                     GameLayout.getInstance().getPanel().remove(label);
                     GameLayout.getInstance().getPanel().revalidate();
                     GameLayout.getInstance().getPanel().repaint();
                     EscapeObserver.getInstance().handle();
-                    return;
-                } catch (InterruptedException ex) {  
-                    //label.setVisible(false);
-                    //GameLayout.getInstance().getPanel().remove(label);
-                    GameLayout.getInstance().getPanel().revalidate();
-                    GameLayout.getInstance().getPanel().repaint();
-                    return;
-                    //break;               
+                } catch (InterruptedException ex) {                 
                 }
             }
         };
         myThread.start();
     }                                               
-
-     private void updatePosition() {
-        SwingUtilities.invokeLater (new Runnable() {
-            @Override
-            public void run() {
-               label.setLocation((int)label.getLocation().getX()-10, (int)label.getLocation().getY());
-            }
-        });
-    }
-    
-    /*@Override
-    public String behaveWord(long currentTime) {
-        if (currentWord == "") currentWord = WordsDictionary.getInstance().getWordsFromDictionary();
-        return currentWord;
-        //GameLayout.getInstance().debug(WordsDictionary.getInstance().getWordsFromDictionary());
-        //return "asem";
-        //return WordsDictionary.getInstance().getWordsFromDictionary();
-    }*/
 }
