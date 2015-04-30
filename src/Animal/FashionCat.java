@@ -38,10 +38,6 @@ public class FashionCat extends Animal {
         AnimalFactory.getInstance().registerAnimal(FashionCat.class);
     }
     
-    private void checkDeath()
-    {
-        
-    }
     
     public void draw(int position) {
         currentWord = "";
@@ -68,8 +64,7 @@ public class FashionCat extends Animal {
     //method
     @Override
     public void move(){
-         /*if (label == null) 
-            draw();*/
+         
          final long startTime = System.nanoTime();
          myThread = new Thread()  {
             public void run() {
@@ -87,7 +82,7 @@ public class FashionCat extends Animal {
                         label.setText(word);
                         GameLayout.getInstance().getPanel().revalidate();
                         GameLayout.getInstance().getPanel().repaint();
-                        //Thread.sleep(100-speed);
+                        
                         delay(speed);
                     }
                     GameLayout.getInstance().getPanel().remove(label);
@@ -96,11 +91,11 @@ public class FashionCat extends Animal {
                     EscapeObserver.getInstance().handle();
                     return;
                 } catch (InterruptedException ex) {  
-                    //GameLayout.getInstance().getPanel().remove(label);
+                    
                     GameLayout.getInstance().getPanel().revalidate();
                     GameLayout.getInstance().getPanel().repaint();
                     return;
-                    //break;               
+                    
                 }
             }
         };
@@ -135,11 +130,5 @@ public class FashionCat extends Animal {
         }
     } 
      
-    /*
-    @Override
-    public String behaveWord(long duration){
-        if (currentWord == "") currentWord = WordsDictionary.getInstance().getWordsFromDictionary();
-        currentWord = currentWord.substring(1) + currentWord.charAt(0);
-        return currentWord;
-    }*/
+    
 }

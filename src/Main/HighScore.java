@@ -191,7 +191,7 @@ public class HighScore extends javax.swing.JFrame {
         if (instance == null)
         {
             instance = new HighScore();
-            instance.writeHighScoretoFile();
+            //instance.writeHighScoretoFile();
         }
         return instance;
     }

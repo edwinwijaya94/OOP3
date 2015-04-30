@@ -37,18 +37,12 @@ public class Horse extends Animal {
         AnimalFactory.getInstance().registerAnimal(Horse.class);
     }
     
-    private void checkDeath()
-    {
-        
-    }
-    
     public void draw(int position) {
         currentWord = "";
         setSpeed(30);
         ImageIcon icon = new ImageIcon("image/horse1.gif");
         Image image = icon.getImage();
-        //image = image.getScaledInstance(210, 210,  java.awt.Image.SCALE_SMOOTH); 
-        //icon = new ImageIcon(image);
+        
         label = new JLabel();
         label.setText("");
         label.setIcon(icon);
@@ -62,7 +56,7 @@ public class Horse extends Animal {
         atas += position * label.getWidth()/2 + position*15 + 12 ;
         label.setLocation(kanan,atas);
         label.setVisible(true);
-        //GameLayout.getInstance().getPanel().add(label, BorderLayout.CENTER);
+        
         GameLayout.getInstance().getPanel().add(label, 0);
         move();
     }
@@ -70,8 +64,7 @@ public class Horse extends Animal {
     //method
     @Override
     public void move(){
-         /*if (label == null) 
-            draw();*/
+         
          final long startTime = System.nanoTime();
          myThread = new Thread()  {
             public void run() {
@@ -89,7 +82,7 @@ public class Horse extends Animal {
                         label.setText(word);
                         GameLayout.getInstance().getPanel().revalidate();
                         GameLayout.getInstance().getPanel().repaint();
-                        //Thread.sleep(100-speed);
+                        
                         delay(speed);
                     }
                     GameLayout.getInstance().getPanel().remove(label);
@@ -98,11 +91,11 @@ public class Horse extends Animal {
                     EscapeObserver.getInstance().handle();
                     return;
                 } catch (InterruptedException ex) {  
-                    //GameLayout.getInstance().getPanel().remove(label);
+                    
                     GameLayout.getInstance().getPanel().revalidate();
                     GameLayout.getInstance().getPanel().repaint();
                     return;
-                    //break;               
+                    
                 }
             }
         };
@@ -137,12 +130,4 @@ public class Horse extends Animal {
         }
     }
      
-     
-    /*
-    @Override
-    public String behaveWord(long duration){
-        if (currentWord == "") currentWord = WordsDictionary.getInstance().getWordsFromDictionary();
-        currentWord = currentWord.substring(1) + currentWord.charAt(0);
-        return currentWord;
-    }*/
 }
