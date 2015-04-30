@@ -76,7 +76,6 @@ public class HowToPlay extends javax.swing.JFrame {
 
     private void BackToMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BackToMenuActionPerformed
         // TODO add your handling code here:
-        //Menu stateMenu = Menu.getInstance();
         this.dispose();
         Menu.getInstance().showMenuFrame();
     }//GEN-LAST:event_BackToMenuActionPerformed
