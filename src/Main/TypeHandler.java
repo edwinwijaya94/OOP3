@@ -24,26 +24,21 @@ public class TypeHandler extends Thread{
         
     public TypeHandler(Passer passer)
     {
-        //if (thread == null)
-        //{
-            //thread = new Thread (this, threadName);
-            //thread.start ();
-            this.passer = passer;
-            start();
-        //}
+
+        this.passer = passer;
+        start();
     }
     
     
     public void run()
     {
-        //while (!Thread.interrupted()){
         try {
-        while(true) {
-            validateInput();
-            Thread.sleep(1);
-        }
+            while(true) {
+                validateInput();
+                Thread.sleep(1);
+            }
         } catch (InterruptedException e) { 
-        //System.out.println("interrupted"); 
+            System.out.println(e);
         }
     }
     
@@ -52,8 +47,6 @@ public class TypeHandler extends Thread{
         Animal[] animal = GameLayout.getInstance().getAnimals();
         for (int i=0;i<GameLayout.getInstance().getAnimalSize();i++)
         {
-            //if (animal[i] == null)
-                //System.out.println("null");
             if (passer.word.equals(animal[i].getWord()))
             {
                 animal[i].playSound();
@@ -64,7 +57,5 @@ public class TypeHandler extends Thread{
                 return;
             }
         }
-        //GameLayout.getInstance().getStartGameButton().setEnabled(true);
-        //GameLayout.getInstance().getStartGameButton().setText("Restart Game ?");
     }
 }

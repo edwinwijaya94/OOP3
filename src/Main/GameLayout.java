@@ -37,7 +37,6 @@ public class GameLayout extends javax.swing.JFrame {
     private static GameLayout instance;
     private static int animalSize = 5;
     static Animal[] animals = new Animal[animalSize];
-    //Background background;
     TypeHandler typeHandler;
     GameStatus gameStatus;
     public volatile Passer passer = new Passer();
@@ -52,7 +51,6 @@ public class GameLayout extends javax.swing.JFrame {
 	Graphics2D g2d = (Graphics2D) g;
 	g2d.setRenderingHint(RenderingHints.KEY_ANTIALIASING,
 	RenderingHints.VALUE_ANTIALIAS_ON);
-	//bg.paint(g2d);
     }
     
     public int getTotalCorrectWords()
@@ -79,12 +77,8 @@ public class GameLayout extends javax.swing.JFrame {
         
         addComponentListener(new ComponentListener() {
             public void componentResized(ComponentEvent e) {        
-                //System.out.println(e.getComponent().toString());
-    		//System.out.println(e.getComponent().getSize().height);
                 int panelHeight = e.getComponent().getSize().height;
-                //System.out.println(panelHeight);
                 int panelWidth = e.getComponent().getSize().width;
-                //System.out.println(panelWidth);
                                 
                 JLabel labelb = new JLabel();
                 ImageIcon icon2 = new ImageIcon("image/gamelayout.png");
@@ -306,10 +300,8 @@ public class GameLayout extends javax.swing.JFrame {
 
     private void backToMenuButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backToMenuButtonActionPerformed
         // TODO add your handling code here:
-        //Menu stateMenu = Menu.getInstance();
         this.setVisible(false);
         Menu.getInstance().showMenuFrame();
-        //Menu.setVisible(true);
     }//GEN-LAST:event_backToMenuButtonActionPerformed
 
     private void pauseButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_pauseButtonActionPerformed
@@ -359,7 +351,6 @@ public class GameLayout extends javax.swing.JFrame {
             getGameStatus().setPlayerName(getGameStatus().getPlayerName());
         }
         else{
-            //playerNameLabel.setText(name);
             getGameStatus().setPlayerName(name);
         }
         
@@ -384,7 +375,7 @@ public class GameLayout extends javax.swing.JFrame {
                 Animal.setSpeedLevel(25);
         }
         
-        for(int i = 0; i < 5; i++)
+        for(int i = 0; i < animalSize; i++)
         {
             animals[i] = AnimalFactory.getInstance().getAnimal();
             animals[i].draw(i);

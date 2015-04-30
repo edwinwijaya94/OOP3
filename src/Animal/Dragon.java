@@ -41,11 +41,6 @@ public class Dragon extends Animal{
     {
 
     }
-   
-    private void checkDeath()
-    {
-        
-    }
     
     public void draw(int position) {
         currentWord = "";
@@ -53,7 +48,7 @@ public class Dragon extends Animal{
         ImageIcon icon = new ImageIcon("image/dragon.gif");
         Image image = icon.getImage();
         image = image.getScaledInstance(130, 130,  java.awt.Image.SCALE_SMOOTH); 
-        //icon = new ImageIcon(image);
+        
         label = new JLabel();
         label.setText("");
         label.setIcon(icon);
@@ -67,7 +62,7 @@ public class Dragon extends Animal{
         atas += position * label.getWidth()/2 + position*15 ;
         label.setLocation(kanan,atas);
         label.setVisible(true);
-        //GameLayout.getInstance().getPanel().add(label, BorderLayout.CENTER);
+        
         GameLayout.getInstance().getPanel().add(label, 0);
         move();
     }
@@ -75,20 +70,19 @@ public class Dragon extends Animal{
     //method
     @Override
     public void move(){
-         /*if (label == null) 
-            draw();*/
+         
          final long startTime = System.nanoTime();
          myThread = new Thread()  {
             public void run() {
                 int kiri = (int)GameLayout.getInstance().getPanel().getLocationOnScreen().getX();
                 try {
                     while(label.getLocation().getX() > kiri) {
-                        //updatePosition();
+                        
                         label.setLocation((int)label.getLocation().getX()-10, (int)label.getLocation().getY());
                         long runningTime = System.nanoTime() - startTime;
                         word = behaveWord(runningTime / 1000000);
                         label.setText(word);
-                        //Thread.sleep(100-speed);
+                        
                         delay(speed);
                     }
                     GameLayout.getInstance().getPanel().remove(label);
@@ -97,12 +91,11 @@ public class Dragon extends Animal{
                     EscapeObserver.getInstance().handle();
                     return;
                 } catch (InterruptedException ex) {  
-                    //label.setVisible(false);
-                    //GameLayout.getInstance().getPanel().remove(label);
+                    
                     GameLayout.getInstance().getPanel().revalidate();
                     GameLayout.getInstance().getPanel().repaint();
                     return;
-                    //break;               
+                    
                 }
             }
         };
@@ -138,11 +131,5 @@ public class Dragon extends Animal{
     }
      
      
-    /*
-    @Override
-    public String behaveWord(long duration){
-        if (currentWord == "") currentWord = WordsDictionary.getInstance().getWordsFromDictionary();
-        currentWord = currentWord.substring(1) + currentWord.charAt(0);
-        return currentWord;
-    }*/
+    
 }

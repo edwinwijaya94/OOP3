@@ -32,7 +32,6 @@ public class EscapeObserver implements EventObserver{
     @Override
     public synchronized void handle() {
         Animal[] animalList = GameLayout.getInstance().getAnimals();
-        //System.out.println("a");
         counter++;
         System.out.println("Counter : " + counter);
         if (counter == 5)
@@ -45,7 +44,6 @@ public class EscapeObserver implements EventObserver{
         {
         GameLayout.getInstance().getTypeHandler().interrupt();
         for (int i = 0; i < GameLayout.getInstance().getAnimalSize(); i++) {
-        //    animalList[i].getThread().interrupt();
             AnimalFactory.getInstance().putAnimal(animalList[i]);
             animalList[i] = null;
         }
@@ -60,7 +58,6 @@ public class EscapeObserver implements EventObserver{
                     JOptionPane.INFORMATION_MESSAGE
                 );
         // add to highscore
-        //System.out.println("b");
         GameStatus gameStatus = GameLayout.getInstance().getGameStatus();
         HighScore.getInstance().addHighScore(gameStatus.getPlayerName(), gameStatus.getScore());
         HighScore.getInstance().writeHighScoretoFile();

@@ -36,22 +36,8 @@ public class CaughtObserver implements EventObserver {
     }
     
     @Override
-    public void handle() {
-        /*
-        gameLayout.getGameStatus().addScore(animal.getSpeed());
-        gameLayout.getTextField().setText("");
-        animal.getThread().interrupt();
-        AnimalFactory.getInstance().putAnimal(animal);
-
-        gameLayout.getAnimals()[animalIndex] = null;
-        Animal tempAnimal = AnimalFactory.getInstance().getAnimal();
-        gameLayout.getAnimals()[animalIndex] = tempAnimal;
-        tempAnimal.draw(animalIndex);
-        */
-        
-        
+    public void handle() {        
         int n = animal.getLive();
-        //System.out.println(n);
         n--;
         animal.setLive(n);
         
@@ -75,11 +61,8 @@ public class CaughtObserver implements EventObserver {
             tempAnimal.draw(animalIndex);
         }
         else{ // still has live
-            //animal.setCurrentWord(WordsDictionary.getInstance().getWordsFromDictionary());
             animal.setWord("");
             animal.setCurrentWord("");
         }
-
-        //tempAnimal.move();
     }
 }

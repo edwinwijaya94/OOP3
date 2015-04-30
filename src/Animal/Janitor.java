@@ -31,10 +31,6 @@ public class Janitor extends Animal {
         AnimalFactory.getInstance().registerAnimal(Janitor.class);
     }
     
-    private void checkDeath()
-    {
-        
-    }
     
     public void draw(int position) {
         currentWord = "";
@@ -61,8 +57,7 @@ public class Janitor extends Animal {
     //method
     @Override
     public void move(){
-         /*if (label == null) 
-            draw();*/
+
          final long startTime = System.nanoTime();
          myThread = new Thread()  {
             public void run() {
@@ -89,11 +84,11 @@ public class Janitor extends Animal {
                     EscapeObserver.getInstance().handle();
                     return;
                 } catch (InterruptedException ex) {  
-                    //GameLayout.getInstance().getPanel().remove(label);
+                    
                     GameLayout.getInstance().getPanel().revalidate();
                     GameLayout.getInstance().getPanel().repaint();
                     return;
-                    //break;               
+                    
                 }
             }
         };
@@ -109,11 +104,4 @@ public class Janitor extends Animal {
         });
     }
   
-    /*
-    @Override
-    public String behaveWord(long duration){
-        if (currentWord == "") currentWord = WordsDictionary.getInstance().getWordsFromDictionary();
-        currentWord = currentWord.substring(1) + currentWord.charAt(0);
-        return currentWord;
-    }*/
 }
