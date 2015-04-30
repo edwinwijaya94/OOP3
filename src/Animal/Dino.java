@@ -32,7 +32,7 @@ public class Dino extends Animal {
     public static String animalName = "Dino";
     public String currentWord = "";
     
-// registering the class to AnimalFactory
+    // registering the class to AnimalFactory
     static {
         AnimalFactory.getInstance().registerAnimal(Dino.class);
     }
@@ -42,18 +42,12 @@ public class Dino extends Animal {
 
     }
     
-    private void checkDeath()
-    {
-        
-    }
-    
     public void draw(int position) {
         currentWord = "";
         setSpeed(5);
         ImageIcon icon = new ImageIcon("image/dino.gif");
         Image image = icon.getImage();
         image = image.getScaledInstance(130, 130,  java.awt.Image.SCALE_SMOOTH); 
-        //icon = new ImageIcon(image);
         label = new JLabel();
         label.setText("");
         label.setIcon(icon);
@@ -67,7 +61,6 @@ public class Dino extends Animal {
         atas += position * label.getWidth()/2 + position*15 ;
         label.setLocation(kanan,atas);
         label.setVisible(true);
-        //GameLayout.getInstance().getPanel().add(label, BorderLayout.CENTER);
         GameLayout.getInstance().getPanel().add(label, 0);
         move();
     }
@@ -75,8 +68,6 @@ public class Dino extends Animal {
     //method
     @Override
     public void move(){
-         /*if (label == null) 
-            draw();*/
          final long startTime = System.nanoTime();
          myThread = new Thread()  {
             public void run() {
@@ -103,8 +94,6 @@ public class Dino extends Animal {
                     EscapeObserver.getInstance().handle();
                     return;
                 } catch (InterruptedException ex) {  
-                    //label.setVisible(false);
-                    //GameLayout.getInstance().getPanel().remove(label);
                     GameLayout.getInstance().getPanel().revalidate();
                     GameLayout.getInstance().getPanel().repaint();
                     return;

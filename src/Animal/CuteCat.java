@@ -38,18 +38,11 @@ public class CuteCat extends Animal {
         AnimalFactory.getInstance().registerAnimal(CuteCat.class);
     }
     
-    private void checkDeath()
-    {
-        
-    }
-    
     public void draw(int position) {
         currentWord = "";
         setSpeed(20);
         ImageIcon icon = new ImageIcon("image/cute.gif");
         Image image = icon.getImage();
-        //image = image.getScaledInstance(170, 170,  java.awt.Image.SCALE_SMOOTH); 
-        //icon = new ImageIcon(image);
         label = new JLabel();
         label.setText("");
         label.setIcon(icon);
@@ -63,7 +56,6 @@ public class CuteCat extends Animal {
         atas += position * label.getWidth()/2.1 + position*15 + 15;
         label.setLocation(kanan,atas);
         label.setVisible(true);
-        //GameLayout.getInstance().getPanel().add(label, BorderLayout.CENTER);
         GameLayout.getInstance().getPanel().add(label, 0);
         move();
     }
@@ -71,8 +63,6 @@ public class CuteCat extends Animal {
     //method
     @Override
     public void move(){
-         /*if (label == null) 
-            draw();*/
          final long startTime = System.nanoTime();
          myThread = new Thread()  {
             public void run() {
@@ -137,12 +127,4 @@ public class CuteCat extends Animal {
             System.out.println(e);
         }
     } 
-    
-    /*
-    @Override
-    public String behaveWord(long duration){
-        if (currentWord == "") currentWord = WordsDictionary.getInstance().getWordsFromDictionary();
-        currentWord = currentWord.substring(1) + currentWord.charAt(0);
-        return currentWord;
-    }*/
 }

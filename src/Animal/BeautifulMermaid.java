@@ -27,16 +27,11 @@ public class BeautifulMermaid extends Animal {
     public static String animalName = "BeautifulMermaid";
     public String currentWord = "";
     
-// registering the class to AnimalFactory
+    // registering the class to AnimalFactory
     static {
         AnimalFactory.getInstance().registerAnimal(BeautifulMermaid.class);
     }
-    
-    private void checkDeath()
-    {
-        
-    }
-    
+  
     public void draw(int position) {
         currentWord = "";
         setSpeed(1);
@@ -62,8 +57,6 @@ public class BeautifulMermaid extends Animal {
     //method
     @Override
     public void move(){
-         /*if (label == null) 
-            draw();*/
          final long startTime = System.nanoTime();
          myThread = new Thread()  {
             public void run() {
@@ -109,12 +102,4 @@ public class BeautifulMermaid extends Animal {
             }
         });
     }
-
-    
-    /*@Override
-    public String behaveWord(long duration){
-        if (currentWord == "") currentWord = WordsDictionary.getInstance().getWordsFromDictionary();
-        currentWord = currentWord.substring(1) + currentWord.charAt(0);
-        return currentWord;
-    }*/
 }

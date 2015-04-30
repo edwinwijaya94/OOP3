@@ -31,7 +31,7 @@ public class Alien extends Animal {
     public static String animalName = "Alien";
     public String currentWord = "";
     
-// registering the class to AnimalFactory
+    //registering the class to AnimalFactory 
     static {
         AnimalFactory.getInstance().registerAnimal(Alien.class);
     }
@@ -61,8 +61,6 @@ public class Alien extends Animal {
     //method
     @Override
     public void move(){
-         /*if (label == null) 
-            draw();*/
          myThread = new Thread()  {
             public void run() {
                 int kiri = (int)GameLayout.getInstance().getPanel().getLocationOnScreen().getX();

@@ -31,7 +31,7 @@ public class Bird extends Animal {
      public static String animalName = "Bird";
     public String currentWord = "";
     
-// registering the class to AnimalFactory
+    // registering the class to AnimalFactory
     static {
         AnimalFactory.getInstance().registerAnimal(Bird.class);
     }
@@ -40,33 +40,6 @@ public class Bird extends Animal {
     {
 
     }
-    /*
-    public void draw() {
-        setSpeed(5);
-        ImageIcon icon = new ImageIcon("image/cat.png");
-        Image image = icon.getImage();
-        image = image.getScaledInstance(200, 100,  java.awt.Image.SCALE_SMOOTH); 
-        icon = new ImageIcon(image);
-        label = new JLabel();
-        label.setText("");
-        label.setIcon(icon);
-        label.setSize(200,100);
-        label.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        label.setForeground(Color.GREEN);
-        label.setFont(label.getFont().deriveFont((float)(label.getFont().getSize()+20)));
-        label.setFont(label.getFont().deriveFont(Font.BOLD));
-        int kanan = (int)GameLayout.getInstance().getPanel().getBounds().getMaxX() - label.getWidth() - 20;
-        int atas = (int)GameLayout.getInstance().getPanel().getLocationOnScreen().getY() - 100;
-        label.setLocation(kanan,atas);
-        label.setVisible(true);
-        GameLayout.getInstance().getPanel().add(label, BorderLayout.CENTER);
-    }
-    */
-    
-    private void checkDeath()
-    {
-        
-    }
     
     public void draw(int position) {
         currentWord = "";
@@ -74,7 +47,6 @@ public class Bird extends Animal {
         ImageIcon icon = new ImageIcon("image/bird.gif");
         Image image = icon.getImage();
         image = image.getScaledInstance(130, 130,  java.awt.Image.SCALE_SMOOTH); 
-        //icon = new ImageIcon(image);
         label = new JLabel();
         label.setText("");
         label.setIcon(icon);
@@ -88,7 +60,6 @@ public class Bird extends Animal {
         atas += position * label.getWidth()/2 + position*15 ;
         label.setLocation(kanan,atas);
         label.setVisible(true);
-        //GameLayout.getInstance().getPanel().add(label, BorderLayout.CENTER);
         GameLayout.getInstance().getPanel().add(label, 0);
         move();
     }
@@ -96,8 +67,6 @@ public class Bird extends Animal {
     //method
     @Override
     public void move(){
-         /*if (label == null) 
-            draw();*/
          final long startTime = System.nanoTime();
          myThread = new Thread()  {
             public void run() {
@@ -124,8 +93,6 @@ public class Bird extends Animal {
                     EscapeObserver.getInstance().handle();
                     return;
                 } catch (InterruptedException ex) {  
-                    //label.setVisible(false);
-                    //GameLayout.getInstance().getPanel().remove(label);
                     GameLayout.getInstance().getPanel().revalidate();
                     GameLayout.getInstance().getPanel().repaint();
                     return;
@@ -163,14 +130,4 @@ public class Bird extends Animal {
             System.out.println(e);
         }
     } 
-     
-     
-    /*@Override
-    public String behaveWord(long currentTime) {
-        if (currentWord == "") currentWord = WordsDictionary.getInstance().getWordsFromDictionary();
-        return currentWord;
-        //GameLayout.getInstance().debug(WordsDictionary.getInstance().getWordsFromDictionary());
-        //return "asem";
-        //return WordsDictionary.getInstance().getWordsFromDictionary();
-    }*/
 }

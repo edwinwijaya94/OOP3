@@ -33,14 +33,9 @@ public class CrazyDinosaur extends Animal {
     public static String animalName = "CrazyDinosaur";
     public String currentWord = "";
     
-// registering the class to AnimalFactory
+    // registering the class to AnimalFactory
     static {
         AnimalFactory.getInstance().registerAnimal(CrazyDinosaur.class);
-    }
-    
-    private void checkDeath()
-    {
-        
     }
     
     public void draw(int position) {
@@ -68,8 +63,6 @@ public class CrazyDinosaur extends Animal {
     //method
     @Override
     public void move(){
-         /*if (label == null) 
-            draw();*/
          final long startTime = System.nanoTime();
          myThread = new Thread()  {
             public void run() {
@@ -96,7 +89,6 @@ public class CrazyDinosaur extends Animal {
                     EscapeObserver.getInstance().handle();
                     return;
                 } catch (InterruptedException ex) {  
-                    //GameLayout.getInstance().getPanel().remove(label);
                     GameLayout.getInstance().getPanel().revalidate();
                     GameLayout.getInstance().getPanel().repaint();
                     return;
@@ -134,13 +126,4 @@ public class CrazyDinosaur extends Animal {
             System.out.println(e);
         }
     } 
-     
-     
-    /*
-    @Override
-    public String behaveWord(long duration){
-        if (currentWord == "") currentWord = WordsDictionary.getInstance().getWordsFromDictionary();
-        currentWord = currentWord.substring(1) + currentWord.charAt(0);
-        return currentWord;
-    }*/
 }

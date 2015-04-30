@@ -33,14 +33,9 @@ public class Bayleef extends Animal {
     public static String animalName = "Bayleef";
     public String currentWord = "";
     
-// registering the class to AnimalFactory
+    // registering the class to AnimalFactory
     static {
         AnimalFactory.getInstance().registerAnimal(Bayleef.class);
-    }
-    
-    private void checkDeath()
-    {
-        
     }
     
     public void draw(int position) {
@@ -93,7 +88,6 @@ public class Bayleef extends Animal {
                     EscapeObserver.getInstance().handle();
                     return;
                 } catch (InterruptedException ex) {  
-                    //GameLayout.getInstance().getPanel().remove(label);
                     GameLayout.getInstance().getPanel().revalidate();
                     GameLayout.getInstance().getPanel().repaint();
                     return;

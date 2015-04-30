@@ -33,23 +33,16 @@ public class AngryWolf extends Animal {
     public static String animalName = "AngryWolf";
     public String currentWord = "";
     
-// registering the class to AnimalFactory
+    // registering the class to AnimalFactory
     static {
         AnimalFactory.getInstance().registerAnimal(AngryWolf.class);
     }
-    
-    private void checkDeath()
-    {
-        
-    }
-    
+   
     public void draw(int position) {
         currentWord = "";
         setSpeed(15);
         ImageIcon icon = new ImageIcon("image/angrywolf.gif");
         Image image = icon.getImage();
-        //image = image.getScaledInstance(170, 170,  java.awt.Image.SCALE_SMOOTH); 
-        //icon = new ImageIcon(image);
         label = new JLabel();
         label.setText("");
         label.setIcon(icon);
@@ -63,7 +56,6 @@ public class AngryWolf extends Animal {
         atas += position * label.getWidth()/2 + position*15 ;
         label.setLocation(kanan,atas);
         label.setVisible(true);
-        //GameLayout.getInstance().getPanel().add(label, BorderLayout.CENTER);
         GameLayout.getInstance().getPanel().add(label, 0);
         move();
     }
@@ -96,7 +88,6 @@ public class AngryWolf extends Animal {
                     EscapeObserver.getInstance().handle();
                     return;
                 } catch (InterruptedException ex) {  
-                    //GameLayout.getInstance().getPanel().remove(label);
                     GameLayout.getInstance().getPanel().revalidate();
                     GameLayout.getInstance().getPanel().repaint();
                     return;
@@ -134,10 +125,4 @@ public class AngryWolf extends Animal {
             System.out.println(e);
         }
     }
-    /*@Override
-    public String behaveWord(long duration){
-        if (currentWord == "") currentWord = WordsDictionary.getInstance().getWordsFromDictionary();
-        currentWord = currentWord.substring(1) + currentWord.charAt(0);
-        return currentWord;
-    }*/
 }

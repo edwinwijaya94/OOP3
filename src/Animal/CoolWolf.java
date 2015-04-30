@@ -33,14 +33,9 @@ public class CoolWolf extends Animal {
     public static String animalName = "CoolWolf";
     public String currentWord = "";
     
-// registering the class to AnimalFactory
+    // registering the class to AnimalFactory
     static {
         AnimalFactory.getInstance().registerAnimal(CoolWolf.class);
-    }
-    
-    private void checkDeath()
-    {
-        
     }
     
     public void draw(int position) {
@@ -48,8 +43,6 @@ public class CoolWolf extends Animal {
         setSpeed(45);
         ImageIcon icon = new ImageIcon("image/coolwolf.gif");
         Image image = icon.getImage();
-        //image = image.getScaledInstance(170, 170,  java.awt.Image.SCALE_SMOOTH); 
-        //icon = new ImageIcon(image);
         label = new JLabel();
         label.setText("");
         label.setIcon(icon);
@@ -63,7 +56,6 @@ public class CoolWolf extends Animal {
         atas += position * label.getWidth()/2 + position*15 ;
         label.setLocation(kanan,atas);
         label.setVisible(true);
-        //GameLayout.getInstance().getPanel().add(label, BorderLayout.CENTER);
         GameLayout.getInstance().getPanel().add(label, 0);
         move();
     }
@@ -71,8 +63,6 @@ public class CoolWolf extends Animal {
     //method
     @Override
     public void move(){
-         /*if (label == null) 
-            draw();*/
          final long startTime = System.nanoTime();
          myThread = new Thread()  {
             public void run() {
@@ -99,7 +89,6 @@ public class CoolWolf extends Animal {
                     EscapeObserver.getInstance().handle();
                     return;
                 } catch (InterruptedException ex) {  
-                    //GameLayout.getInstance().getPanel().remove(label);
                     GameLayout.getInstance().getPanel().revalidate();
                     GameLayout.getInstance().getPanel().repaint();
                     return;
@@ -138,11 +127,4 @@ public class CoolWolf extends Animal {
             System.out.println(e);
         }
     }
-    /*
-    @Override
-    public String behaveWord(long duration){
-        if (currentWord == "") currentWord = WordsDictionary.getInstance().getWordsFromDictionary();
-        currentWord = currentWord.substring(1) + currentWord.charAt(0);
-        return currentWord;
-    }*/
 }
