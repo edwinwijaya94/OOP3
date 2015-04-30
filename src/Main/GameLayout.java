@@ -384,7 +384,7 @@ public class GameLayout extends javax.swing.JFrame {
                 Animal.setSpeedLevel(25);
         }
         
-        for(int i = 0; i < 5; i++)
+        for(int i = 0; i < animalSize; i++)
         {
             animals[i] = AnimalFactory.getInstance().getAnimal();
             animals[i].draw(i);
