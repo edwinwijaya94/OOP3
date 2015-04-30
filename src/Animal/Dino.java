@@ -41,28 +41,6 @@ public class Dino extends Animal {
     {
 
     }
-    /*
-    public void draw() {
-        setSpeed(5);
-        ImageIcon icon = new ImageIcon("image/cat.png");
-        Image image = icon.getImage();
-        image = image.getScaledInstance(200, 100,  java.awt.Image.SCALE_SMOOTH); 
-        icon = new ImageIcon(image);
-        label = new JLabel();
-        label.setText("");
-        label.setIcon(icon);
-        label.setSize(200,100);
-        label.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        label.setForeground(Color.GREEN);
-        label.setFont(label.getFont().deriveFont((float)(label.getFont().getSize()+20)));
-        label.setFont(label.getFont().deriveFont(Font.BOLD));
-        int kanan = (int)GameLayout.getInstance().getPanel().getBounds().getMaxX() - label.getWidth() - 20;
-        int atas = (int)GameLayout.getInstance().getPanel().getLocationOnScreen().getY() - 100;
-        label.setLocation(kanan,atas);
-        label.setVisible(true);
-        GameLayout.getInstance().getPanel().add(label, BorderLayout.CENTER);
-    }
-    */
     
     private void checkDeath()
     {
@@ -81,7 +59,7 @@ public class Dino extends Animal {
         label.setIcon(icon);
         label.setSize(250,160);
         label.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        label.setForeground(Color.GREEN);
+        label.setForeground(Color.black);
         label.setFont(label.getFont().deriveFont((float)(label.getFont().getSize()+20)));
         label.setFont(label.getFont().deriveFont(Font.BOLD));
         int kanan = (int)GameLayout.getInstance().getPanel().getBounds().getMaxX() - label.getWidth() - 20;

@@ -1,5 +1,12 @@
 package Main;
 
+import java.io.File;
+import javax.sound.sampled.AudioFormat;
+import javax.sound.sampled.AudioInputStream;
+import javax.sound.sampled.AudioSystem;
+import javax.sound.sampled.Clip;
+import javax.sound.sampled.DataLine;
+
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -10,6 +17,7 @@ package Main;
  * @author Edwin
  */
 public class Menu extends javax.swing.JFrame {
+    Clip backgroundClip;
     
     private static Menu instance;
     
@@ -30,6 +38,7 @@ public class Menu extends javax.swing.JFrame {
      */
     private Menu() {
         initComponents();
+        startBackgroundClip();
         menuState=null;
         this.setVisible(true);
         HighScore.getInstance().getHighScoreFromFile();
@@ -145,6 +154,7 @@ public class Menu extends javax.swing.JFrame {
         // TODO add your handling code here:
         StartNewGameState startState = new StartNewGameState();
         startState.doAction();
+        stopBackgroundClip();
         this.dispose();
     }//GEN-LAST:event_startNewGameButtonActionPerformed
 
@@ -152,6 +162,7 @@ public class Menu extends javax.swing.JFrame {
         // TODO add your handling code here:
         ViewHighScoreState highScoreState = new ViewHighScoreState();
         highScoreState.doAction();
+        stopBackgroundClip();
         this.dispose();
     }//GEN-LAST:event_viewHighScoreButtonActionPerformed
 
@@ -159,6 +170,7 @@ public class Menu extends javax.swing.JFrame {
         // TODO add your handling code here:
         ViewHowToPlayState howToPlayState = new ViewHowToPlayState();
         howToPlayState.doAction();
+        stopBackgroundClip();
         this.dispose();
     }//GEN-LAST:event_howToPlayButtonActionPerformed
 
@@ -166,6 +178,7 @@ public class Menu extends javax.swing.JFrame {
         // TODO add your handling code here:
         ViewAboutState aboutState = new ViewAboutState();
         aboutState.doAction();
+        stopBackgroundClip();
         this.dispose();
     }//GEN-LAST:event_aboutButtonActionPerformed
 
@@ -213,6 +226,30 @@ public class Menu extends javax.swing.JFrame {
                 new Menu().setVisible(true);
             }
         });
+    }
+    
+     public void startBackgroundClip()
+    {
+        String path = "music/hakunamatata.wav";
+        try{
+            File audioFile = new File(path);
+            AudioInputStream audioStream = AudioSystem.getAudioInputStream(audioFile);
+
+            AudioFormat format = audioStream.getFormat();
+            DataLine.Info info = new DataLine.Info(Clip.class, format);
+            backgroundClip = (Clip) AudioSystem.getLine(info);
+
+            backgroundClip.open(audioStream);            
+            backgroundClip.start();
+            backgroundClip.loop(Clip.LOOP_CONTINUOUSLY);
+        }catch(Exception e){
+            System.out.println(e);
+        }
+    }
+   
+    public void stopBackgroundClip()
+    {
+        backgroundClip.stop();
     }
     
     // Variables declaration - do not modify//GEN-BEGIN:variables

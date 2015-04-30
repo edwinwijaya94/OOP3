@@ -54,7 +54,7 @@ public class Monkey extends Animal {
         label.setIcon(icon);
         label.setSize(250,190);
         label.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        label.setForeground(Color.BLUE);
+        label.setForeground(Color.ORANGE);
         label.setFont(label.getFont().deriveFont((float)(label.getFont().getSize()+13)));
         label.setFont(label.getFont().deriveFont(Font.BOLD));
         int kanan = (int)GameLayout.getInstance().getPanel().getBounds().getMaxX();

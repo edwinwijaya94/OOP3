@@ -46,7 +46,7 @@ public class Alien extends Animal {
         label.setIcon(icon);
         label.setSize(300,200);
         label.setHorizontalTextPosition(javax.swing.SwingConstants.LEFT);
-        label.setForeground(Color.red);
+        label.setForeground(Color.black);
         label.setFont(label.getFont().deriveFont((float)(label.getFont().getSize()+13)));
         label.setFont(label.getFont().deriveFont(Font.BOLD));
         int kanan = (int)GameLayout.getInstance().getPanel().getBounds().getMaxX();
