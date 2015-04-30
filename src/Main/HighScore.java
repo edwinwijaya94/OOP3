@@ -87,7 +87,7 @@ public class HighScore extends javax.swing.JFrame {
 
     private static HighScore instance;
     private String highscoreFileName = "data/highscore.dat";
-    public ArrayList<HighScoreTuple> highScore;
+    public ArrayList<HighScoreTuple> highScore = new ArrayList<HighScoreTuple>();
     private JLabel jLabel1;
     private JLabel jLabel2;
     
@@ -96,7 +96,6 @@ public class HighScore extends javax.swing.JFrame {
      */
     private HighScore() {
         initComponents();
-        
                 addComponentListener(new ComponentListener() {
             public void componentResized(ComponentEvent e) {        
                 //System.out.println(e.getComponent().toString());
@@ -122,55 +121,58 @@ public class HighScore extends javax.swing.JFrame {
             public void componentShown(ComponentEvent e) {}
         
         });
-        displayHighScore();
+        //displayHighScore();
     }
     
     public void displayHighScore() {
-        getHighScoreFromFile();   
-        if ((jLabel1 == null) && (jLabel2 == null))
+        if (highScore != null)
         {
-            jLabel1 = new JLabel();        
-            jLabel2 = new JLabel(); 
+            getHighScoreFromFile();   
+            if ((jLabel1 == null) && (jLabel2 == null))
+            {
+                jLabel1 = new JLabel();        
+                jLabel2 = new JLabel(); 
+            }
+            else 
+            {
+                jLabel1.setFont(jLabel1.getFont().deriveFont((float)(jLabel1.getFont().getSize()-12)));
+                jLabel2.setFont(jLabel2.getFont().deriveFont((float)(jLabel2.getFont().getSize()-12)));
+                jLayeredPane1.remove(jLabel1);
+                jLayeredPane1.remove(jLabel2);   
+            }
+            int i = highScore.size()-1;
+            int o = 0;
+            StringBuilder hs = new StringBuilder();
+            StringBuilder hs2 = new StringBuilder();
+            hs.append("<html><pre>");
+            hs2.append("<html><pre>");
+            while ((i >= 0) && (o < 10)) {
+                hs.append((o+1) + ". " + highScore.get(i).getPlayerName() + "<br />"); 
+                hs2.append("" + highScore.get(i).getScore() + "<br />");
+                i--;
+                o++;
+            }
+            hs.append("</pre></html>");
+            hs2.append("</pre></html>");
+            jLabel1.setText(hs.toString());
+            jLabel1.setSize(320,500);
+            jLabel1.setVisible(true);
+            jLabel2.setLocation((int)jLayeredPane1.getLocation().getX() + jLayeredPane1.getWidth() - 100, (int)jLayeredPane1.getLocation().getY()+120);
+            jLabel1.setLocation((int)jLabel2.getLocation().getX() - 400, (int)jLayeredPane1.getLocation().getY()+120);
+            jLabel2.setSize(300,500);
+            jLabel2.setVisible(true);
+            jLabel2.setText(hs2.toString());
+            jLabel1.setVerticalAlignment(SwingConstants.TOP);
+            jLabel1.setForeground(Color.BLACK);
+            jLabel1.setFont(jLabel1.getFont().deriveFont((float)(jLabel1.getFont().getSize()+12)));
+            jLabel1.setFont(jLabel1.getFont().deriveFont(Font.BOLD)); 
+            jLabel2.setVerticalAlignment(SwingConstants.TOP);
+            jLabel2.setForeground(Color.BLACK);
+            jLabel2.setFont(jLabel2.getFont().deriveFont((float)(jLabel2.getFont().getSize()+12)));
+            jLabel2.setFont(jLabel2.getFont().deriveFont(Font.BOLD)); 
+            jLayeredPane1.add(jLabel1, 1);
+            jLayeredPane1.add(jLabel2, 0);
         }
-        else 
-        {
-            jLabel1.setFont(jLabel1.getFont().deriveFont((float)(jLabel1.getFont().getSize()-12)));
-            jLabel2.setFont(jLabel2.getFont().deriveFont((float)(jLabel2.getFont().getSize()-12)));
-            jLayeredPane1.remove(jLabel1);
-            jLayeredPane1.remove(jLabel2);   
-        }
-        int i = highScore.size()-1;
-        int o = 0;
-        StringBuilder hs = new StringBuilder();
-        StringBuilder hs2 = new StringBuilder();
-        hs.append("<html><pre>");
-        hs2.append("<html><pre>");
-        while ((i >= 0) && (o < 10)) {
-            hs.append((o+1) + ". " + highScore.get(i).getPlayerName() + "<br />"); 
-            hs2.append("" + highScore.get(i).getScore() + "<br />");
-            i--;
-            o++;
-        }
-        hs.append("</pre></html>");
-        hs2.append("</pre></html>");
-        jLabel1.setText(hs.toString());
-        jLabel1.setSize(320,500);
-        jLabel1.setVisible(true);
-        jLabel2.setLocation((int)jLayeredPane1.getLocation().getX() + jLayeredPane1.getWidth() - 100, (int)jLayeredPane1.getLocation().getY()+120);
-        jLabel1.setLocation((int)jLabel2.getLocation().getX() - 400, (int)jLayeredPane1.getLocation().getY()+120);
-        jLabel2.setSize(300,500);
-        jLabel2.setVisible(true);
-        jLabel2.setText(hs2.toString());
-        jLabel1.setVerticalAlignment(SwingConstants.TOP);
-        jLabel1.setForeground(Color.BLACK);
-        jLabel1.setFont(jLabel1.getFont().deriveFont((float)(jLabel1.getFont().getSize()+12)));
-        jLabel1.setFont(jLabel1.getFont().deriveFont(Font.BOLD)); 
-        jLabel2.setVerticalAlignment(SwingConstants.TOP);
-        jLabel2.setForeground(Color.BLACK);
-        jLabel2.setFont(jLabel2.getFont().deriveFont((float)(jLabel2.getFont().getSize()+12)));
-        jLabel2.setFont(jLabel2.getFont().deriveFont(Font.BOLD)); 
-        jLayeredPane1.add(jLabel1, 1);
-        jLayeredPane1.add(jLabel2, 0);
     }
     
     public void showHighScoreFrame()
