@@ -125,14 +125,12 @@ public abstract class Animal {
     
     
     //abstract method
-    //public abstract void draw();
     public abstract void draw(int position);
     public abstract void move();
     
     public final String behaveWordDefault(){
         if (currentWord == "") 
             currentWord = WordsDictionary.getInstance().getWordsFromDictionary();
-        //currentWord = currentWord.substring(1) + currentWord.charAt(0);
         return currentWord;
     }
     
