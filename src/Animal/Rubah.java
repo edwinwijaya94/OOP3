@@ -52,8 +52,8 @@ public class Rubah extends Animal {
         label.setIcon(icon);
         label.setSize(250,160);
         label.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        label.setForeground(Color.GREEN);
-        label.setFont(label.getFont().deriveFont((float)(label.getFont().getSize()+20)));
+        label.setForeground(Color.black);
+        label.setFont(label.getFont().deriveFont((float)(label.getFont().getSize()+15)));
         label.setFont(label.getFont().deriveFont(Font.BOLD));
         int kanan = (int)GameLayout.getInstance().getPanel().getBounds().getMaxX();
         int atas = (int)GameLayout.getInstance().getPanel().getLocationOnScreen().getY() - 100;

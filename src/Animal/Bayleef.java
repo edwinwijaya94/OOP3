@@ -53,7 +53,7 @@ public class Bayleef extends Animal {
         label.setIcon(icon);
         label.setSize(250,160);
         label.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        label.setForeground(Color.red);
+        label.setForeground(Color.ORANGE);
         label.setFont(label.getFont().deriveFont((float)(label.getFont().getSize()+20)));
         label.setFont(label.getFont().deriveFont(Font.BOLD));
         int kanan = (int)GameLayout.getInstance().getPanel().getBounds().getMaxX();
