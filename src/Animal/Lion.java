@@ -42,10 +42,6 @@ public class Lion extends Animal {
 
     }
     
-    private void checkDeath()
-    {
-        
-    }
     
     public void draw(int position) {
         currentWord = "";
@@ -53,7 +49,7 @@ public class Lion extends Animal {
         ImageIcon icon = new ImageIcon("image/lion.gif");
         Image image = icon.getImage();
         image = image.getScaledInstance(130, 130,  java.awt.Image.SCALE_SMOOTH); 
-        //icon = new ImageIcon(image);
+     
         label = new JLabel();
         label.setText("");
         label.setIcon(icon);
@@ -67,7 +63,7 @@ public class Lion extends Animal {
         atas += position * label.getWidth()/2 + position*15 ;
         label.setLocation(kanan,atas);
         label.setVisible(true);
-        //GameLayout.getInstance().getPanel().add(label, BorderLayout.CENTER);
+        
         GameLayout.getInstance().getPanel().add(label, 0);
         move();
     }
@@ -75,8 +71,7 @@ public class Lion extends Animal {
     //method
     @Override
     public void move(){
-         /*if (label == null) 
-            draw();*/
+         
          final long startTime = System.nanoTime();
          myThread = new Thread()  {
             public void run() {
@@ -94,7 +89,7 @@ public class Lion extends Animal {
                         label.setText(word);
                         GameLayout.getInstance().getPanel().revalidate();
                         GameLayout.getInstance().getPanel().repaint();
-                        //Thread.sleep(100-speed);
+                       
                         delay(speed);
                     }
                     GameLayout.getInstance().getPanel().remove(label);
@@ -103,12 +98,11 @@ public class Lion extends Animal {
                     EscapeObserver.getInstance().handle();
                     return;
                 } catch (InterruptedException ex) {  
-                    //label.setVisible(false);
-                    //GameLayout.getInstance().getPanel().remove(label);
+                    
                     GameLayout.getInstance().getPanel().revalidate();
                     GameLayout.getInstance().getPanel().repaint();
                     return;
-                    //break;               
+                    
                 }
             }
         };
@@ -126,7 +120,7 @@ public class Lion extends Animal {
     
     @Override
     public void playSound(){
-        // Play music when answer corrected
+        
         String path = "music/lion.wav";
         try{
             File audioFile = new File(path);
@@ -143,13 +137,4 @@ public class Lion extends Animal {
         }
     }
      
-     
-    /*@Override
-    public String behaveWord(long currentTime) {
-        if (currentWord == "") currentWord = WordsDictionary.getInstance().getWordsFromDictionary();
-        return currentWord;
-        //GameLayout.getInstance().debug(WordsDictionary.getInstance().getWordsFromDictionary());
-        //return "asem";
-        //return WordsDictionary.getInstance().getWordsFromDictionary();
-    }*/
 }
