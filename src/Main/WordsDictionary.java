@@ -37,7 +37,6 @@ public class WordsDictionary
 
 			while ((sCurrentLine = br.readLine()) != null) {
 				words.add(sCurrentLine);
-                                //GameLayout.getInstance().debug(sCurrentLine);
 			}
 		} catch (IOException e) {
 			e.printStackTrace();
@@ -49,12 +48,6 @@ public class WordsDictionary
 			}
 		}
 		Collections.shuffle(words);
-		
-                /*Collections.sort(words,new Comparator<String>() {
-            public int compare(String s1, String s2) {
-				return s1.length() - s2.length();
-            }
-        });*/
 	}
 	
 	public static synchronized String getWordsFromDictionary()
@@ -64,7 +57,6 @@ public class WordsDictionary
 	
 	public static void main(String[] args)
 	{
-		//WordsDictionary wd = new WordsDictionary();
 		for (int i=0;i<5000;i++)
 		{
 			System.out.println(WordsDictionary.getInstance().getWordsFromDictionary());

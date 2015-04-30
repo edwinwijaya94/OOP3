@@ -98,12 +98,8 @@ public class HighScore extends javax.swing.JFrame {
         initComponents();
                 addComponentListener(new ComponentListener() {
             public void componentResized(ComponentEvent e) {        
-                //System.out.println(e.getComponent().toString());
-    		//System.out.println(e.getComponent().getSize().height);
                 int panelHeight = e.getComponent().getSize().height;
-                //System.out.println(panelHeight);
                 int panelWidth = e.getComponent().getSize().width;
-                //System.out.println(panelWidth);
                                 
                 JLabel labelb = new JLabel();
                 ImageIcon icon2 = new ImageIcon("image/score.png");
@@ -191,7 +187,6 @@ public class HighScore extends javax.swing.JFrame {
         if (instance == null)
         {
             instance = new HighScore();
-            //instance.writeHighScoretoFile();
         }
         return instance;
     }
@@ -228,10 +223,6 @@ public class HighScore extends javax.swing.JFrame {
              c.printStackTrace();
              return;
         }
-        /*
-        for(HighScoreTuple tmp: highScore){
-            System.out.println(tmp.getPlayerName() + ' ' + tmp.getScore());
-        }*/
     }
     
     public void writeHighScoretoFile()
